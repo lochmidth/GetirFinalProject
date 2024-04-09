@@ -18,7 +18,7 @@
 		C2351C362BC5A9190080CED9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C352BC5A9190080CED9 /* Product.swift */; };
 		C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */; };
 		C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3A2BC5C5A80080CED9 /* GetirSDK */; };
-		C2351C3E2BC5C5CF0080CED9 /* SwiftAsyncNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */; };
+		C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */,
-				C2351C3E2BC5C5CF0080CED9 /* SwiftAsyncNetworking in Frameworks */,
+				C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				C2351C2E2BC59D750080CED9 /* App */,
-				C2351C342BC5A90C0080CED9 /* Entitity */,
+				C2351C3F2BC5C9700080CED9 /* Entity */,
+				C2351C402BC5CEA90080CED9 /* Modules */,
 				C2351C2F2BC59D800080CED9 /* Recources */,
 				C2351C302BC59D840080CED9 /* Supportings */,
 			);
@@ -170,20 +171,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C2351C342BC5A90C0080CED9 /* Entitity */ = {
-			isa = PBXGroup;
-			children = (
-				C2351C352BC5A9190080CED9 /* Product.swift */,
-				C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */,
-			);
-			path = Entitity;
-			sourceTree = "<group>";
-		};
 		C2351C3C2BC5C5CF0080CED9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2351C3F2BC5C9700080CED9 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				C2351C352BC5A9190080CED9 /* Product.swift */,
+				C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		C2351C402BC5CEA90080CED9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +212,7 @@
 			name = GetirFinalProject;
 			packageProductDependencies = (
 				C2351C3A2BC5C5A80080CED9 /* GetirSDK */,
-				C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */,
+				C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */,
 			);
 			productName = GetirFinalProject;
 			productReference = C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */;
@@ -679,7 +687,7 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = GetirSDK;
 		};
-		C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */ = {
+		C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftAsyncNetworking;
 		};
