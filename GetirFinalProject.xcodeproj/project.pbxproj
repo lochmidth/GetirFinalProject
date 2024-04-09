@@ -21,7 +21,7 @@
 		C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */; };
 		C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3A2BC5C5A80080CED9 /* GetirSDK */; };
 		C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */; };
-		C2351C4D2BC5D64B0080CED9 /* QuantitiyControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C4C2BC5D64B0080CED9 /* QuantitiyControlView.swift */; };
+		C2351C4D2BC5D64B0080CED9 /* QuantityControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C4C2BC5D64B0080CED9 /* QuantityControlView.swift */; };
 		C2351C4F2BC5D7370080CED9 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C4E2BC5D7370080CED9 /* UIView+Ext.swift */; };
 		C2351C512BC5DABA0080CED9 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C502BC5DABA0080CED9 /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +62,7 @@
 		C2351C332BC5A1420080CED9 /* GetirSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GetirSDK; sourceTree = "<group>"; };
 		C2351C352BC5A9190080CED9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProduct.swift; sourceTree = "<group>"; };
-		C2351C4C2BC5D64B0080CED9 /* QuantitiyControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitiyControlView.swift; sourceTree = "<group>"; };
+		C2351C4C2BC5D64B0080CED9 /* QuantityControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlView.swift; sourceTree = "<group>"; };
 		C2351C4E2BC5D7370080CED9 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C2351C502BC5DABA0080CED9 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,7 +244,7 @@
 		C2351C492BC5D4D10080CED9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2351C4C2BC5D64B0080CED9 /* QuantitiyControlView.swift */,
+				C2351C4C2BC5D64B0080CED9 /* QuantityControlView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				C2351C4F2BC5D7370080CED9 /* UIView+Ext.swift in Sources */,
 				C2154B692BC5F89700583CCC /* QuantityControlPresenter.swift in Sources */,
 				C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */,
-				C2351C4D2BC5D64B0080CED9 /* QuantitiyControlView.swift in Sources */,
+				C2351C4D2BC5D64B0080CED9 /* QuantityControlView.swift in Sources */,
 				C2351C512BC5DABA0080CED9 /* UIColor+Ext.swift in Sources */,
 				C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */,
 				C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */,

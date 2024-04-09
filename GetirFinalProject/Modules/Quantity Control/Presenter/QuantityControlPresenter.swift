@@ -14,7 +14,8 @@ protocol QuantitiyControlViewInput: AnyObject {
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
-    
+    func addToCart()
+    func removeFromCart()
 }
 
 final class QuantityControlPresenter {

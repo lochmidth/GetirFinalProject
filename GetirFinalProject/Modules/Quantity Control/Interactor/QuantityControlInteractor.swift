@@ -7,10 +7,26 @@
 
 import Foundation
 
-protocol QuantitiyControlInteractorOutput: AnyObject {
+protocol QuantityControlInteractorDelegate: AnyObject {
+    
+}
+
+protocol QuantityyControlInteractorOutput: AnyObject {
     
 }
 
 final class QuantityControlInteractor {
     
+    weak var delegate: QuantityControlInteractorDelegate?
+    
+}
+
+extension QuantityControlInteractor: QuantityControlInteractorInput {
+    func addToCart() {
+        
+    }
+    
+    func removeFromCart() {
+        
+    }
 }

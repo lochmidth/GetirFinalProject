@@ -18,7 +18,7 @@ protocol QuantitiyControlViewOutput: AnyObject {
     func decrementQuantity()
 }
 
-final class QuantitiyControlView: UIView {
+final class QuantityControlView: UIView {
     //MARK: - Properties
     
     private lazy var plusButton: UIButton = {
@@ -85,7 +85,7 @@ final class QuantitiyControlView: UIView {
     
 }
 
-extension QuantitiyControlView: QuantitiyControlViewInput {
+extension QuantityControlView: QuantitiyControlViewInput {
     func configureUI() {
         backgroundColor = .white
         layer.cornerRadius = 8
