@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		C2351C162BC59CD10080CED9 /* GetirFinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C152BC59CD10080CED9 /* GetirFinalProjectTests.swift */; };
 		C2351C202BC59CD10080CED9 /* GetirFinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */; };
 		C2351C222BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */; };
+		C2351C362BC5A9190080CED9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C352BC5A9190080CED9 /* Product.swift */; };
+		C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */; };
+		C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3A2BC5C5A80080CED9 /* GetirSDK */; };
+		C2351C3E2BC5C5CF0080CED9 /* SwiftAsyncNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,9 @@
 		C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITests.swift; sourceTree = "<group>"; };
 		C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftAsyncNetworking; sourceTree = "<group>"; };
+		C2351C332BC5A1420080CED9 /* GetirSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GetirSDK; sourceTree = "<group>"; };
+		C2351C352BC5A9190080CED9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProduct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */,
+				C2351C3E2BC5C5CF0080CED9 /* SwiftAsyncNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,11 +87,13 @@
 		C2351BEF2BC59CCF0080CED9 = {
 			isa = PBXGroup;
 			children = (
+				C2351C332BC5A1420080CED9 /* GetirSDK */,
 				C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */,
 				C2351BFA2BC59CCF0080CED9 /* GetirFinalProject */,
 				C2351C142BC59CD10080CED9 /* GetirFinalProjectTests */,
 				C2351C1E2BC59CD10080CED9 /* GetirFinalProjectUITests */,
 				C2351BF92BC59CCF0080CED9 /* Products */,
+				C2351C3C2BC5C5CF0080CED9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C2351C2E2BC59D750080CED9 /* App */,
+				C2351C342BC5A90C0080CED9 /* Entitity */,
 				C2351C2F2BC59D800080CED9 /* Recources */,
 				C2351C302BC59D840080CED9 /* Supportings */,
 			);
@@ -158,6 +170,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C2351C342BC5A90C0080CED9 /* Entitity */ = {
+			isa = PBXGroup;
+			children = (
+				C2351C352BC5A9190080CED9 /* Product.swift */,
+				C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */,
+			);
+			path = Entitity;
+			sourceTree = "<group>";
+		};
+		C2351C3C2BC5C5CF0080CED9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,6 +202,10 @@
 			dependencies = (
 			);
 			name = GetirFinalProject;
+			packageProductDependencies = (
+				C2351C3A2BC5C5A80080CED9 /* GetirSDK */,
+				C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */,
+			);
 			productName = GetirFinalProject;
 			productReference = C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */;
 			productType = "com.apple.product-type.application";
@@ -246,6 +278,9 @@
 				Base,
 			);
 			mainGroup = C2351BEF2BC59CCF0080CED9;
+			packageReferences = (
+				C2351C392BC5C5A80080CED9 /* XCLocalSwiftPackageReference "GetirSDK" */,
+			);
 			productRefGroup = C2351BF92BC59CCF0080CED9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,8 +324,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */,
+				C2351C362BC5A9190080CED9 /* Product.swift in Sources */,
 				C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */,
 				C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */,
+				C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +666,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C2351C392BC5C5A80080CED9 /* XCLocalSwiftPackageReference "GetirSDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = GetirSDK;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C2351C3A2BC5C5A80080CED9 /* GetirSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GetirSDK;
+		};
+		C2351C3D2BC5C5CF0080CED9 /* SwiftAsyncNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftAsyncNetworking;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */ = {
