@@ -47,6 +47,7 @@
 		C2351C1B2BC59CD10080CED9 /* GetirFinalProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetirFinalProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITests.swift; sourceTree = "<group>"; };
 		C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftAsyncNetworking; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		C2351BEF2BC59CCF0080CED9 = {
 			isa = PBXGroup;
 			children = (
+				C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */,
 				C2351BFA2BC59CCF0080CED9 /* GetirFinalProject */,
 				C2351C142BC59CD10080CED9 /* GetirFinalProjectTests */,
 				C2351C1E2BC59CD10080CED9 /* GetirFinalProjectUITests */,
