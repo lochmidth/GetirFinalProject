@@ -19,6 +19,7 @@ public struct SuggestedProductDTO: Codable {
     public let price: Double?
     public let name: String?
     public let priceText: String?
+    public let attribute: String?
     public let shortDescription: String?
     public let category: String?
     public let unitPrice: Double?

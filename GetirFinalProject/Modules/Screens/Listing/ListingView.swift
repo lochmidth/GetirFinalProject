@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol ListingViewOutput: AnyObject {
+    func didTapCell()
+}
+
 final class ListingView: UIView {
     //MARK: - Properties
     
-    private var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
+    weak var output: ListingViewOutput?
+    var products = [Product]()
+    var suggestedProducts = [Product]()
     
     //MARK: - Lifecycle
     
@@ -46,12 +53,12 @@ final class ListingView: UIView {
             if sectionNumber == 0 {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.28), heightDimension: .absolute(164.67)), subitems: [item])
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.28), heightDimension: .absolute(168.67)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 return section
             } else {
-                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/3), heightDimension: .absolute(164.67)))
+                let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/3), heightDimension: .absolute(168.67)))
                 item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(self.frame.size.height)), subitems: [item])
                let section = NSCollectionLayoutSection(group: group)
@@ -64,21 +71,44 @@ final class ListingView: UIView {
     }
 }
 
+//MARK: - UICollectionViewDataSource/Delegate
+
 extension ListingView: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+        if section == 0 {
+            return suggestedProducts.count
+        }
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCellView
+        cell.delegate = self
+        if indexPath.section == 0 {
+            cell.reload(with: suggestedProducts[indexPath.item])
+            return cell
+        }
+        cell.reload(with: products[indexPath.item])
         return cell
     }
 }
 
-#Preview(traits: .defaultLayout, body: {
-    ListingView()
-})
+extension ListingView: ProductCellViewDelegate {
+    func didTapCell() {
+        output?.didTapCell()
+    }
+}
+
+extension ListingView: listingViewInput {
+    func reload(with products: ProductList, _ suggestedProducts: SuggestedProductList) {
+        self.products = products.products
+        self.suggestedProducts = suggestedProducts.products
+        Task { @MainActor in
+            collectionView.reloadData()
+        }
+    }
+}

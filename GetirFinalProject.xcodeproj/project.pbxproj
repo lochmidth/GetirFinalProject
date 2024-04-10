@@ -11,6 +11,13 @@
 		C2154B6B2BC6011500583CCC /* QuantityControlInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */; };
 		C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */; };
 		C22A0DB22BC6B88E00C8F067 /* ProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB12BC6B88E00C8F067 /* ProductCellView.swift */; };
+		C22A0DB42BC6C34200C8F067 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */; };
+		C22A0DB62BC6ECBD00C8F067 /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */; };
+		C22A0DB82BC6EF2900C8F067 /* ListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB72BC6EF2900C8F067 /* ListingInteractor.swift */; };
+		C22A0DBC2BC6FA1F00C8F067 /* ListingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBB2BC6FA1F00C8F067 /* ListingBuilder.swift */; };
+		C22A0DBE2BC6FAE800C8F067 /* ListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBD2BC6FAE800C8F067 /* ListingRouter.swift */; };
+		C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBF2BC705AB00C8F067 /* Product.swift */; };
+		C22A0DC32BC7066A00C8F067 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C22A0DC22BC7066A00C8F067 /* Kingfisher */; };
 		C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */; };
 		C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */; };
 		C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */; };
@@ -19,8 +26,8 @@
 		C2351C162BC59CD10080CED9 /* GetirFinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C152BC59CD10080CED9 /* GetirFinalProjectTests.swift */; };
 		C2351C202BC59CD10080CED9 /* GetirFinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */; };
 		C2351C222BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */; };
-		C2351C362BC5A9190080CED9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C352BC5A9190080CED9 /* Product.swift */; };
-		C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */; };
+		C2351C362BC5A9190080CED9 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C352BC5A9190080CED9 /* ProductList.swift */; };
+		C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C372BC5C1720080CED9 /* SuggestedProductList.swift */; };
 		C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C3A2BC5C5A80080CED9 /* GetirSDK */; };
 		C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */; };
 		C2351C4D2BC5D64B0080CED9 /* QuantityControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C4C2BC5D64B0080CED9 /* QuantityControlView.swift */; };
@@ -50,6 +57,12 @@
 		C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlInteractor.swift; sourceTree = "<group>"; };
 		C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 		C22A0DB12BC6B88E00C8F067 /* ProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellView.swift; sourceTree = "<group>"; };
+		C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
+		C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
+		C22A0DB72BC6EF2900C8F067 /* ListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingInteractor.swift; sourceTree = "<group>"; };
+		C22A0DBB2BC6FA1F00C8F067 /* ListingBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingBuilder.swift; sourceTree = "<group>"; };
+		C22A0DBD2BC6FAE800C8F067 /* ListingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingRouter.swift; sourceTree = "<group>"; };
+		C22A0DBF2BC705AB00C8F067 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetirFinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +77,8 @@
 		C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftAsyncNetworking; sourceTree = "<group>"; };
 		C2351C332BC5A1420080CED9 /* GetirSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GetirSDK; sourceTree = "<group>"; };
-		C2351C352BC5A9190080CED9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProduct.swift; sourceTree = "<group>"; };
+		C2351C352BC5A9190080CED9 /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
+		C2351C372BC5C1720080CED9 /* SuggestedProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProductList.swift; sourceTree = "<group>"; };
 		C2351C4C2BC5D64B0080CED9 /* QuantityControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlView.swift; sourceTree = "<group>"; };
 		C2351C4E2BC5D7370080CED9 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C2351C502BC5DABA0080CED9 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
@@ -76,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C22A0DC32BC7066A00C8F067 /* Kingfisher in Frameworks */,
 				C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */,
 				C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */,
 			);
@@ -110,6 +124,11 @@
 			isa = PBXGroup;
 			children = (
 				C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */,
+				C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */,
+				C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */,
+				C22A0DB72BC6EF2900C8F067 /* ListingInteractor.swift */,
+				C22A0DBD2BC6FAE800C8F067 /* ListingRouter.swift */,
+				C22A0DBB2BC6FA1F00C8F067 /* ListingBuilder.swift */,
 			);
 			path = Listing;
 			sourceTree = "<group>";
@@ -221,8 +240,9 @@
 		C2351C3F2BC5C9700080CED9 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				C2351C352BC5A9190080CED9 /* Product.swift */,
-				C2351C372BC5C1720080CED9 /* SuggestedProduct.swift */,
+				C2351C352BC5A9190080CED9 /* ProductList.swift */,
+				C2351C372BC5C1720080CED9 /* SuggestedProductList.swift */,
+				C22A0DBF2BC705AB00C8F067 /* Product.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -298,6 +318,7 @@
 			packageProductDependencies = (
 				C2351C3A2BC5C5A80080CED9 /* GetirSDK */,
 				C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */,
+				C22A0DC22BC7066A00C8F067 /* Kingfisher */,
 			);
 			productName = GetirFinalProject;
 			productReference = C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */;
@@ -373,6 +394,7 @@
 			mainGroup = C2351BEF2BC59CCF0080CED9;
 			packageReferences = (
 				C2351C392BC5C5A80080CED9 /* XCLocalSwiftPackageReference "GetirSDK" */,
+				C22A0DC12BC7066A00C8F067 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C2351BF92BC59CCF0080CED9 /* Products */;
 			projectDirPath = "";
@@ -417,17 +439,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */,
-				C2351C362BC5A9190080CED9 /* Product.swift in Sources */,
+				C22A0DBE2BC6FAE800C8F067 /* ListingRouter.swift in Sources */,
+				C2351C362BC5A9190080CED9 /* ProductList.swift in Sources */,
 				C2351C4F2BC5D7370080CED9 /* UIView+Ext.swift in Sources */,
 				C2154B692BC5F89700583CCC /* QuantityControlPresenter.swift in Sources */,
 				C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */,
 				C2351C4D2BC5D64B0080CED9 /* QuantityControlView.swift in Sources */,
+				C22A0DB42BC6C34200C8F067 /* ListingViewController.swift in Sources */,
+				C22A0DB62BC6ECBD00C8F067 /* ListingPresenter.swift in Sources */,
 				C2351C512BC5DABA0080CED9 /* UIColor+Ext.swift in Sources */,
 				C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */,
-				C2351C382BC5C1720080CED9 /* SuggestedProduct.swift in Sources */,
+				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
+				C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */,
 				C22A0DB22BC6B88E00C8F067 /* ProductCellView.swift in Sources */,
 				C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */,
+				C22A0DB82BC6EF2900C8F067 /* ListingInteractor.swift in Sources */,
 				C2154B6B2BC6011500583CCC /* QuantityControlInteractor.swift in Sources */,
+				C22A0DBC2BC6FA1F00C8F067 /* ListingBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,7 +802,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		C22A0DC12BC7066A00C8F067 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		C22A0DC22BC7066A00C8F067 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C22A0DC12BC7066A00C8F067 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		C2351C3A2BC5C5A80080CED9 /* GetirSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GetirSDK;

@@ -10,13 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let listingBuilder = ListingBuilder()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let controller = UIViewController()
-        controller.view.backgroundColor = .red
-        window?.rootViewController = controller
+        let nav = listingBuilder.build()
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
 
