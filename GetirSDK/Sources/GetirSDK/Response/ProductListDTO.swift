@@ -18,6 +18,7 @@ public struct ProductDTO: Codable {
     public let id: String?
     public let name: String?
     public let attribute: String?
+    public let shortDescription: String?
     public let thumbnailURL: String?
     public let imageURL: String?
     public let price: Double?
