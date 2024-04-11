@@ -7,17 +7,13 @@
 
 import Foundation
 
-protocol QuantityControlInteractorDelegate: AnyObject {
-    
-}
-
-protocol QuantityyControlInteractorOutput: AnyObject {
+protocol QuantityControlInteractorOutput: AnyObject {
     
 }
 
 final class QuantityControlInteractor {
     
-    weak var delegate: QuantityControlInteractorDelegate?
+    weak var presenter: QuantityControlInteractorOutput!
     
 }
 

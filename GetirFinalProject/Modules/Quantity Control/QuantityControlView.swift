@@ -13,7 +13,6 @@ enum StackOrientation {
 }
 
 protocol QuantitiyControlViewOutput: AnyObject {
-    func configure()
     func incrementQuantity()
     func decrementQuantity()
 }
@@ -48,7 +47,7 @@ final class QuantityControlView: UIView {
     }()
     
     private let stackOrientation: StackOrientation
-    private var presenter: QuantitiyControlViewOutput!
+    var presenter: QuantitiyControlViewOutput!
     private var count = 0
     
     //MARK: - Lifecycle
@@ -56,7 +55,8 @@ final class QuantityControlView: UIView {
     init(stackOrientation: StackOrientation) {
         self.stackOrientation = stackOrientation
         super.init(frame: .zero)
-        presenter.configure()
+        
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -75,35 +75,24 @@ final class QuantityControlView: UIView {
     
     //MARK: - Helpers
     
-    private func increaseCount() {
-        count += 1
-    }
-    
-    private func decreaseCount() {
-        count -= 1
-    }
-    
-}
-
-extension QuantityControlView: QuantitiyControlViewInput {
-    func configureUI() {
+    private func configureUI() {
         backgroundColor = .white
         layer.cornerRadius = 8
         addShadow()
-        configureStack(with: stackOrientation)
+        configureStack()
     }
     
-    func configureStack(with orientation: StackOrientation) {
+    private func configureStack() {
         let views = [plusButton, valueLabel, minusButton]
         let stack = UIStackView()
         stack.distribution = .fillEqually
-        switch orientation {
+        switch stackOrientation {
         case .vertical:
             views.forEach { view in
                 stack.addArrangedSubview(view)
             }
             stack.axis = .vertical
-            stack.setDimensions(height: 96, width: 32)
+            stack.setDimensions(height: 76.8, width: 25.6)
         case .horizontal:
             views.reversed().forEach { view in
                 stack.addArrangedSubview(view)
@@ -115,7 +104,16 @@ extension QuantityControlView: QuantitiyControlViewInput {
         stack.fillSuperview()
     }
     
-    func updateStack() {
-        valueLabel.text = "\(count)"
+    private func increaseCount() {
+        count += 1
     }
+    
+    private func decreaseCount() {
+        count -= 1
+    }
+    
+}
+
+extension QuantityControlView: QuantitiyControlViewInput {
+    
 }
