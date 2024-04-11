@@ -8,9 +8,7 @@
 import Foundation
 
 protocol QuantitiyControlViewInput: AnyObject {
-    func configureUI()
-    func configureStack(with orientation: StackOrientation)
-    func updateStack()
+    
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
@@ -18,16 +16,24 @@ protocol QuantityControlInteractorInput: AnyObject {
     func removeFromCart()
 }
 
+protocol QuantityControlRouterInput: AnyObject {
+    
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
     
     private weak var view: QuantitiyControlViewInput!
+    var interactor: QuantityControlInteractorInput
+    var router: QuantityControlRouterInput
     
     //MARK: - Lifecycle
     
-    init(view: QuantitiyControlViewInput!) {
+    init(view: QuantitiyControlViewInput!, interactor: QuantityControlInteractorInput, router: QuantityControlRouterInput) {
         self.view = view
+        self.interactor = interactor
+        self.router = router
     }
     
     //MARK: - Helpers
@@ -35,11 +41,6 @@ final class QuantityControlPresenter {
 }
 
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
-    func configure() {
-        view.configureUI()
-        view.configureStack(with: .horizontal)
-    }
-    
     func incrementQuantity() {
         //Handle Cart
     }
@@ -47,4 +48,8 @@ extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func decrementQuantity() {
         //Handle Cart
     }
+}
+
+extension QuantityControlPresenter: QuantityControlInteractorOutput {
+    
 }

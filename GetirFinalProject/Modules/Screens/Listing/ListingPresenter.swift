@@ -5,7 +5,7 @@
 //  Created by Alphan Ogün on 10.04.2024.
 //
 
-import Foundation
+import UIKit
 
 protocol ListingViewControllerInput: AnyObject {
     func configureNavigationBar()
@@ -16,18 +16,29 @@ protocol ListingInteractorInput: AnyObject {
     func fetchAllProducts()
 }
 
+protocol ListingRouterInput: AnyObject {
+    func showAlert(with error: Error)
+    func buildCell(with collectionView: UICollectionView, _ indexPath: IndexPath) -> ProductCell
+}
+
 final class ListingPresenter {
     
     weak var controller: ListingViewControllerInput!
     var interactor: ListingInteractorInput
+    var router: ListingRouterInput
     
-    init(controller: ListingViewControllerInput!, interactor: ListingInteractorInput) {
+    init(controller: ListingViewControllerInput!, interactor: ListingInteractorInput, router: ListingRouterInput) {
         self.controller = controller
         self.interactor = interactor
+        self.router = router
     }
 }
 
 extension ListingPresenter: ListingViewControllerOutput {
+    func buildCell(with collectionView: UICollectionView, _ indexPath: IndexPath, _ navigationController: UINavigationController) -> ProductCell {
+        return router.buildCell(with: collectionView, indexPath)
+    }
+    
     func viewDidLoad() {
         controller.configureNavigationBar()
         interactor.fetchAllProducts()
@@ -44,6 +55,6 @@ extension ListingPresenter: ListingInteractorOutput {
     }
     
     func didFail(with error: any Error) {
-        //Handle Error on Router with message..
+        router.showAlert(with: error)
     }
 }

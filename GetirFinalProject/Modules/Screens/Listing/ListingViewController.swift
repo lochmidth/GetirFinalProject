@@ -10,6 +10,7 @@ import UIKit
 protocol ListingViewControllerOutput: AnyObject {
     func viewDidLoad()
     func didTapCell()
+    func buildCell(with collectionView: UICollectionView, _ indexPath: IndexPath, _ navigationController: UINavigationController) -> ProductCell
 }
 
 protocol listingViewInput: AnyObject {
@@ -48,6 +49,10 @@ final class ListingViewController: UIViewController {
 }
 
 extension ListingViewController: ListingViewOutput {
+    func cellForItemAt(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> ProductCell {
+        return presenter.buildCell(with: collectionView, indexPath, navigationController!)
+    }
+    
     func didTapCell() {
         presenter.didTapCell()
     }
