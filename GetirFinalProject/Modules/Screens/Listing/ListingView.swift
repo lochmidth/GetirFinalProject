@@ -87,7 +87,6 @@ extension ListingView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCellView
-        cell.delegate = self
         if indexPath.section == 0 {
             cell.reload(with: suggestedProducts[indexPath.item])
             return cell
@@ -97,7 +96,7 @@ extension ListingView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 }
 
-extension ListingView: ProductCellViewDelegate {
+extension ListingView: ProductCellViewOutput {
     func didTapCell() {
         output?.didTapCell()
     }
