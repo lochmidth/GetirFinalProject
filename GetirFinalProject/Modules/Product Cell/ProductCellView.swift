@@ -8,14 +8,15 @@
 import UIKit
 import Kingfisher
 
-protocol ProductCellViewDelegate: AnyObject {
+protocol ProductCellViewOutput: AnyObject {
     func didTapCell()
 }
 
 final class ProductCellView: UICollectionViewCell {
     //MARK: - Properties
     
-    weak var delegate: ProductCellViewDelegate?
+//    var presenter: 
+    weak var output: ProductCellViewOutput?
     
     private let imageView: UIImageView = {
        let iv = UIImageView()
@@ -76,7 +77,7 @@ final class ProductCellView: UICollectionViewCell {
     //MARK: - Actions
     
     @objc func didTapCell() {
-        delegate?.didTapCell()
+        output?.didTapCell()
     }
     
     //MARK: - Helpers
