@@ -13,8 +13,8 @@ enum StackOrientation {
 }
 
 protocol QuantitiyControlViewOutput: AnyObject {
-    func incrementQuantity()
-    func decrementQuantity()
+    func didTapPlus()
+    func didTapMinus()
 }
 
 final class QuantityControlView: UIView {
@@ -46,9 +46,16 @@ final class QuantityControlView: UIView {
         return label
     }()
     
+    private let stack = UIStackView()
+    
     private let stackOrientation: StackOrientation
     var presenter: QuantitiyControlViewOutput!
-    private var count = 0
+    
+    private var count = 0 {
+        didSet {
+            valueLabel.text = "\(count)"
+        }
+    }
     
     //MARK: - Lifecycle
     
@@ -57,6 +64,7 @@ final class QuantityControlView: UIView {
         super.init(frame: .zero)
         
         configureUI()
+        minimizeStack()
     }
     
     required init?(coder: NSCoder) {
@@ -66,11 +74,11 @@ final class QuantityControlView: UIView {
     //MARK: - Actions
     
     @objc func minusButtonTapped() {
-        presenter.decrementQuantity()
+        presenter.didTapMinus()
     }
     
     @objc func plusButtonTapped() {
-        presenter.incrementQuantity()
+        presenter.didTapPlus()
     }
     
     //MARK: - Helpers
@@ -78,13 +86,12 @@ final class QuantityControlView: UIView {
     private func configureUI() {
         backgroundColor = .white
         layer.cornerRadius = 8
+        configureOrientation()
         addShadow()
-        configureStack()
     }
     
-    private func configureStack() {
+    private func configureOrientation() {
         let views = [plusButton, valueLabel, minusButton]
-        let stack = UIStackView()
         stack.distribution = .fillEqually
         switch stackOrientation {
         case .vertical:
@@ -104,16 +111,31 @@ final class QuantityControlView: UIView {
         stack.fillSuperview()
     }
     
-    private func increaseCount() {
-        count += 1
+    private func minimizeStack() {
+        valueLabel.isHidden = true
+        minusButton.isHidden = true
+        stack.setDimensions(height: 25.6, width: 25.6)
     }
     
-    private func decreaseCount() {
-        count -= 1
+    private func maximizeStack() {
+        valueLabel.isHidden = false
+        minusButton.isHidden = false
+        stack.setDimensions(height: 76.8, width: 25.6)
     }
-    
 }
 
 extension QuantityControlView: QuantitiyControlViewInput {
+    func increaseCount() {
+        count += 1
+        if count > 0 {
+            maximizeStack()
+        }
+    }
     
+    func decreaseCount() {
+        count -= 1
+        if count == 0 {
+            minimizeStack()
+        }
+    }
 }

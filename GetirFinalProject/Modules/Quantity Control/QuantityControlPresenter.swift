@@ -8,7 +8,8 @@
 import Foundation
 
 protocol QuantitiyControlViewInput: AnyObject {
-    
+    func increaseCount()
+    func decreaseCount()
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
@@ -41,12 +42,14 @@ final class QuantityControlPresenter {
 }
 
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
-    func incrementQuantity() {
+    func didTapPlus() {
         //Handle Cart
+        view.increaseCount()
     }
     
-    func decrementQuantity() {
+    func didTapMinus() {
         //Handle Cart
+        view.decreaseCount()
     }
 }
 
