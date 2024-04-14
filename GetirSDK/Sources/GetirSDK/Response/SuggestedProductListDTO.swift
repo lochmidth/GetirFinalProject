@@ -10,7 +10,7 @@ import Foundation
 public struct SuggestedProductListDTO: Codable {
     public let id: String?
     public let name: String?
-    public let products: [SuggestedProductDTO]
+    public let products: [SuggestedProductDTO]?
 }
 
 public struct SuggestedProductDTO: Codable {

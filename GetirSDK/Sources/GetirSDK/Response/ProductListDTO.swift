@@ -11,7 +11,7 @@ public struct ProductListDTO: Codable {
     public let id: String?
     public let name: String?
     public let productCount: Int?
-    public let products: [ProductDTO]
+    public let products: [ProductDTO]?
 }
 
 public struct ProductDTO: Codable {
@@ -24,3 +24,10 @@ public struct ProductDTO: Codable {
     public let price: Double?
     public let priceText: String?
 }
+
+public struct User: Codable {
+    public let id: String?
+    public let email: String?
+    public let password: String?
+}
+

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C2154B692BC5F89700583CCC /* QuantityControlPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2154B682BC5F89700583CCC /* QuantityControlPresenter.swift */; };
 		C2154B6B2BC6011500583CCC /* QuantityControlInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */; };
-		C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */; };
 		C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB12BC6B88E00C8F067 /* ProductCell.swift */; };
 		C22A0DB42BC6C34200C8F067 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */; };
 		C22A0DB62BC6ECBD00C8F067 /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */; };
@@ -17,7 +16,6 @@
 		C22A0DBC2BC6FA1F00C8F067 /* ListingBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBB2BC6FA1F00C8F067 /* ListingBuilder.swift */; };
 		C22A0DBE2BC6FAE800C8F067 /* ListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBD2BC6FAE800C8F067 /* ListingRouter.swift */; };
 		C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBF2BC705AB00C8F067 /* Product.swift */; };
-		C22A0DC32BC7066A00C8F067 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C22A0DC22BC7066A00C8F067 /* Kingfisher */; };
 		C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */; };
 		C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */; };
 		C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */; };
@@ -38,6 +36,7 @@
 		C23F06182BC82B5800D3B104 /* ProductCellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06172BC82B5800D3B104 /* ProductCellRouter.swift */; };
 		C23F061A2BC83FC400D3B104 /* QuantityControlRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06192BC83FC400D3B104 /* QuantityControlRouter.swift */; };
 		C23F061C2BC83FCE00D3B104 /* QuantityControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F061B2BC83FCE00D3B104 /* QuantityControlBuilder.swift */; };
+		C23F06202BCC05D100D3B104 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C23F061F2BCC05D100D3B104 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 /* Begin PBXFileReference section */
 		C2154B682BC5F89700583CCC /* QuantityControlPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlPresenter.swift; sourceTree = "<group>"; };
 		C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlInteractor.swift; sourceTree = "<group>"; };
-		C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 		C22A0DB12BC6B88E00C8F067 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
@@ -99,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22A0DC32BC7066A00C8F067 /* Kingfisher in Frameworks */,
+				C23F06202BCC05D100D3B104 /* Kingfisher in Frameworks */,
 				C2351C3B2BC5C5A80080CED9 /* GetirSDK in Frameworks */,
 				C2351C442BC5D1290080CED9 /* SwiftAsyncNetworking in Frameworks */,
 			);
@@ -133,7 +131,6 @@
 		C22A0DAD2BC6A85E00C8F067 /* Listing */ = {
 			isa = PBXGroup;
 			children = (
-				C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */,
 				C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */,
 				C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */,
 				C22A0DB72BC6EF2900C8F067 /* ListingInteractor.swift */,
@@ -301,7 +298,7 @@
 			packageProductDependencies = (
 				C2351C3A2BC5C5A80080CED9 /* GetirSDK */,
 				C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */,
-				C22A0DC22BC7066A00C8F067 /* Kingfisher */,
+				C23F061F2BCC05D100D3B104 /* Kingfisher */,
 			);
 			productName = GetirFinalProject;
 			productReference = C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */;
@@ -437,7 +434,6 @@
 				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
 				C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */,
 				C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */,
-				C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */,
 				C23F06182BC82B5800D3B104 /* ProductCellRouter.swift in Sources */,
 				C23F061A2BC83FC400D3B104 /* QuantityControlRouter.swift in Sources */,
 				C22A0DB82BC6EF2900C8F067 /* ListingInteractor.swift in Sources */,
@@ -802,11 +798,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C22A0DC22BC7066A00C8F067 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C22A0DC12BC7066A00C8F067 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		C2351C3A2BC5C5A80080CED9 /* GetirSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GetirSDK;
@@ -814,6 +805,11 @@
 		C2351C432BC5D1290080CED9 /* SwiftAsyncNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftAsyncNetworking;
+		};
+		C23F061F2BCC05D100D3B104 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C22A0DC12BC7066A00C8F067 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

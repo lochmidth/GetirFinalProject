@@ -8,33 +8,37 @@
 import Foundation
 
 protocol QuantitiyControlViewInput: AnyObject {
-    func increaseCount()
-    func decreaseCount()
+    func updateWithCount(_ count: Int)
+    func configureStackOrientation()
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
-    func addToCart()
-    func removeFromCart()
+    var count: Int { get }
+    func increaseCount()
+    func decreaseCount()
 }
 
 protocol QuantityControlRouterInput: AnyObject {
     
 }
 
+protocol QuantityControlDelegate: AnyObject {
+    func didQuantityChange(_ count: Int)
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
     
-    private weak var view: QuantitiyControlViewInput!
+    weak var view: QuantitiyControlViewInput!
     var interactor: QuantityControlInteractorInput
-    var router: QuantityControlRouterInput
+//    var router: QuantityControlRouterInput
+    weak var delegate: QuantityControlDelegate?
     
     //MARK: - Lifecycle
     
-    init(view: QuantitiyControlViewInput!, interactor: QuantityControlInteractorInput, router: QuantityControlRouterInput) {
-        self.view = view
+    init(interactor: QuantityControlInteractorInput) {
         self.interactor = interactor
-        self.router = router
     }
     
     //MARK: - Helpers
@@ -42,14 +46,24 @@ final class QuantityControlPresenter {
 }
 
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
+    func didLoadQuantityControl() {
+        view.configureStackOrientation()
+        delegate?.didQuantityChange(interactor.count)
+        view.updateWithCount(interactor.count)
+    }
+    
     func didTapPlus() {
         //Handle Cart
-        view.increaseCount()
+        interactor.increaseCount()
+        delegate?.didQuantityChange(interactor.count)
+        view.updateWithCount(interactor.count)
     }
     
     func didTapMinus() {
         //Handle Cart
-        view.decreaseCount()
+        interactor.decreaseCount()
+        delegate?.didQuantityChange(interactor.count)
+        view.updateWithCount(interactor.count)
     }
 }
 

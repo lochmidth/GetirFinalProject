@@ -9,7 +9,7 @@ import Foundation
 import GetirSDK
 
 protocol ListingInteractorOutput: AnyObject {
-    func didReceiveAllProducts(_ products: ProductList, _ suggestedProducts: SuggestedProductList)
+    func didReceiveAllProducts()
     func didFail(with error: Error)
 }
 
@@ -17,9 +17,13 @@ final class ListingInteractor {
     
     weak var presenter: ListingInteractorOutput!
     let getirService: GetirSDK
+    var productList: ProductList
+    var suggestedProductList: SuggestedProductList
     
     init(getirService: GetirSDK = GetirSDK()) {
         self.getirService = getirService
+        self.productList = ProductList()
+        self.suggestedProductList = SuggestedProductList()
     }
 }
 
@@ -27,11 +31,11 @@ extension ListingInteractor: ListingInteractorInput {
     func fetchAllProducts() {
         Task {
             do {
-                let productsDTO = try await getirService.fetchProducts()
                 let suggestedProductsDTO = try await getirService.fetchSuggestedProducts()
-                let products = ProductList(from: productsDTO)
-                let suggestedProducts = SuggestedProductList(from: suggestedProductsDTO)
-                presenter.didReceiveAllProducts(products, suggestedProducts)
+                let productsDTO = try await getirService.fetchProducts()
+                self.productList.update(from: productsDTO)
+                self.suggestedProductList.update(from: suggestedProductsDTO)
+                presenter.didReceiveAllProducts()
             } catch {
                 presenter.didFail(with: error)
             }

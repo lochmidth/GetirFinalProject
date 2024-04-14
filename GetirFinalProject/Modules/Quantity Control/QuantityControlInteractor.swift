@@ -8,21 +8,21 @@
 import Foundation
 
 protocol QuantityControlInteractorOutput: AnyObject {
-    
 }
 
 final class QuantityControlInteractor {
-    
     weak var presenter: QuantityControlInteractorOutput!
-    
+    var count = 0
 }
 
 extension QuantityControlInteractor: QuantityControlInteractorInput {
-    func addToCart() {
-        
+    func increaseCount() {
+        count += 1
     }
     
-    func removeFromCart() {
-        
+    func decreaseCount() {
+        if count > 0 {
+            count -= 1
+        }
     }
 }

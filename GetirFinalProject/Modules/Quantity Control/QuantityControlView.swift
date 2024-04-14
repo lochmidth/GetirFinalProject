@@ -13,25 +13,31 @@ enum StackOrientation {
 }
 
 protocol QuantitiyControlViewOutput: AnyObject {
+    var delegate: QuantityControlDelegate? { get set }
+    func didLoadQuantityControl()
     func didTapPlus()
     func didTapMinus()
 }
+
+
 
 final class QuantityControlView: UIView {
     //MARK: - Properties
     
     private lazy var plusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("+", for: .normal)
+        button.setImage(UIImage(named: "plusIcon"), for: .normal)
         button.setTitleColor(.getirPurple, for: .normal)
+        button.setDimensions(height: 25.6, width: 25.6)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private lazy var minusButton: UIButton = {
         let button = UIButton()
-        button.setTitle("-", for: .normal)
+        button.setImage(UIImage(named: "minusIcon"), for: .normal)
         button.setTitleColor(.getirPurple, for: .normal)
+        button.setDimensions(height: 25.6, width: 25.6)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -41,6 +47,7 @@ final class QuantityControlView: UIView {
         label.textAlignment = .center
         label.textColor = .white
         label.backgroundColor = .getirPurple
+        label.setDimensions(height: 25.6, width: 25.6)
         label.text = "1"
         label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
@@ -51,20 +58,12 @@ final class QuantityControlView: UIView {
     private let stackOrientation: StackOrientation
     var presenter: QuantitiyControlViewOutput!
     
-    private var count = 0 {
-        didSet {
-            valueLabel.text = "\(count)"
-        }
-    }
-    
     //MARK: - Lifecycle
     
-    init(stackOrientation: StackOrientation) {
+    init(presenter: QuantitiyControlViewOutput!, stackOrientation: StackOrientation) {
+        self.presenter = presenter
         self.stackOrientation = stackOrientation
         super.init(frame: .zero)
-        
-        configureUI()
-        minimizeStack()
     }
     
     required init?(coder: NSCoder) {
@@ -83,59 +82,57 @@ final class QuantityControlView: UIView {
     
     //MARK: - Helpers
     
-    private func configureUI() {
+    func configureUI() {
         backgroundColor = .white
         layer.cornerRadius = 8
-        configureOrientation()
-        addShadow()
+        presenter.didLoadQuantityControl()
     }
     
-    private func configureOrientation() {
+    private func minimizeStack() {
+        valueLabel.isHidden = true
+        minusButton.isHidden = true
+    }
+    
+    private func maximizeStack() {
+        valueLabel.isHidden = false
+        minusButton.isHidden = false
+    }
+}
+
+extension QuantityControlView: QuantitiyControlViewInput {
+    func configureStackOrientation() {
+        guard stack.arrangedSubviews.isEmpty else { return }
         let views = [plusButton, valueLabel, minusButton]
         stack.distribution = .fillEqually
+        stack.alignment = .fill
         switch stackOrientation {
         case .vertical:
             views.forEach { view in
                 stack.addArrangedSubview(view)
             }
             stack.axis = .vertical
-            stack.setDimensions(height: 76.8, width: 25.6)
         case .horizontal:
             views.reversed().forEach { view in
                 stack.addArrangedSubview(view)
             }
             stack.axis = .horizontal
-            stack.setDimensions(height: 48, width: 146)
         }
         addSubview(stack)
         stack.fillSuperview()
+        addShadow()
     }
     
-    private func minimizeStack() {
-        valueLabel.isHidden = true
-        minusButton.isHidden = true
-        stack.setDimensions(height: 25.6, width: 25.6)
-    }
-    
-    private func maximizeStack() {
-        valueLabel.isHidden = false
-        minusButton.isHidden = false
-        stack.setDimensions(height: 76.8, width: 25.6)
-    }
-}
-
-extension QuantityControlView: QuantitiyControlViewInput {
-    func increaseCount() {
-        count += 1
+    func updateWithCount(_ count: Int) {
+        valueLabel.text = "\(count)"
         if count > 0 {
             maximizeStack()
-        }
-    }
-    
-    func decreaseCount() {
-        count -= 1
-        if count == 0 {
+        } else if count == 0 {
             minimizeStack()
+        }
+        if count == 1 {
+            minusButton.setImage(UIImage(named: "trashIcon"), for: .normal)
+        } else {
+            minusButton.setImage(UIImage(named: "minusIcon"), for: .normal)
         }
     }
 }

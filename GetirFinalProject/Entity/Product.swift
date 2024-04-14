@@ -15,6 +15,7 @@ struct Product {
     let imageURL: URL?
     let price: Double
     let priceText: String
+    var quantity: Int = 0
     
     init(from dto: ProductDTO) {
         self.id = dto.id ?? ""
