@@ -18,6 +18,7 @@ struct SuggestedProductList {
         self.name = dto.name ?? ""
         self.products = dto.products?.compactMap {
             let presenter = ProductCellPresenter(product: Product(from: $0))
+            presenter.configureQuantityControlPresenter()
             return presenter
         } ?? []
     }

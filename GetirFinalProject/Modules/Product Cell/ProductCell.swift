@@ -19,7 +19,6 @@ final class ProductCell: UICollectionViewCell {
     
     var inCart: Bool = false
     var presenter: ProductCellViewOutput!
-    var quantityControlIsCreated = false
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -109,7 +108,7 @@ final class ProductCell: UICollectionViewCell {
 }
 
 extension ProductCell: ProductCellViewInput {
-    func updateUI(with product: Product) {
+    func update(with product: Product) {
         priceLabel.text = product.priceText
         productLabel.text = product.name
         attributeLabel.text = product.attribute
@@ -126,12 +125,11 @@ extension ProductCell: ProductCellViewInput {
     }
     
     func configureQuantityControl() {
-        guard quantityControlIsCreated == false else { return }
+            
         let quantityControlPresenter = presenter.quantityControlPresenter
         quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
         guard let quantityControl else { return }
         quantityControlPresenter?.view = quantityControl
-        quantityControlIsCreated = true
         stack.addSubview(quantityControl)
         quantityControl.anchor(top: topAnchor, right: rightAnchor, paddingTop: -5, paddingRight: -5)
     }

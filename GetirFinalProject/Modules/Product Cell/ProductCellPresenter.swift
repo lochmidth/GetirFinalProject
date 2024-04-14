@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProductCellViewInput: AnyObject {
-    func updateUI(with product: Product)
+    func update(with product: Product)
     func updateBorderColorForCount(_ count: Int)
     func configureStack()
     func configureQuantityControl()
@@ -44,7 +44,7 @@ extension ProductCellPresenter: ProductCellViewOutput {
     func didLoadCell() {
         view.configureStack()
         view.configureQuantityControl()
-        view.updateUI(with: self.product)
+        view.update(with: self.product)
     }
     
     func didTapCell() {

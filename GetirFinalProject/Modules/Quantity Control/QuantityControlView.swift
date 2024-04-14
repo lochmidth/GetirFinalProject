@@ -14,6 +14,7 @@ enum StackOrientation {
 
 protocol QuantitiyControlViewOutput: AnyObject {
     var delegate: QuantityControlDelegate? { get set }
+    func didLoadQuantityControl()
     func didTapPlus()
     func didTapMinus()
 }
@@ -63,8 +64,6 @@ final class QuantityControlView: UIView {
         self.presenter = presenter
         self.stackOrientation = stackOrientation
         super.init(frame: .zero)
-        
-        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -86,15 +85,22 @@ final class QuantityControlView: UIView {
     func configureUI() {
         backgroundColor = .white
         layer.cornerRadius = 8
-        configureOrientation()
-        if stackOrientation == .vertical {
-            minimizeStack()
-        } else {
-            maximizeStack()
-        }
+        presenter.didLoadQuantityControl()
     }
     
-    private func configureOrientation() {
+    private func minimizeStack() {
+        valueLabel.isHidden = true
+        minusButton.isHidden = true
+    }
+    
+    private func maximizeStack() {
+        valueLabel.isHidden = false
+        minusButton.isHidden = false
+    }
+}
+
+extension QuantityControlView: QuantitiyControlViewInput {
+    func configureStackOrientation() {
         guard stack.arrangedSubviews.isEmpty else { return }
         let views = [plusButton, valueLabel, minusButton]
         stack.distribution = .fillEqually
@@ -116,18 +122,6 @@ final class QuantityControlView: UIView {
         addShadow()
     }
     
-    private func minimizeStack() {
-        valueLabel.isHidden = true
-        minusButton.isHidden = true
-    }
-    
-    private func maximizeStack() {
-        valueLabel.isHidden = false
-        minusButton.isHidden = false
-    }
-}
-
-extension QuantityControlView: QuantitiyControlViewInput {
     func updateWithCount(_ count: Int) {
         valueLabel.text = "\(count)"
         if count > 0 {

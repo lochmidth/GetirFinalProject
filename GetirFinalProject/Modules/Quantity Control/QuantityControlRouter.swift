@@ -1,21 +1,21 @@
+////
+////  QuantityControlRouter.swift
+////  GetirFinalProject
+////
+////  Created by Alphan Ogün on 11.04.2024.
+////
 //
-//  QuantityControlRouter.swift
-//  GetirFinalProject
+//import UIKit
 //
-//  Created by Alphan Ogün on 11.04.2024.
+//final class QuantityControlRouter {
+//    var navigationController: UINavigationController!
+//    
+////    init(navigationController: UINavigationController) {
+////        self.navigationController = navigationController
+////    }
+//    
+//}
 //
-
-import UIKit
-
-final class QuantityControlRouter {
-    var navigationController: UINavigationController!
-    
-//    init(navigationController: UINavigationController) {
-//        self.navigationController = navigationController
-//    }
-    
-}
-
-extension QuantityControlRouter: QuantityControlRouterInput {
-    
-}
+//extension QuantityControlRouter: QuantityControlRouterInput {
+//    
+//}

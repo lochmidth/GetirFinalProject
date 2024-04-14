@@ -77,7 +77,7 @@ extension ListingViewController: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
         let cellPresenter = presenter.presenterForCell(at: indexPath)
         cell.reload(with: cellPresenter)
-        cell.quantityControl?.presenter = cellPresenter.quantityControlPresenter
+        cell.quantityControl?.configureUI()
         return cell
     }
 }
