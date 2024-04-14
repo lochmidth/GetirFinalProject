@@ -8,11 +8,9 @@
 import Foundation
 
 protocol QuantityControlInteractorOutput: AnyObject {
-   
 }
 
 final class QuantityControlInteractor {
-    
     weak var presenter: QuantityControlInteractorOutput!
     var count = 0
 }

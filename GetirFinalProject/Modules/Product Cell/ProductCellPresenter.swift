@@ -40,7 +40,6 @@ final class ProductCellPresenter {
 }
 
 extension ProductCellPresenter: ProductCellViewOutput {
-    
     func didLoadCell() {
         view.configureStack()
         view.configureQuantityControl()

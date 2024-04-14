@@ -125,13 +125,15 @@ extension ProductCell: ProductCellViewInput {
     }
     
     func configureQuantityControl() {
-            
+        // TODO: - QuantityControlüView kalıcak sadece presneter koy relaodla
+        quantityControl?.removeFromSuperview()
         let quantityControlPresenter = presenter.quantityControlPresenter
         quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
         guard let quantityControl else { return }
         quantityControlPresenter?.view = quantityControl
         stack.addSubview(quantityControl)
         quantityControl.anchor(top: topAnchor, right: rightAnchor, paddingTop: -5, paddingRight: -5)
+        quantityControl.configureUI() // TODO: - reload oarlak değiştir
     }
     
     func configureStack() {
