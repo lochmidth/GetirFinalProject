@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol ProductDetailViewControllerOutput: AnyObject {
+    func viewDidLoad()
+}
+
 final class ProductDetailViewController: UIViewController {
     //MARK: - Properties
+    
+    var presenter: ProductDetailViewControllerOutput!
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -89,7 +95,7 @@ final class ProductDetailViewController: UIViewController {
     //MARK: - Helpers
     
     private func configureProductDetails() {
-        
+        view.backgroundColor = .white
         let stack = UIStackView(arrangedSubviews: [imageView, priceLabel, productLabel, attributeLabel, divider])
         stack.axis = .vertical
         stack.alignment = .fill
@@ -123,14 +129,6 @@ final class ProductDetailViewController: UIViewController {
     }
 }
 
-#Preview(traits: .defaultLayout, body: {
-    let controller = ProductDetailViewController()
-    let navigationController = UINavigationController(rootViewController: controller)
-    let apperance = UINavigationBarAppearance()
-    apperance.configureWithOpaqueBackground()
-    apperance.backgroundColor = .getirPurple
-    apperance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    navigationController.navigationBar.scrollEdgeAppearance = apperance
-    navigationController.navigationBar.standardAppearance = apperance
-    return navigationController
-})
+extension ProductDetailViewController: ProductDetailViewControllerInput {
+    
+}

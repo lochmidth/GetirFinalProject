@@ -21,8 +21,6 @@ final class ListingViewController: UIViewController {
     
     var collectionView: UICollectionView!
     var presenter: ListingViewControllerOutput!
-    var products = ProductList()
-    var suggestedProducts = SuggestedProductList()
     
     //MARK: - Lifecycle
     
@@ -101,12 +99,6 @@ extension ListingViewController: ListingViewControllerInput {
     }
     
     func configureNavigationBar() {
-        let apperance = UINavigationBarAppearance()
-        apperance.configureWithOpaqueBackground()
-        apperance.backgroundColor = .getirPurple
-        apperance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.scrollEdgeAppearance = apperance
-        navigationController?.navigationBar.standardAppearance = apperance
         title = "Ürünler"
     }
 }

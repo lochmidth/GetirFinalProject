@@ -16,7 +16,8 @@ protocol ProductCellViewInput: AnyObject {
 }
 
 protocol ProductCellRouterInput: AnyObject {
-    var navigationController: UINavigationController { get }
+//    var navigationController: UINavigationController { get }
+    func goToDetail()
 }
 
 final class ProductCellPresenter {
@@ -47,8 +48,7 @@ extension ProductCellPresenter: ProductCellViewOutput {
     }
     
     func didTapCell() {
-        //Handle show Product Detail
-        //        view.changeBorderColor()
+        router.goToDetail()
     }
 }
 
