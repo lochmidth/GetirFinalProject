@@ -8,11 +8,11 @@
 import UIKit
 
 final class QuantityControlRouter {
-    var navigationController: UINavigationController
+    var navigationController: UINavigationController!
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
+//    init(navigationController: UINavigationController) {
+//        self.navigationController = navigationController
+//    }
     
 }
 

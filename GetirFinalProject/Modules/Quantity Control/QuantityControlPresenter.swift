@@ -8,31 +8,35 @@
 import Foundation
 
 protocol QuantitiyControlViewInput: AnyObject {
-    func increaseCount()
-    func decreaseCount()
+    func updateWithCount(_ count: Int)
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
-    func addToCart()
-    func removeFromCart()
+    func increaseCount()
+    func decreaseCount()
 }
 
 protocol QuantityControlRouterInput: AnyObject {
     
 }
 
+protocol QuantityControlDelegate: AnyObject {
+    func didQuantityChange(_ count: Int)
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
     
-    private weak var view: QuantitiyControlViewInput!
+    weak var view: QuantitiyControlViewInput!
     var interactor: QuantityControlInteractorInput
     var router: QuantityControlRouterInput
+    weak var delegate: QuantityControlDelegate?
+    var count = 0
     
     //MARK: - Lifecycle
     
-    init(view: QuantitiyControlViewInput!, interactor: QuantityControlInteractorInput, router: QuantityControlRouterInput) {
-        self.view = view
+    init(interactor: QuantityControlInteractorInput, router: QuantityControlRouterInput) {
         self.interactor = interactor
         self.router = router
     }
@@ -44,13 +48,19 @@ final class QuantityControlPresenter {
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didTapPlus() {
         //Handle Cart
-        view.increaseCount()
+        interactor.increaseCount()
+        delegate?.didQuantityChange(count)
+        view.updateWithCount(count)
     }
     
     func didTapMinus() {
         //Handle Cart
-        view.decreaseCount()
+        interactor.decreaseCount()
+        delegate?.didQuantityChange(count)
+        view.updateWithCount(count)
     }
+    
+  
 }
 
 extension QuantityControlPresenter: QuantityControlInteractorOutput {

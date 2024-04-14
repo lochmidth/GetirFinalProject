@@ -18,6 +18,7 @@ public class NetworkClient {
     public init() {
         self.session = URLSession(configuration: .default)
         self.decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
     /// Uses Concurrency (async/await)
@@ -47,6 +48,12 @@ public class NetworkClient {
             throw error
         }
     }
+    
+    
+    
+    
 }
+
+
 
 

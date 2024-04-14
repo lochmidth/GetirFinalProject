@@ -8,12 +8,12 @@
 import UIKit
 
 final class ProductCellBuilder {
-    func build(using collectionView: UICollectionView, navigationController: UINavigationController, indexPath: IndexPath) -> ProductCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
-        let quantityControlBuilder = QuantityControlBuilder()
-        let router = ProductCellRouter(navigationController: navigationController, quantityControlBuilder: quantityControlBuilder)
-        let presenter = ProductCellPresenter(view: cell, router: router)
-        cell.presenter = presenter
-        return cell
-    }
+//    func build(using collectionView: UICollectionView, navigationController: UINavigationController, indexPath: IndexPath) -> ProductCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
+//        let quantityControlBuilder = QuantityControlBuilder()
+//        let router = ProductCellRouter(navigationController: navigationController, quantityControlBuilder: quantityControlBuilder)
+//        let presenter = ProductCellPresenter(view: cell, router: router)
+//        cell.presenter = presenter
+//        return cell
+//    }
 }

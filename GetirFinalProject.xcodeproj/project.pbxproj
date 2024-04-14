@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C2154B692BC5F89700583CCC /* QuantityControlPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2154B682BC5F89700583CCC /* QuantityControlPresenter.swift */; };
 		C2154B6B2BC6011500583CCC /* QuantityControlInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */; };
-		C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */; };
 		C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB12BC6B88E00C8F067 /* ProductCell.swift */; };
 		C22A0DB42BC6C34200C8F067 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */; };
 		C22A0DB62BC6ECBD00C8F067 /* ListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */; };
@@ -60,7 +59,6 @@
 /* Begin PBXFileReference section */
 		C2154B682BC5F89700583CCC /* QuantityControlPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlPresenter.swift; sourceTree = "<group>"; };
 		C2154B6A2BC6011500583CCC /* QuantityControlInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlInteractor.swift; sourceTree = "<group>"; };
-		C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 		C22A0DB12BC6B88E00C8F067 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingPresenter.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 		C22A0DAD2BC6A85E00C8F067 /* Listing */ = {
 			isa = PBXGroup;
 			children = (
-				C22A0DAE2BC6A88F00C8F067 /* ListingView.swift */,
 				C22A0DB32BC6C34200C8F067 /* ListingViewController.swift */,
 				C22A0DB52BC6ECBD00C8F067 /* ListingPresenter.swift */,
 				C22A0DB72BC6EF2900C8F067 /* ListingInteractor.swift */,
@@ -437,7 +434,6 @@
 				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
 				C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */,
 				C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */,
-				C22A0DAF2BC6A88F00C8F067 /* ListingView.swift in Sources */,
 				C23F06182BC82B5800D3B104 /* ProductCellRouter.swift in Sources */,
 				C23F061A2BC83FC400D3B104 /* QuantityControlRouter.swift in Sources */,
 				C22A0DB82BC6EF2900C8F067 /* ListingInteractor.swift in Sources */,

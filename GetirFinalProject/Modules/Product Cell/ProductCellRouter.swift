@@ -8,17 +8,13 @@
 import UIKit
 
 final class ProductCellRouter {
-    var navigationController: UINavigationController
-    let quantityControlBuilder: QuantityControlBuilder
+    var navigationController: UINavigationController 
     
-    init(navigationController: UINavigationController, quantityControlBuilder: QuantityControlBuilder) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.quantityControlBuilder = quantityControlBuilder
     }
 }
 
 extension ProductCellRouter: ProductCellRouterInput {
-    func buildQuantityControl() -> QuantityControlView {
-        return quantityControlBuilder.build(with: navigationController, orientation: .vertical)
-    }
+    
 }

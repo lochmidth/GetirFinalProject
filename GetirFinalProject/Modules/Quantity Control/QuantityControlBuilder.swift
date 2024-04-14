@@ -8,14 +8,11 @@
 import UIKit
 
 final class QuantityControlBuilder {
-    func build(with navigationController: UINavigationController, orientation: StackOrientation) -> QuantityControlView {
+    func build(with orientation: StackOrientation) -> QuantityControlPresenter {
         let interactor = QuantityControlInteractor()
-        let view = QuantityControlView(stackOrientation: orientation)
-        //TODO: - Product Detail builder
-        let router = QuantityControlRouter(navigationController: navigationController)
-        let presenter = QuantityControlPresenter(view: view, interactor: interactor, router: router) //will also add productDetailBuilder
+        let router = QuantityControlRouter()
+        let presenter = QuantityControlPresenter(interactor: interactor, router: router)
         interactor.presenter = presenter
-        view.presenter = presenter
-        return view
+        return presenter
     }
 }

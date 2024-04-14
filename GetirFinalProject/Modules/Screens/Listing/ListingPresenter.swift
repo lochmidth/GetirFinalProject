@@ -9,38 +9,62 @@ import UIKit
 
 protocol ListingViewControllerInput: AnyObject {
     func configureNavigationBar()
-    func reload(with products: ProductList, _ suggestedProducts: SuggestedProductList)
+    func configureCollectionView()
+    func configureSubviews()
+    func reload()
 }
 
 protocol ListingInteractorInput: AnyObject {
+    var productList: ProductList { get }
+    var suggestedProductList: SuggestedProductList { get }
     func fetchAllProducts()
 }
 
 protocol ListingRouterInput: AnyObject {
+    var navigationController: UINavigationController! { get }
     func showAlert(with error: Error)
-    func buildCell(with collectionView: UICollectionView, _ indexPath: IndexPath) -> ProductCell
 }
 
 final class ListingPresenter {
     
-    weak var controller: ListingViewControllerInput!
+    weak var view: ListingViewControllerInput!
     var interactor: ListingInteractorInput
     var router: ListingRouterInput
+    let productCellBuilder: ProductCellBuilder
     
-    init(controller: ListingViewControllerInput!, interactor: ListingInteractorInput, router: ListingRouterInput) {
-        self.controller = controller
+    init(view: ListingViewControllerInput!, interactor: ListingInteractorInput, router: ListingRouterInput, productCellBuilder: ProductCellBuilder) {
+        self.view = view
         self.interactor = interactor
         self.router = router
+        self.productCellBuilder = productCellBuilder
     }
 }
 
 extension ListingPresenter: ListingViewControllerOutput {
-    func buildCell(with collectionView: UICollectionView, _ indexPath: IndexPath, _ navigationController: UINavigationController) -> ProductCell {
-        return router.buildCell(with: collectionView, indexPath)
+    func numberOfItemsInSection(_ section: Int) -> Int {
+        if section == 0 {
+            return interactor.suggestedProductList.products.count
+        } else {
+            return interactor.productList.products.count
+        }
+    }
+    
+    func presenterForCell(at indexPath: IndexPath) -> ProductCellPresenter {
+        if indexPath.section == 0 {
+            let presenter = interactor.suggestedProductList.products[indexPath.item]
+            presenter.router = ProductCellRouter(navigationController: router.navigationController)
+            return presenter
+        } else {
+            let presenter = interactor.productList.products[indexPath.item]
+            presenter.router = ProductCellRouter(navigationController: router.navigationController)
+            return presenter
+        }
     }
     
     func viewDidLoad() {
-        controller.configureNavigationBar()
+        view.configureCollectionView()
+        view.configureNavigationBar()
+        view.configureSubviews()
         interactor.fetchAllProducts()
     }
     
@@ -50,8 +74,8 @@ extension ListingPresenter: ListingViewControllerOutput {
 }
 
 extension ListingPresenter: ListingInteractorOutput {
-    func didReceiveAllProducts(_ products: ProductList, _ suggestedProducts: SuggestedProductList) {
-        controller.reload(with: products, suggestedProducts)
+    func didReceiveAllProducts() {
+        view.reload()
     }
     
     func didFail(with error: any Error) {

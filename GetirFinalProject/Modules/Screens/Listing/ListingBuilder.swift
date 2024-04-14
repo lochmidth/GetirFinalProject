@@ -10,16 +10,14 @@ import UIKit
 final class ListingBuilder {
     func build() -> UINavigationController {
         let interactor = ListingInteractor()
-        let view = ListingView()
-        let controller = ListingViewController(listingView: view)
+        let view = ListingViewController()
         let productCellBuilder = ProductCellBuilder()
-        let router = ListingRouter(productCellBuilder: productCellBuilder)
-        let navigationController = UINavigationController(rootViewController: controller)
+        let router = ListingRouter()
+        let navigationController = UINavigationController(rootViewController: view)
         router.navigationController = navigationController
-        let presenter = ListingPresenter(controller: controller, interactor: interactor, router: router)
-        controller.presenter = presenter
+        let presenter = ListingPresenter(view: view, interactor: interactor, router: router, productCellBuilder: productCellBuilder)
+        view.presenter = presenter
         interactor.presenter = presenter
-        controller.input = view
         return navigationController
     }
 }
