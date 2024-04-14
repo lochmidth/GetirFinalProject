@@ -19,7 +19,7 @@ struct ProductList {
         self.name = dto.name ?? ""
         self.productCount = dto.productCount ?? 0
         self.products = dto.products?.compactMap {
-            // TODO: - ProductCellBuilder buraya gelsin. builder ekendi içinde presenterleri halletsin
+            // TODO: - ProductCellBuilder buraya gelsin. builder kendi içinde presenterleri halletsin
             let presenter = ProductCellPresenter(product: Product(from: $0))
             presenter.configureQuantityControlPresenter() // olmucak!
             return presenter
