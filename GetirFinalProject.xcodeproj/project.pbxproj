@@ -37,6 +37,7 @@
 		C23F061A2BC83FC400D3B104 /* QuantityControlRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06192BC83FC400D3B104 /* QuantityControlRouter.swift */; };
 		C23F061C2BC83FCE00D3B104 /* QuantityControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F061B2BC83FCE00D3B104 /* QuantityControlBuilder.swift */; };
 		C23F06202BCC05D100D3B104 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C23F061F2BCC05D100D3B104 /* Kingfisher */; };
+		C23F06232BCC64E000D3B104 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06222BCC64E000D3B104 /* ProductDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		C23F06172BC82B5800D3B104 /* ProductCellRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellRouter.swift; sourceTree = "<group>"; };
 		C23F06192BC83FC400D3B104 /* QuantityControlRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlRouter.swift; sourceTree = "<group>"; };
 		C23F061B2BC83FCE00D3B104 /* QuantityControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlBuilder.swift; sourceTree = "<group>"; };
+		C23F06222BCC64E000D3B104 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				C22A0DAD2BC6A85E00C8F067 /* Listing */,
+				C23F06212BCC64B800D3B104 /* Product Detail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -277,6 +280,14 @@
 				C23F061B2BC83FCE00D3B104 /* QuantityControlBuilder.swift */,
 			);
 			path = "Quantity Control";
+			sourceTree = "<group>";
+		};
+		C23F06212BCC64B800D3B104 /* Product Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C23F06222BCC64E000D3B104 /* ProductDetailViewController.swift */,
+			);
+			path = "Product Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +445,7 @@
 				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
 				C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */,
 				C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */,
+				C23F06232BCC64E000D3B104 /* ProductDetailViewController.swift in Sources */,
 				C23F06182BC82B5800D3B104 /* ProductCellRouter.swift in Sources */,
 				C23F061A2BC83FC400D3B104 /* QuantityControlRouter.swift in Sources */,
 				C22A0DB82BC6EF2900C8F067 /* ListingInteractor.swift in Sources */,

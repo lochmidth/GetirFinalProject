@@ -124,10 +124,15 @@ extension QuantityControlView: QuantitiyControlViewInput {
     
     func updateWithCount(_ count: Int) {
         valueLabel.text = "\(count)"
-        if count > 0 {
+        switch stackOrientation {
+        case .vertical:
+            if count > 0 {
+                maximizeStack()
+            } else if count == 0 {
+                minimizeStack()
+            }
+        case .horizontal:
             maximizeStack()
-        } else if count == 0 {
-            minimizeStack()
         }
         if count == 1 {
             minusButton.setImage(UIImage(named: "trashIcon"), for: .normal)
