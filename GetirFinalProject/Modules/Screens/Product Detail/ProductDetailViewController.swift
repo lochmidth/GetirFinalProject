@@ -6,27 +6,29 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol ProductDetailViewControllerOutput: AnyObject {
     func viewDidLoad()
+    func configureQuantityControl() -> QuantityControlView
+    func didTapAddToCartButton()
 }
 
 final class ProductDetailViewController: UIViewController {
     //MARK: - Properties
     
     var presenter: ProductDetailViewControllerOutput!
+    var isQuantityControlCreated = false
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "shoppingCart")
         iv.setDimensions(height: 200, width: 200)
         return iv
     }()
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "₺0,00"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .getirPurple
@@ -36,7 +38,6 @@ final class ProductDetailViewController: UIViewController {
     private let productLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Product Name"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .black
@@ -45,7 +46,6 @@ final class ProductDetailViewController: UIViewController {
     
     private let attributeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Attribute"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16)
@@ -76,6 +76,7 @@ final class ProductDetailViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(didTapAddToCartButton), for: .touchUpInside)
         return button
     }()
     
@@ -86,16 +87,35 @@ final class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setTitle()
-        configureProductDetails()
-        configureFooter(count: 0)
+        presenter.viewDidLoad()
+    }
+    
+    //MARK: - Actions
+    
+    @objc func didTapAddToCartButton() {
+        presenter.didTapAddToCartButton()
     }
     
     //MARK: - Helpers
     
-    private func configureProductDetails() {
+    private func setImage(with url: URL?) {
+        let processor = RoundCornerImageProcessor(cornerRadius: 0)
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
+    }
+}
+
+extension ProductDetailViewController: ProductDetailViewControllerInput {
+    func configureProductDetails(with product: Product) {
         view.backgroundColor = .white
+        view.addSubview(footer)
         let stack = UIStackView(arrangedSubviews: [imageView, priceLabel, productLabel, attributeLabel, divider])
         stack.axis = .vertical
         stack.alignment = .fill
@@ -104,19 +124,26 @@ final class ProductDetailViewController: UIViewController {
         view.addSubview(stack)
         stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
                      paddingTop: 16)
+        footer.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        setImage(with: product.imageURL)
+        priceLabel.text = product.priceText
+        productLabel.text = product.name
+        attributeLabel.text = product.attribute
     }
     
-    private func configureFooter(count: Int) {
-        view.addSubview(footer)
-        footer.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+    func configureFooterSubviews(count: Int) {
         if count == 0 {
+            quantityControl?.removeFromSuperview()
+            isQuantityControlCreated = false
             footer.addSubview(addToCartButton)
             addToCartButton.anchor(top: footer.topAnchor, left: view.leftAnchor, bottom: footer.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor,
                                    paddingTop: 16, paddingLeft: 16, paddingRight: 16)
         } else {
-            let quantityControlPresenter = QuantityControlPresenter(interactor: QuantityControlInteractor())
-            let quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
-            quantityControlPresenter.view = quantityControl
+            guard isQuantityControlCreated == false else { return }
+            addToCartButton.removeFromSuperview()
+            quantityControl = presenter.configureQuantityControl()
+            guard let quantityControl else { return }
+            isQuantityControlCreated = true
             footer.addSubview(quantityControl)
             quantityControl.center(inView: footer)
             quantityControl.setDimensions(height: 48, width: 144)
@@ -124,11 +151,7 @@ final class ProductDetailViewController: UIViewController {
         }
     }
     
-    private func setTitle() {
+    func setTitle() {
         title = "Ürün Detayı"
     }
-}
-
-extension ProductDetailViewController: ProductDetailViewControllerInput {
-    
 }

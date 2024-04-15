@@ -13,7 +13,7 @@ enum StackOrientation {
 }
 
 protocol QuantitiyControlViewOutput: AnyObject {
-    var delegate: QuantityControlDelegate? { get set }
+    var cellPresenterDelegate: QuantityControlDelegate? { get set }
     func didLoadQuantityControl()
     func didTapPlus()
     func didTapMinus()
@@ -97,6 +97,12 @@ final class QuantityControlView: UIView {
         valueLabel.isHidden = false
         minusButton.isHidden = false
     }
+    
+    private func updateStackVisibility(with count: Int) {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut) {
+            count > 0 ? self.maximizeStack() : self.minimizeStack()
+        }
+    }
 }
 
 extension QuantityControlView: QuantitiyControlViewInput {
@@ -126,11 +132,7 @@ extension QuantityControlView: QuantitiyControlViewInput {
         valueLabel.text = "\(count)"
         switch stackOrientation {
         case .vertical:
-            if count > 0 {
-                maximizeStack()
-            } else if count == 0 {
-                minimizeStack()
-            }
+            updateStackVisibility(with: count)
         case .horizontal:
             maximizeStack()
         }
