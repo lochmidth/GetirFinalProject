@@ -13,7 +13,7 @@ protocol QuantitiyControlViewInput: AnyObject {
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
-    var count: Int { get }
+    var product: Product { get set }
     func increaseCount()
     func decreaseCount()
 }
@@ -26,6 +26,10 @@ protocol QuantityControlDelegate: AnyObject {
     func didQuantityChange(_ count: Int)
 }
 
+protocol ProductDetailDelegate: AnyObject {
+    func didQuantityChange(_ count: Int)
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
@@ -33,7 +37,8 @@ final class QuantityControlPresenter {
     weak var view: QuantitiyControlViewInput!
     var interactor: QuantityControlInteractorInput
 //    var router: QuantityControlRouterInput
-    weak var delegate: QuantityControlDelegate?
+    weak var cellPresenterDelegate: QuantityControlDelegate?
+    weak var productDetailDelegate: ProductDetailDelegate?
     
     //MARK: - Lifecycle
     
@@ -48,25 +53,28 @@ final class QuantityControlPresenter {
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didLoadQuantityControl() {
         view.configureStackOrientation()
-        delegate?.didQuantityChange(interactor.count)
-        view.updateWithCount(interactor.count)
+        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
+        view.updateWithCount(interactor.product.quantity)
     }
     
     func didTapPlus() {
-        //Handle Cart
         interactor.increaseCount()
-        delegate?.didQuantityChange(interactor.count)
-        view.updateWithCount(interactor.count)
+//        view.updateWithCount(interactor.product.quantity)
+//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
     }
     
     func didTapMinus() {
-        //Handle Cart
         interactor.decreaseCount()
-        delegate?.didQuantityChange(interactor.count)
-        view.updateWithCount(interactor.count)
+//        view.updateWithCount(interactor.product.quantity)
+//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
+//        productDetailDelegate?.didQuantityChange(interactor.product.quantity)
     }
 }
 
 extension QuantityControlPresenter: QuantityControlInteractorOutput {
-    
+    func didChangeCount(_ count: Int) {
+        view.updateWithCount(interactor.product.quantity)
+        cellPresenterDelegate?.didQuantityChange(count)
+        productDetailDelegate?.didQuantityChange(count)
+    }
 }

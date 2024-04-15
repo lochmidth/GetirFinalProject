@@ -8,9 +8,9 @@
 import UIKit
 
 final class QuantityControlBuilder {
-    func build(with orientation: StackOrientation) -> QuantityControlPresenter {
-        let interactor = QuantityControlInteractor()
-//        let router = QuantityControlRouter() 
+    func build(with prodcut: Product) -> QuantityControlPresenter {
+        let interactor = QuantityControlInteractor(product: prodcut)
+//        let router = QuantityControlRouter()
         let presenter = QuantityControlPresenter(interactor: interactor)
         interactor.presenter = presenter
         return presenter

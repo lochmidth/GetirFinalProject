@@ -9,14 +9,14 @@ import UIKit
 
 protocol ProductCellViewInput: AnyObject {
     func update(with product: Product)
-    func updateBorderColorForCount(_ count: Int)
+    func updateWithCount(_ count: Int)
     func configureStack()
     func configureQuantityControl()
     
 }
 
 protocol ProductCellRouterInput: AnyObject {
-    var navigationController: UINavigationController { get }
+    func goToDetail(with product: Product, cellPresenter: ProductCellPresenter)
 }
 
 final class ProductCellPresenter {
@@ -33,9 +33,9 @@ final class ProductCellPresenter {
     }
     
     func configureQuantityControlPresenter(){
-        self.quantityControlPresenter = quantityControlBuilder.build(with: .vertical)
+        self.quantityControlPresenter = quantityControlBuilder.build(with: product)
         guard let quantityControlPresenter else { return }
-        quantityControlPresenter.delegate = self
+        quantityControlPresenter.cellPresenterDelegate = self
     }
 }
 
@@ -47,13 +47,14 @@ extension ProductCellPresenter: ProductCellViewOutput {
     }
     
     func didTapCell() {
-        //Handle show Product Detail
-        //        view.changeBorderColor()
+        router.goToDetail(with: product, cellPresenter: self)
     }
 }
 
 extension ProductCellPresenter: QuantityControlDelegate {
     func didQuantityChange(_ count: Int) {
-        view.updateBorderColorForCount(count)
+        product.quantity = count
+        view.updateWithCount(product.quantity)
+        quantityControlPresenter?.interactor.product.quantity = count
     }
 }

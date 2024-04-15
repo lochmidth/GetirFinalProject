@@ -17,7 +17,6 @@ protocol ProductCellViewOutput: AnyObject {
 final class ProductCell: UICollectionViewCell {
     //MARK: - Properties
     
-    var inCart: Bool = false
     var presenter: ProductCellViewOutput!
     
     private let imageView: UIImageView = {
@@ -115,13 +114,14 @@ extension ProductCell: ProductCellViewInput {
         setCellImage(with: product.imageURL)
     }
     
-    func updateBorderColorForCount(_ count: Int) {
-        //        let animation = CABasicAnimation(keyPath: "borderColor")
-        //        animation.fromValue = imageView.layer.borderColor
-        //        animation.toValue = inCart ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
-        //        animation.duration = 0.5
-        //        imageView.layer.add(animation, forKey: "borderColor")
+    func updateWithCount(_ count: Int) {
+        let animation = CABasicAnimation(keyPath: "borderColor")
+        animation.fromValue = imageView.layer.borderColor
+        animation.toValue = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
+        animation.duration = 0.5
+        imageView.layer.add(animation, forKey: "borderColor")
         imageView.layer.borderColor = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
+        quantityControl?.updateWithCount(count)
     }
     
     func configureQuantityControl() {
