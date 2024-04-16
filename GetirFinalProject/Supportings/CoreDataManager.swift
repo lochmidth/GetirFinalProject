@@ -45,6 +45,29 @@ final class CoreDataManager {
         }
     }
     
+    func updateProductQuantity(id: String, newQuantity: Int) async throws {
+        guard let appDelegate = await application.delegate as? AppDelegate else {
+            throw CoreDataError.AppDelegateUnavailable
+        }
+        let managedContext = await appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            if let productToUpdate = results.first as? NSManagedObject {
+                productToUpdate.setValue(newQuantity, forKey: "quantity")
+                try managedContext.save()
+            } else {
+                throw CoreDataError.NoMatchingObjectError
+            }
+        } catch {
+            throw error
+        }
+    }
+
+    
     func fetchAllCoreData() async throws -> [(id: String, quantity: Int)] {
         guard let appDelegate = await application.delegate as? AppDelegate else {
             throw CoreDataError.AppDelegateUnavailable
