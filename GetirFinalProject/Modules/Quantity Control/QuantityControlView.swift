@@ -39,6 +39,7 @@ final class QuantityControlView: UIView {
         button.setTitleColor(.getirPurple, for: .normal)
         button.setDimensions(height: 25.6, width: 25.6)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -50,6 +51,7 @@ final class QuantityControlView: UIView {
         label.setDimensions(height: 25.6, width: 25.6)
         label.text = "1"
         label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.isHidden = true
         return label
     }()
     
