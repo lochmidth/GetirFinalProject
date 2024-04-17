@@ -108,6 +108,11 @@ final class QuantityControlView: UIView {
 }
 
 extension QuantityControlView: QuantitiyControlViewInput {
+    func enableButtons(_ bool: Bool) {
+        minusButton.isEnabled = bool
+        plusButton.isEnabled = bool
+    }
+    
     func configureStackOrientation() {
         guard stack.arrangedSubviews.isEmpty else { return }
         let views = [plusButton, valueLabel, minusButton]

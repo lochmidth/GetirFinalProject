@@ -10,6 +10,7 @@ import Foundation
 protocol QuantitiyControlViewInput: AnyObject {
     func updateWithCount(_ count: Int)
     func configureStackOrientation()
+    func enableButtons(_ bool: Bool)
 }
 
 protocol QuantityControlInteractorInput: AnyObject {
@@ -58,12 +59,14 @@ extension QuantityControlPresenter: QuantitiyControlViewOutput {
     }
     
     func didTapPlus() {
+        view.enableButtons(false)
         interactor.increaseCount()
 //        view.updateWithCount(interactor.product.quantity)
 //        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
     }
     
     func didTapMinus() {
+        view.enableButtons(false)
         interactor.decreaseCount()
 //        view.updateWithCount(interactor.product.quantity)
 //        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
@@ -76,5 +79,6 @@ extension QuantityControlPresenter: QuantityControlInteractorOutput {
         view.updateWithCount(interactor.product.quantity)
         cellPresenterDelegate?.didQuantityChange(count)
         productDetailDelegate?.didQuantityChange(count)
+        view.enableButtons(true)
     }
 }

@@ -124,10 +124,11 @@ extension ProductCell: ProductCellViewInput {
         quantityControl?.updateWithCount(count)
     }
     
-    func configureQuantityControl() {
+    func configureQuantityControl(with count: Int) {
         // TODO: - QuantityControlüView kalıcak sadece presneter koy relaodla
         quantityControl?.removeFromSuperview()
         let quantityControlPresenter = presenter.quantityControlPresenter
+        quantityControlPresenter?.interactor.product.quantity = count
         quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
         guard let quantityControl else { return }
         quantityControlPresenter?.view = quantityControl

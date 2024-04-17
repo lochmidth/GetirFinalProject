@@ -11,7 +11,7 @@ protocol ProductCellViewInput: AnyObject {
     func update(with product: Product)
     func updateWithCount(_ count: Int)
     func configureStack()
-    func configureQuantityControl()
+    func configureQuantityControl(with count: Int)
     
 }
 
@@ -42,7 +42,7 @@ final class ProductCellPresenter {
 extension ProductCellPresenter: ProductCellViewOutput {
     func didLoadCell() {
         view.configureStack()
-        view.configureQuantityControl()
+        view.configureQuantityControl(with: self.product.quantity)
         view.update(with: self.product)
     }
     

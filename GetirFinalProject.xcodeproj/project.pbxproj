@@ -42,6 +42,8 @@
 		C23F06272BCC7F2100D3B104 /* ProductDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06262BCC7F2100D3B104 /* ProductDetailInteractor.swift */; };
 		C23F06292BCC7F3200D3B104 /* ProductDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F06282BCC7F3200D3B104 /* ProductDetailBuilder.swift */; };
 		C23F062B2BCC7FF300D3B104 /* ProductDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F062A2BCC7FF300D3B104 /* ProductDetailRouter.swift */; };
+		C2836B9F2BCF2E79000586BE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836B9E2BCF2E79000586BE /* CoreDataManager.swift */; };
+		C2836BA22BCF345C000586BE /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BA12BCF345C000586BE /* CartService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		C23F06262BCC7F2100D3B104 /* ProductDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInteractor.swift; sourceTree = "<group>"; };
 		C23F06282BCC7F3200D3B104 /* ProductDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailBuilder.swift; sourceTree = "<group>"; };
 		C23F062A2BCC7FF300D3B104 /* ProductDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailRouter.swift; sourceTree = "<group>"; };
+		C2836B9E2BCF2E79000586BE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C2836BA12BCF345C000586BE /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 			children = (
 				C2351C2E2BC59D750080CED9 /* App */,
 				C2351C3F2BC5C9700080CED9 /* Entity */,
+				C2836BA02BCF3448000586BE /* Services */,
 				C2351C402BC5CEA90080CED9 /* Modules */,
 				C2351C2F2BC59D800080CED9 /* Recources */,
 				C2351C302BC59D840080CED9 /* Supportings */,
@@ -238,6 +243,7 @@
 				C2351C312BC59D880080CED9 /* Extensions */,
 				C2351C0C2BC59CD10080CED9 /* Info.plist */,
 				C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */,
+				C2836B9E2BCF2E79000586BE /* CoreDataManager.swift */,
 			);
 			path = Supportings;
 			sourceTree = "<group>";
@@ -300,6 +306,14 @@
 				C23F06282BCC7F3200D3B104 /* ProductDetailBuilder.swift */,
 			);
 			path = "Product Detail";
+			sourceTree = "<group>";
+		};
+		C2836BA02BCF3448000586BE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C2836BA12BCF345C000586BE /* CartService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,6 +471,7 @@
 				C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */,
 				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
 				C23F06272BCC7F2100D3B104 /* ProductDetailInteractor.swift in Sources */,
+				C2836BA22BCF345C000586BE /* CartService.swift in Sources */,
 				C2351C382BC5C1720080CED9 /* SuggestedProductList.swift in Sources */,
 				C22A0DB22BC6B88E00C8F067 /* ProductCell.swift in Sources */,
 				C23F06232BCC64E000D3B104 /* ProductDetailViewController.swift in Sources */,
@@ -467,6 +482,7 @@
 				C2154B6B2BC6011500583CCC /* QuantityControlInteractor.swift in Sources */,
 				C22A0DBC2BC6FA1F00C8F067 /* ListingBuilder.swift in Sources */,
 				C23F06292BCC7F3200D3B104 /* ProductDetailBuilder.swift in Sources */,
+				C2836B9F2BCF2E79000586BE /* CoreDataManager.swift in Sources */,
 				C23F06162BC82A8D00D3B104 /* ProductCellBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
