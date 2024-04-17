@@ -22,16 +22,32 @@ final class QuantityControlInteractor {
 
 extension QuantityControlInteractor: QuantityControlInteractorInput {
     func increaseCount() {
-        //Handle in cart
-        product.quantity += 1
-        presenter.didChangeCount(product.quantity)
+        Task {
+            product.quantity += 1
+            do {
+                try await CartService.shared.addProductToCart(product)
+                await MainActor.run {
+                    presenter.didChangeCount(product.quantity)
+                }
+            } catch {
+                print("Error increasing count: \(error)")
+            }
+        }
     }
     
     func decreaseCount() {
-        //Handle in cart
-        if product.quantity > 0 {
-            product.quantity -= 1
-            presenter.didChangeCount(product.quantity)
+        Task {
+            if product.quantity > 0 {
+                product.quantity -= 1
+                do {
+                    try await CartService.shared.removeProductFromCart(product)
+                    await MainActor.run {
+                        presenter.didChangeCount(product.quantity)
+                    }
+                } catch {
+                    print("Error decreasing count: \(error)")
+                }
+            }
         }
     }
 }

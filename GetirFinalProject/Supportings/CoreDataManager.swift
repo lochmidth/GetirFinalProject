@@ -37,7 +37,6 @@ final class CoreDataManager {
         let productInCart = NSManagedObject(entity: productEntity, insertInto: managedContext)
         productInCart.setValue(product.id, forKey: "id")
         productInCart.setValue(product.quantity, forKey: "quantity")
-        
         do {
             try managedContext.save()
         } catch {
@@ -53,7 +52,6 @@ final class CoreDataManager {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         fetchRequest.returnsObjectsAsFaults = false
-
         do {
             let results = try managedContext.fetch(fetchRequest)
             if let productToUpdate = results.first as? NSManagedObject {
@@ -67,7 +65,6 @@ final class CoreDataManager {
         }
     }
 
-    
     func fetchAllCoreData() async throws -> [(id: String, quantity: Int)] {
         guard let appDelegate = await application.delegate as? AppDelegate else {
             throw CoreDataError.AppDelegateUnavailable

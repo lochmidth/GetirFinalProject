@@ -35,6 +35,8 @@ extension ListingInteractor: ListingInteractorInput {
                 let productsDTO = try await getirService.fetchProducts()
                 self.productList.update(from: productsDTO)
                 self.suggestedProductList.update(from: suggestedProductsDTO)
+                self.productList.products = try await CartService.shared.updateQuantity(for: self.productList.products)
+                self.suggestedProductList.products = try await CartService.shared.updateQuantity(for: self.suggestedProductList.products)
                 presenter.didReceiveAllProducts()
             } catch {
                 presenter.didFail(with: error)
