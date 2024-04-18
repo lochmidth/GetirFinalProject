@@ -51,6 +51,9 @@
 		C2836BAD2BD08EB9000586BE /* BasketBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BAC2BD08EB9000586BE /* BasketBuilder.swift */; };
 		C2836BB02BD0943A000586BE /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BAF2BD0943A000586BE /* CustomNavigationController.swift */; };
 		C2836BB22BD095A7000586BE /* CartNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BB12BD095A7000586BE /* CartNavigationView.swift */; };
+		C2836BB42BD166DE000586BE /* CartNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BB32BD166DE000586BE /* CartNavigationPresenter.swift */; };
+		C2836BB62BD16808000586BE /* CartNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BB52BD16808000586BE /* CartNavigationRouter.swift */; };
+		C2836BB82BD1691C000586BE /* CartNavigationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2836BB72BD1691C000586BE /* CartNavigationBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +121,9 @@
 		C2836BAC2BD08EB9000586BE /* BasketBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBuilder.swift; sourceTree = "<group>"; };
 		C2836BAF2BD0943A000586BE /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		C2836BB12BD095A7000586BE /* CartNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNavigationView.swift; sourceTree = "<group>"; };
+		C2836BB32BD166DE000586BE /* CartNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNavigationPresenter.swift; sourceTree = "<group>"; };
+		C2836BB52BD16808000586BE /* CartNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNavigationRouter.swift; sourceTree = "<group>"; };
+		C2836BB72BD1691C000586BE /* CartNavigationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartNavigationBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +355,9 @@
 			children = (
 				C2836BAF2BD0943A000586BE /* CustomNavigationController.swift */,
 				C2836BB12BD095A7000586BE /* CartNavigationView.swift */,
+				C2836BB32BD166DE000586BE /* CartNavigationPresenter.swift */,
+				C2836BB52BD16808000586BE /* CartNavigationRouter.swift */,
+				C2836BB72BD1691C000586BE /* CartNavigationBuilder.swift */,
 			);
 			path = "Cart Navigation";
 			sourceTree = "<group>";
@@ -498,6 +507,7 @@
 				C2351C362BC5A9190080CED9 /* ProductList.swift in Sources */,
 				C2351C4F2BC5D7370080CED9 /* UIView+Ext.swift in Sources */,
 				C2154B692BC5F89700583CCC /* QuantityControlPresenter.swift in Sources */,
+				C2836BB62BD16808000586BE /* CartNavigationRouter.swift in Sources */,
 				C2836BB02BD0943A000586BE /* CustomNavigationController.swift in Sources */,
 				C2836BA92BD08EA6000586BE /* BasketInteractor.swift in Sources */,
 				C2836BB22BD095A7000586BE /* CartNavigationView.swift in Sources */,
@@ -509,6 +519,7 @@
 				C22A0DB62BC6ECBD00C8F067 /* ListingPresenter.swift in Sources */,
 				C23F061C2BC83FCE00D3B104 /* QuantityControlBuilder.swift in Sources */,
 				C23F062B2BCC7FF300D3B104 /* ProductDetailRouter.swift in Sources */,
+				C2836BB82BD1691C000586BE /* CartNavigationBuilder.swift in Sources */,
 				C2351C512BC5DABA0080CED9 /* UIColor+Ext.swift in Sources */,
 				C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */,
 				C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */,
@@ -528,6 +539,7 @@
 				C23F06292BCC7F3200D3B104 /* ProductDetailBuilder.swift in Sources */,
 				C2836B9F2BCF2E79000586BE /* CoreDataManager.swift in Sources */,
 				C23F06162BC82A8D00D3B104 /* ProductCellBuilder.swift in Sources */,
+				C2836BB42BD166DE000586BE /* CartNavigationPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

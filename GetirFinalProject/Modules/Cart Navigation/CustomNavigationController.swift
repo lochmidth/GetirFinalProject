@@ -9,7 +9,16 @@ import UIKit
 
 final class CustomNavigationController: UINavigationController {
     
-    let rightView = CartNavigationView()
+    let cartNavigationBuilder: CartNavigationBuilder
+    
+    init(rootViewController: UIViewController, cartNavigationBuilder: CartNavigationBuilder = CartNavigationBuilder()) {
+        self.cartNavigationBuilder = cartNavigationBuilder
+        super.init(rootViewController: rootViewController)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +44,7 @@ final class CustomNavigationController: UINavigationController {
     
     private func configureRightNavigationItem(_ viewController: UIViewController) {
         if !(viewController is BasketViewController) {
-            let rightView = CartNavigationView(frame: CGRect(x: 0, y: 0, width: 91, height: 34))
+            let rightView = cartNavigationBuilder.build(with: self)
             let rightBarButtonItem = UIBarButtonItem(customView: rightView)
             viewController.navigationItem.rightBarButtonItem = rightBarButtonItem
         }
