@@ -14,5 +14,11 @@ final class BasketRouter {
 }
 
 extension BasketRouter: BasketRouterInput {
-    
+    func showAlert(with error: Error) {
+        let alert = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default))
+        Task { @MainActor in
+            navigationController.present(alert, animated: true)
+        }
+    }
 }

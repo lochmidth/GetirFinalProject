@@ -74,6 +74,7 @@ extension ListingViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
+        cell.orientation = .small
         let cellPresenter = presenter.presenterForCell(at: indexPath)
         cell.reload(with: cellPresenter)
         return cell

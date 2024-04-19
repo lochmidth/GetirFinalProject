@@ -8,6 +8,11 @@
 import UIKit
 import Kingfisher
 
+enum CellOrientation {
+    case small
+    case large
+}
+
 protocol ProductCellViewOutput: AnyObject {
     var quantityControlPresenter: QuantityControlPresenter? { get set }
     func didTapCell()
@@ -17,9 +22,10 @@ protocol ProductCellViewOutput: AnyObject {
 final class ProductCell: UICollectionViewCell {
     //MARK: - Properties
     
+    var orientation: CellOrientation!
     var presenter: ProductCellViewOutput!
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.layer.borderWidth = 1
@@ -52,12 +58,9 @@ final class ProductCell: UICollectionViewCell {
     }()
     
     private lazy var stack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [imageView, priceLabel, productLabel, attributeLabel])
+        let stack = UIStackView(arrangedSubviews: [priceLabel, productLabel, attributeLabel])
         stack.axis = .vertical
         stack.distribution = .fill
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
-        stack.isUserInteractionEnabled = true
-        stack.addGestureRecognizer(gesture)
         return stack
     }()
     
@@ -132,15 +135,31 @@ extension ProductCell: ProductCellViewInput {
         quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
         guard let quantityControl else { return }
         quantityControlPresenter?.view = quantityControl
-        stack.addSubview(quantityControl)
+        contentView.addSubview(quantityControl)
         quantityControl.anchor(top: topAnchor, right: rightAnchor, paddingTop: -5, paddingRight: -5)
         quantityControl.configureUI() // TODO: - reload oarlak değiştir
     }
     
     func configureStack() {
         backgroundColor = .white
-        contentView.addSubview(stack)
-        stack.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
-                     paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2)
+        switch orientation {
+        case .small:
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(gesture)
+            contentView.addSubview(imageView)
+            imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
+                             paddingTop: 2, paddingLeft: 2, paddingRight: 2)
+            contentView.addSubview(stack)
+            stack.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
+                         paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2)
+        case .large:
+            contentView.addSubview(imageView)
+            imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor)
+            contentView.addSubview(stack)
+            stack.anchor(top: topAnchor, left: imageView.rightAnchor, bottom: bottomAnchor)
+        case .none:
+            break
+        }
     }
 }
