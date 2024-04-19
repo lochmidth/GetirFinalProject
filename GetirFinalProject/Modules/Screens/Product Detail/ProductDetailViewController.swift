@@ -61,7 +61,7 @@ final class ProductDetailViewController: UIViewController {
         return view
     }()
     
-    private lazy var footer: UIView = {
+    private let footer: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.addShadow()
@@ -113,6 +113,13 @@ final class ProductDetailViewController: UIViewController {
 }
 
 extension ProductDetailViewController: ProductDetailViewControllerInput {
+    func reload(with product: Product) {
+        setImage(with: product.imageURL)
+        priceLabel.text = product.priceText
+        productLabel.text = product.name
+        attributeLabel.text = product.attribute
+    }
+    
     func configureProductDetails(with product: Product) {
         view.backgroundColor = .white
         view.addSubview(footer)
@@ -125,10 +132,6 @@ extension ProductDetailViewController: ProductDetailViewControllerInput {
         stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
                      paddingTop: 16)
         footer.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
-        setImage(with: product.imageURL)
-        priceLabel.text = product.priceText
-        productLabel.text = product.name
-        attributeLabel.text = product.attribute
     }
     
     func configureFooterSubviews(count: Int) {
@@ -151,7 +154,7 @@ extension ProductDetailViewController: ProductDetailViewControllerInput {
         }
     }
     
-    func setTitle() {
+    func configureNavigationBar() {
         title = "Ürün Detayı"
     }
 }

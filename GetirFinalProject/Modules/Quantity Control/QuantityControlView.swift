@@ -15,6 +15,7 @@ enum StackOrientation {
 protocol QuantitiyControlViewOutput: AnyObject {
     var cellPresenterDelegate: QuantityControlDelegate? { get set }
     func didLoadQuantityControl()
+    func reloadQuantityControl()
     func didTapPlus()
     func didTapMinus()
 }

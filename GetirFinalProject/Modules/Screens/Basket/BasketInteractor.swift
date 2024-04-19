@@ -10,6 +10,7 @@ import GetirSDK
 
 protocol BasketInteractorOutput: AnyObject {
     func didReceiveAllProducts()
+    func didClearCart()
     func didFail(with error: Error)
 }
 
@@ -28,6 +29,17 @@ final class BasketInteractor {
 }
 
 extension BasketInteractor: BasketInteractorInput {
+    func handleClearAllProducts() {
+        Task {
+            do {
+                try await CartService.shared.removeAllProductsFromCart()
+                presenter.didClearCart()
+            } catch {
+                presenter.didFail(with: error)
+            }
+        }
+    }
+    
     func fetchProducts() {
         Task {
             do {

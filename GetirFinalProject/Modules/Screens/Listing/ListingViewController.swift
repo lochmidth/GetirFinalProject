@@ -8,9 +8,7 @@
 import UIKit
 
 protocol ListingViewControllerOutput: AnyObject {
-    var interactor: ListingInteractorInput { get set }
     func viewDidLoad()
-    func didTapCell()
     func numberOfItemsInSection(_ section: Int) -> Int
     func presenterForCell(at indexPath: IndexPath) -> ProductCellPresenter
 }

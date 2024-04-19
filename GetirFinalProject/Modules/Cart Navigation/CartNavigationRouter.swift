@@ -19,7 +19,6 @@ final class CartNavigationRouter {
 
 extension CartNavigationRouter: CartNavigationRouterInput {
     func goToBasket() {
-        print("Handle Go to Basket")
         let basketViewController = basketBuilder.build(with: navigationController)
         navigationController.pushViewController(basketViewController, animated: true)
     }

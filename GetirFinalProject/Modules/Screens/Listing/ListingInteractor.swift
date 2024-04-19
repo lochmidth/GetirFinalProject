@@ -24,7 +24,19 @@ final class ListingInteractor {
         self.getirService = getirService
         self.productList = ProductList()
         self.suggestedProductList = SuggestedProductList()
+        NotificationCenter.default.addObserver(self, selector: #selector(didDismissBasket), name: Notification.Name("didDismissBasket"), object: nil)
     }
+    
+    @objc func didDismissBasket() {
+        self.productList.products.forEach { productCellPresenter in
+            productCellPresenter.product.quantity = 0
+        }
+        self.suggestedProductList.products.forEach { productCellPresenter in
+            productCellPresenter.product.quantity = 0
+        }
+        presenter.didReceiveAllProducts()
+    }
+    
 }
 
 extension ListingInteractor: ListingInteractorInput {

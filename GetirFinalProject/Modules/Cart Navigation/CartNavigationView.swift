@@ -27,7 +27,7 @@ final class CartNavigationView: UIView {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .getirPurple
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
         return label
     }()

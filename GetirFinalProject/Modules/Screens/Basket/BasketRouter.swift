@@ -14,6 +14,13 @@ final class BasketRouter {
 }
 
 extension BasketRouter: BasketRouterInput {
+    func dismissBasket() {
+        Task { @MainActor in
+            NotificationCenter.default.post(name: Notification.Name("didDismissBasket"), object: nil)
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+    
     func showAlert(with error: Error) {
         let alert = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .default))

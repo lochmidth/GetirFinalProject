@@ -8,7 +8,7 @@
 import UIKit
 
 final class ListingBuilder {
-    func build() -> CustomNavigationController {
+    func build() -> UINavigationController {
         let interactor = ListingInteractor()
         let view = ListingViewController()
         let productCellBuilder = ProductCellBuilder()

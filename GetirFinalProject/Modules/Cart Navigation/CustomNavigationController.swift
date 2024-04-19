@@ -10,9 +10,11 @@ import UIKit
 final class CustomNavigationController: UINavigationController {
     
     let cartNavigationBuilder: CartNavigationBuilder
+    let listingBuilder: ListingBuilder
     
-    init(rootViewController: UIViewController, cartNavigationBuilder: CartNavigationBuilder = CartNavigationBuilder()) {
+    init(rootViewController: UIViewController, cartNavigationBuilder: CartNavigationBuilder = CartNavigationBuilder(), listingBuilder: ListingBuilder = ListingBuilder()) {
         self.cartNavigationBuilder = cartNavigationBuilder
+        self.listingBuilder = listingBuilder
         super.init(rootViewController: rootViewController)
     }
     

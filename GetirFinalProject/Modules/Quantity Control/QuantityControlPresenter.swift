@@ -54,6 +54,10 @@ final class QuantityControlPresenter {
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didLoadQuantityControl() {
         view.configureStackOrientation()
+        reloadQuantityControl()
+    }
+    
+    func reloadQuantityControl() {
         cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
         view.updateWithCount(interactor.product.quantity)
     }
@@ -61,16 +65,11 @@ extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didTapPlus() {
         view.enableButtons(false)
         interactor.increaseCount()
-//        view.updateWithCount(interactor.product.quantity)
-//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
     }
     
     func didTapMinus() {
         view.enableButtons(false)
         interactor.decreaseCount()
-//        view.updateWithCount(interactor.product.quantity)
-//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
-//        productDetailDelegate?.didQuantityChange(interactor.product.quantity)
     }
 }
 

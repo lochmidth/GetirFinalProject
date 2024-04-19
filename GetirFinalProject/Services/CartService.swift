@@ -95,8 +95,8 @@ final class CartService {
     }
     
     func removeAllProductsFromCart() async throws {
-        products.removeAll()
         try await coreDataManager.deleteAllData()
+        products.removeAll()
     }
     
     func checkout() async throws -> Bool {

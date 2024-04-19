@@ -18,10 +18,12 @@ protocol BasketInteractorInput: AnyObject {
     var productList: ProductList { get }
     var suggestedProductList: SuggestedProductList { get }
     func fetchProducts()
+    func handleClearAllProducts()
 }
 
 protocol BasketRouterInput: AnyObject {
     var navigationController: UINavigationController! { get }
+    func dismissBasket()
     func showAlert(with error: Error)
 }
 
@@ -41,6 +43,22 @@ final class BasketPresenter {
 }
 
 extension BasketPresenter: BasketViewControllerOutput {
+    func didTapCheckout() {
+        print("Handle checkout")
+    }
+    
+    func didTapTrashButton() {
+        let alert = UIAlertController(title: "", message: "Sepeti temizlemek istediğinden emin misin?", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Evet", style: .destructive) { [weak self] _ in
+            guard let self = self else { return }
+            interactor.handleClearAllProducts()
+        }
+        let cancelAction = UIAlertAction(title: "Hayır", style: .cancel)
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        router.navigationController.present(alert, animated: true)
+    }
+    
     func numberOfItemsInSection(_ section: Int) -> Int {
         if section == 0 {
             return interactor.productList.products.count
@@ -62,14 +80,18 @@ extension BasketPresenter: BasketViewControllerOutput {
     }
     
     func viewDidLoad() {
-        view.configureCollectionView()
         view.configureNavigationbar()
+        view.configureCollectionView()
         view.configureSubviews()
         interactor.fetchProducts()
     }
 }
 
 extension BasketPresenter: BasketInteractorOutput {
+    func didClearCart() {
+        router.dismissBasket()
+    }
+    
     func didReceiveAllProducts() {
         view.reload()
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ProductDetailInteractorOutput: AnyObject {
-    func didIncreaseCountForProduct(_ count: Int)
+  
 }
 
 final class ProductDetailInteractor {
@@ -22,9 +22,5 @@ final class ProductDetailInteractor {
 }
 
 extension ProductDetailInteractor: ProductDetailInteractorInput {
-    func increaseCount() {
-        //Handle Cart
-        product.quantity += 1
-        presenter.didIncreaseCountForProduct(product.quantity)
-    }
+    
 }
