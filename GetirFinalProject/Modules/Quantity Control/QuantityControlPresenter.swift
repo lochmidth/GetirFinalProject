@@ -31,6 +31,10 @@ protocol ProductDetailDelegate: AnyObject {
     func didQuantityChange(_ count: Int)
 }
 
+protocol BasketDelegate: AnyObject {
+    func didQuantityChange(for product: Product)
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
@@ -40,6 +44,7 @@ final class QuantityControlPresenter {
 //    var router: QuantityControlRouterInput
     weak var cellPresenterDelegate: QuantityControlDelegate?
     weak var productDetailDelegate: ProductDetailDelegate?
+    weak var basketDelegate: BasketDelegate?
     
     //MARK: - Lifecycle
     
@@ -78,6 +83,7 @@ extension QuantityControlPresenter: QuantityControlInteractorOutput {
         view.updateWithCount(interactor.product.quantity)
         cellPresenterDelegate?.didQuantityChange(count)
         productDetailDelegate?.didQuantityChange(count)
+        basketDelegate?.didQuantityChange(for: interactor.product)
         view.enableButtons(true)
     }
 }

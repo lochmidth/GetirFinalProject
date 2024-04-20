@@ -48,7 +48,7 @@ final class CartService {
         }
     }
     
-    func updateQuantity(for productPresenters: [ProductCellPresenter]) async throws -> [ProductCellPresenter] {
+    func updateQuantity(for productPresenters: [ProductCellPresenter], addCart: Bool) async throws -> [ProductCellPresenter] {
         do {
             let idsAndQuantities = try await coreDataManager.fetchAllCoreData()
             let fetchedProductDictionary = Dictionary(uniqueKeysWithValues: idsAndQuantities.map { ($0.id, $0.quantity) })
@@ -61,7 +61,9 @@ final class CartService {
                 }
             }
             let updatedProducts = updatedProductPresenters.map { $0.product }
-            self.products += updatedProducts.filter { $0.quantity > 0 }
+            if addCart {
+                self.products += updatedProducts.filter { $0.quantity > 0 }
+            }
             return updatedProductPresenters
         } catch {
             throw error

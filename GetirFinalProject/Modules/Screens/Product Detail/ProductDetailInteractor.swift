@@ -22,5 +22,7 @@ final class ProductDetailInteractor {
 }
 
 extension ProductDetailInteractor: ProductDetailInteractorInput {
-    
+    func updateProduct() {
+        self.product = CartService.shared.products.first(where: { $0.id == product.id }) ?? product
+    }
 }

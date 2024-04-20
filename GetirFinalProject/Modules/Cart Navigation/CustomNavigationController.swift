@@ -34,6 +34,10 @@ final class CustomNavigationController: UINavigationController {
         configureRightNavigationItem(viewController)
     }
     
+    override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+        super.popToViewController(viewController, animated: true)
+    }
+    
     private func configureNavigationControllerProperties() {
         let apperance = UINavigationBarAppearance()
         apperance.configureWithOpaqueBackground()

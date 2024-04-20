@@ -18,6 +18,7 @@ protocol ListingInteractorInput: AnyObject {
     var productList: ProductList { get }
     var suggestedProductList: SuggestedProductList { get }
     func fetchAllProducts()
+    func updateAllProducts()
 }
 
 protocol ListingRouterInput: AnyObject {
@@ -41,6 +42,10 @@ final class ListingPresenter {
 }
 
 extension ListingPresenter: ListingViewControllerOutput {
+    func viewWillAppear() {
+        interactor.updateAllProducts()
+    }
+    
     func numberOfItemsInSection(_ section: Int) -> Int {
         if section == 0 {
             return interactor.suggestedProductList.products.count

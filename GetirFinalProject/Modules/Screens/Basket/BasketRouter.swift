@@ -16,7 +16,6 @@ final class BasketRouter {
 extension BasketRouter: BasketRouterInput {
     func dismissBasket() {
         Task { @MainActor in
-            NotificationCenter.default.post(name: Notification.Name("didDismissBasket"), object: nil)
             navigationController.popToRootViewController(animated: true)
         }
     }

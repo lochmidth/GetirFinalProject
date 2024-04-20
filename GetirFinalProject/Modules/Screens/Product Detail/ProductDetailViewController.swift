@@ -10,6 +10,7 @@ import Kingfisher
 
 protocol ProductDetailViewControllerOutput: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     func configureQuantityControl() -> QuantityControlView
     func didTapAddToCartButton()
 }
@@ -90,6 +91,11 @@ final class ProductDetailViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
+    }
+    
     //MARK: - Actions
     
     @objc func didTapAddToCartButton() {
@@ -113,6 +119,7 @@ final class ProductDetailViewController: UIViewController {
 }
 
 extension ProductDetailViewController: ProductDetailViewControllerInput {
+    
     func reload(with product: Product) {
         setImage(with: product.imageURL)
         priceLabel.text = product.priceText

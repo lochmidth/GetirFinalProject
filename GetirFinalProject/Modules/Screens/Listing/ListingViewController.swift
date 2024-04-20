@@ -9,6 +9,7 @@ import UIKit
 
 protocol ListingViewControllerOutput: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     func numberOfItemsInSection(_ section: Int) -> Int
     func presenterForCell(at indexPath: IndexPath) -> ProductCellPresenter
 }
@@ -26,6 +27,11 @@ final class ListingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
     
     //MARK: - Helpers

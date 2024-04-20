@@ -48,7 +48,10 @@ final class CartNavigationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+    }
+    
+    deinit {
+        removeObserver()
     }
     
     required init?(coder: NSCoder) {
@@ -99,6 +102,10 @@ extension CartNavigationView: CartNavigationViewInput {
     
     func configureObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(didChangeCart), name: Notification.Name("DidCalculateTotalPrice"), object: nil)
+    }
+    
+    func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("DidCalculateTotalPrice"), object: nil)
     }
     
     func reload() {

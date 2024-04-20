@@ -14,6 +14,7 @@ enum StackOrientation {
 
 protocol QuantitiyControlViewOutput: AnyObject {
     var cellPresenterDelegate: QuantityControlDelegate? { get set }
+    var interactor: QuantityControlInteractorInput { get set }
     func didLoadQuantityControl()
     func reloadQuantityControl()
     func didTapPlus()
@@ -137,7 +138,9 @@ extension QuantityControlView: QuantitiyControlViewInput {
     }
     
     func updateWithCount(_ count: Int) {
-        valueLabel.text = "\(count)"
+        Task { @MainActor in
+            valueLabel.text = "\(count)"
+        }
         switch stackOrientation {
         case .vertical:
             updateStackVisibility(with: count)

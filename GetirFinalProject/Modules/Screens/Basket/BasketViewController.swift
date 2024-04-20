@@ -29,6 +29,15 @@ final class BasketViewController: UIViewController {
         return view
     }()
     
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .getirPurple
+        label.textAlignment = .center
+        label.text = "₺1.500,00"
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        return label
+    }()
+    
     private lazy var checkoutContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .getirPurple
@@ -38,21 +47,13 @@ final class BasketViewController: UIViewController {
         checkoutButton.setTitle("Siparişi Tamamla", for: .normal)
         checkoutButton.setTitleColor(.white, for: .normal)
         checkoutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        checkoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(checkoutButton)
         checkoutButton.addTarget(self, action: #selector(didTapCheckout), for: .touchUpInside)
         let priceBackgroundView = UIView()
         priceBackgroundView.backgroundColor = .white
         priceBackgroundView.layer.cornerRadius = 10
-        priceBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(priceBackgroundView)
-        let priceLabel = UILabel()
-        priceLabel.textColor = .getirPurple
-        priceLabel.textAlignment = .center
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceBackgroundView.addSubview(priceLabel)
-        priceLabel.text = "₺1.500,00"
-        priceLabel.font = UIFont.boldSystemFont(ofSize: 22)
         checkoutButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: priceBackgroundView.leftAnchor)
         priceBackgroundView.anchor(top: view.topAnchor, left: checkoutButton.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         priceBackgroundView.setWidth(self.view.frame.width / 3)
@@ -63,7 +64,8 @@ final class BasketViewController: UIViewController {
     
     //MARK: - Lifecycle
     
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.viewDidLoad()
     }
     
@@ -110,12 +112,6 @@ final class BasketViewController: UIViewController {
         }
         return layout
     }
-    
-    private func reloadData() {
-        Task { @MainActor in
-            collectionView.reloadData()
-        }
-    }
 }
 
 extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -129,6 +125,7 @@ extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BasketCell", for: indexPath) as! ProductCell
+        cell.layer.borderWidth = 0
         if indexPath.section == 0 {
             cell.orientation = .large
         } else {
@@ -146,6 +143,13 @@ extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension BasketViewController: BasketViewControllerInput {
+    func reload(withPrice priceText: String) {
+        Task { @MainActor in
+            collectionView.reloadData()
+            priceLabel.text = priceText
+        }
+    }
+    
     func configureNavigationbar() {
         let trashIcon = UIImageView(image: UIImage(named: "whiteTrashIcon"))
         let trashIconBarButton = UIBarButtonItem(customView: trashIcon)
@@ -173,10 +177,6 @@ extension BasketViewController: BasketViewControllerInput {
         footer.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         footer.addSubview(checkoutContainerView)
         checkoutContainerView.anchor(top: footer.topAnchor, left: view.leftAnchor, bottom: footer.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
-    }
-    
-    func reload() {
-        reloadData()
     }
 }
 
