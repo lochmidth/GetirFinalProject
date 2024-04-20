@@ -8,6 +8,11 @@
 import UIKit
 import Kingfisher
 
+enum CellOrientation {
+    case small
+    case large
+}
+
 protocol ProductCellViewOutput: AnyObject {
     var quantityControlPresenter: QuantityControlPresenter? { get set }
     func didTapCell()
@@ -17,9 +22,10 @@ protocol ProductCellViewOutput: AnyObject {
 final class ProductCell: UICollectionViewCell {
     //MARK: - Properties
     
+    var orientation: CellOrientation!
     var presenter: ProductCellViewOutput!
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.layer.borderWidth = 1
@@ -51,13 +57,10 @@ final class ProductCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var stack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [imageView, priceLabel, productLabel, attributeLabel])
+    private let stack: UIStackView = {
+        let stack = UIStackView()
         stack.axis = .vertical
-        stack.distribution = .fill
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
-        stack.isUserInteractionEnabled = true
-        stack.addGestureRecognizer(gesture)
+        stack.distribution = .fillProportionally
         return stack
     }()
     
@@ -67,11 +70,6 @@ final class ProductCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -89,7 +87,9 @@ final class ProductCell: UICollectionViewCell {
     func reload(with presenter: ProductCellPresenter) {
         self.presenter = presenter
         presenter.view = self
-        presenter.didLoadCell()
+        Task { @MainActor in
+            presenter.didLoadCell()
+        }
     }
     
     private func setCellImage(with url: URL?) {
@@ -104,43 +104,128 @@ final class ProductCell: UICollectionViewCell {
                 .cacheOriginalImage
             ])
     }
-}
-
-extension ProductCell: ProductCellViewInput {
-    func update(with product: Product) {
-        priceLabel.text = product.priceText
-        productLabel.text = product.name
-        attributeLabel.text = product.attribute
-        setCellImage(with: product.imageURL)
-    }
     
-    func updateWithCount(_ count: Int) {
+    private func toggleImageViewBorder(_ count: Int) {
         let animation = CABasicAnimation(keyPath: "borderColor")
         animation.fromValue = imageView.layer.borderColor
         animation.toValue = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
         animation.duration = 0.5
         imageView.layer.add(animation, forKey: "borderColor")
         imageView.layer.borderColor = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
+    }
+}
+
+extension ProductCell: ProductCellViewInput {
+    func configureStack() {
+        backgroundColor = .white
+        switch orientation {
+        case .small:
+            let views = [priceLabel, productLabel, attributeLabel]
+            views.forEach { stack.addArrangedSubview($0) }
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(gesture)
+            contentView.addSubview(imageView)
+            imageView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,
+                             paddingTop: 2, paddingLeft: 2, paddingRight: 2)
+            contentView.addSubview(stack)
+            stack.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
+                         paddingTop: 2, paddingLeft: 2, paddingRight: 2)
+        case .large:
+            let views = [productLabel, attributeLabel, priceLabel]
+            views.forEach { stack.addArrangedSubview($0) }
+            layer.borderColor = UIColor.getirGray.cgColor
+            layer.borderWidth = 1
+            imageView.isUserInteractionEnabled = false
+            let horizontalStack = UIStackView(arrangedSubviews: [imageView, stack])
+            horizontalStack.spacing = 8
+            contentView.addSubview(horizontalStack)
+            horizontalStack.centerY(inView: contentView, leftAnchor: contentView.leftAnchor, paddingLeft: 8)
+//            contentView.addSubview(stack)
+//            contentView.addSubview(imageView)
+//            imageView.centerY(inView: contentView, leftAnchor: contentView.leftAnchor, paddingLeft: 8)
+//            imageView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, paddingLeft: 8)
+//            stack.anchor(top: contentView.topAnchor, left: imageView.rightAnchor, bottom: contentView.bottomAnchor, right: quantityControl?.leftAnchor,
+//                         paddingTop: 32, paddingLeft: 12, paddingBottom: 32, paddingRight: 12)
+        default:
+            break
+        }
+    }
+    
+    func update(with product: Product) {
+        Task { @MainActor in
+            priceLabel.text = product.priceText
+            productLabel.text = product.name
+            attributeLabel.text = product.attribute
+            setCellImage(with: product.imageURL)
+        }
+    }
+    
+    func updateWithCount(_ count: Int) {
+        if orientation == .small {
+            toggleImageViewBorder(count)
+        }
         quantityControl?.updateWithCount(count)
     }
     
     func configureQuantityControl(with count: Int) {
-        // TODO: - QuantityControlüView kalıcak sadece presneter koy relaodla
-        quantityControl?.removeFromSuperview()
-        let quantityControlPresenter = presenter.quantityControlPresenter
-        quantityControlPresenter?.interactor.product.quantity = count
-        quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
-        guard let quantityControl else { return }
-        quantityControlPresenter?.view = quantityControl
-        stack.addSubview(quantityControl)
-        quantityControl.anchor(top: topAnchor, right: rightAnchor, paddingTop: -5, paddingRight: -5)
-        quantityControl.configureUI() // TODO: - reload oarlak değiştir
+        switch orientation {
+        case .small:
+            // TODO: - QuantityControlüView kalıcak sadece presneter koy relaodla
+            quantityControl?.removeFromSuperview()
+            let quantityControlPresenter = presenter.quantityControlPresenter
+            quantityControlPresenter?.interactor.product.quantity = count
+            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
+            guard let quantityControl else { return }
+            quantityControlPresenter?.view = quantityControl
+            contentView.addSubview(quantityControl)
+            quantityControl.anchor(top: topAnchor, right: rightAnchor,
+                                   paddingTop: -5, paddingRight: -5)
+            quantityControl.configureUI() // TODO: - reload oarlak değiştir
+        case .large:
+            quantityControl?.removeFromSuperview()
+            let quantityControlPresenter = presenter.quantityControlPresenter
+            quantityControlPresenter?.interactor.product.quantity = count
+            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
+            guard let quantityControl else { return }
+            quantityControl.setDimensions(height: 26, width: 78)
+            quantityControlPresenter?.view = quantityControl
+            contentView.addSubview(quantityControl)
+            quantityControl.centerY(inView: self)
+            quantityControl.anchor(left: stack.rightAnchor, right: rightAnchor,
+                                   paddingLeft: 12, paddingRight: 16)
+            quantityControl.configureUI()
+        default:
+            break
+        }
     }
-    
-    func configureStack() {
-        backgroundColor = .white
-        contentView.addSubview(stack)
-        stack.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor,
-                     paddingTop: 2, paddingLeft: 2, paddingBottom: 2, paddingRight: 2)
-    }
+//    func configureQuantityControl(with count: Int) {
+//        switch orientation {
+//        case .small:
+//            quantityControl?.removeFromSuperview()
+//            let quantityControlPresenter = presenter.quantityControlPresenter
+//            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
+//            quantityControlPresenter?.view = quantityControl
+//            quantityControlPresenter?.interactor.product.quantity = count // Update quantity after creating the view
+//            contentView.addSubview(quantityControl!)
+//            quantityControl?.anchor(top: topAnchor, right: rightAnchor,
+//                                   paddingTop: -5, paddingRight: -5)
+//            quantityControl?.configureUI() // TODO: - reload oarlak değiştir
+//        case .large:
+//            quantityControl?.removeFromSuperview()
+//            let quantityControlPresenter = presenter.quantityControlPresenter
+//            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
+//            quantityControlPresenter?.view = quantityControl
+//            quantityControlPresenter?.interactor.product.quantity = count // Update quantity after creating the view
+//            contentView.addSubview(quantityControl!)
+//            quantityControl?.setDimensions(height: 26, width: 78)
+//            quantityControl?.centerY(inView: self)
+//            quantityControl?.anchor(left: stack.rightAnchor, right: rightAnchor,
+//                                   paddingLeft: 12, paddingRight: 16)
+//            quantityControl?.configureUI()
+//        default:
+//            break
+//        }
+//    }
+
 }

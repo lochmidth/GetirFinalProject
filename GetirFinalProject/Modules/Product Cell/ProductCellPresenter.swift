@@ -12,7 +12,6 @@ protocol ProductCellViewInput: AnyObject {
     func updateWithCount(_ count: Int)
     func configureStack()
     func configureQuantityControl(with count: Int)
-    
 }
 
 protocol ProductCellRouterInput: AnyObject {

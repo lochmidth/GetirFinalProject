@@ -31,6 +31,10 @@ protocol ProductDetailDelegate: AnyObject {
     func didQuantityChange(_ count: Int)
 }
 
+protocol BasketDelegate: AnyObject {
+    func didQuantityChange(for product: Product)
+}
+
 final class QuantityControlPresenter {
     
     //MARK: - Properties
@@ -40,6 +44,7 @@ final class QuantityControlPresenter {
 //    var router: QuantityControlRouterInput
     weak var cellPresenterDelegate: QuantityControlDelegate?
     weak var productDetailDelegate: ProductDetailDelegate?
+    weak var basketDelegate: BasketDelegate?
     
     //MARK: - Lifecycle
     
@@ -54,6 +59,10 @@ final class QuantityControlPresenter {
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didLoadQuantityControl() {
         view.configureStackOrientation()
+        reloadQuantityControl()
+    }
+    
+    func reloadQuantityControl() {
         cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
         view.updateWithCount(interactor.product.quantity)
     }
@@ -61,16 +70,11 @@ extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didTapPlus() {
         view.enableButtons(false)
         interactor.increaseCount()
-//        view.updateWithCount(interactor.product.quantity)
-//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
     }
     
     func didTapMinus() {
         view.enableButtons(false)
         interactor.decreaseCount()
-//        view.updateWithCount(interactor.product.quantity)
-//        cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
-//        productDetailDelegate?.didQuantityChange(interactor.product.quantity)
     }
 }
 
@@ -79,6 +83,7 @@ extension QuantityControlPresenter: QuantityControlInteractorOutput {
         view.updateWithCount(interactor.product.quantity)
         cellPresenterDelegate?.didQuantityChange(count)
         productDetailDelegate?.didQuantityChange(count)
+        basketDelegate?.didQuantityChange(for: interactor.product)
         view.enableButtons(true)
     }
 }

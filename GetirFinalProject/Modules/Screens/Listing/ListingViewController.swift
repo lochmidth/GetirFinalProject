@@ -8,9 +8,8 @@
 import UIKit
 
 protocol ListingViewControllerOutput: AnyObject {
-    var interactor: ListingInteractorInput { get set }
     func viewDidLoad()
-    func didTapCell()
+    func viewWillAppear()
     func numberOfItemsInSection(_ section: Int) -> Int
     func presenterForCell(at indexPath: IndexPath) -> ProductCellPresenter
 }
@@ -28,6 +27,11 @@ final class ListingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
     
     //MARK: - Helpers
@@ -74,6 +78,7 @@ extension ListingViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
+        cell.orientation = .small
         let cellPresenter = presenter.presenterForCell(at: indexPath)
         cell.reload(with: cellPresenter)
         return cell

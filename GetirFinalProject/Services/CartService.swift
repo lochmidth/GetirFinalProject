@@ -11,7 +11,7 @@ final class CartService {
     static let shared = CartService()
     
     private let coreDataManager: CoreDataManager
-    var totalPrice: Double = 0
+    var totalPrice: String = "₺0,00"
     var products = [Product]() {
         didSet {
             calculateTotalPrice()
@@ -23,10 +23,12 @@ final class CartService {
     }
     
     private func calculateTotalPrice() {
-        totalPrice = products.reduce(0) { (result, product) -> Double in
+        let totalPriceDouble = products.reduce(0) { (result, product) -> Double in
             return result + (product.price * Double(product.quantity))
         }
-        totalPrice = (totalPrice * 100).rounded() / 100
+        let formattedTotalPrice = String(format: "₺%.2f", totalPriceDouble)
+        totalPrice = formattedTotalPrice
+        NotificationCenter.default.post(name: Notification.Name("DidCalculateTotalPrice"), object: nil)
     }
     
     func updateQuantity(for products: [Product]) async throws -> [Product] {
@@ -39,14 +41,14 @@ final class CartService {
                     updatedProducts[index].quantity = newQuantity
                 }
             }
-            self.products = updatedProducts
+            self.products = updatedProducts.filter { $0.quantity > 0 }
             return updatedProducts
         } catch {
             throw error
         }
     }
     
-    func updateQuantity(for productPresenters: [ProductCellPresenter]) async throws -> [ProductCellPresenter] {
+    func updateQuantity(for productPresenters: [ProductCellPresenter], addCart: Bool) async throws -> [ProductCellPresenter] {
         do {
             let idsAndQuantities = try await coreDataManager.fetchAllCoreData()
             let fetchedProductDictionary = Dictionary(uniqueKeysWithValues: idsAndQuantities.map { ($0.id, $0.quantity) })
@@ -58,7 +60,10 @@ final class CartService {
                     updatedProductPresenters[index].view?.updateWithCount(newQuantity)
                 }
             }
-            self.products += updatedProductPresenters.map { $0.product }
+            let updatedProducts = updatedProductPresenters.map { $0.product }
+            if addCart {
+                self.products += updatedProducts.filter { $0.quantity > 0 }
+            }
             return updatedProductPresenters
         } catch {
             throw error
@@ -92,8 +97,8 @@ final class CartService {
     }
     
     func removeAllProductsFromCart() async throws {
-        products.removeAll()
         try await coreDataManager.deleteAllData()
+        products.removeAll()
     }
     
     func checkout() async throws -> Bool {

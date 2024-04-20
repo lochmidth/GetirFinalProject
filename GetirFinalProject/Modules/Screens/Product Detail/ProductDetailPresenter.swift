@@ -8,14 +8,16 @@
 import Foundation
 
 protocol ProductDetailViewControllerInput: AnyObject {
+    var quantityControl: QuantityControlView? { get set }
     func configureProductDetails(with product: Product)
+    func reload(with product: Product)
     func configureFooterSubviews(count: Int)
-    func setTitle()
+    func configureNavigationBar()
 }
 
 protocol ProductDetailInteractorInput: AnyObject {
     var product: Product { get set }
-    func increaseCount()
+    func updateProduct()
 }
 
 protocol ProductDetailRouterInput: AnyObject {
@@ -41,6 +43,19 @@ final class ProductDetailPresenter {
 }
 
 extension ProductDetailPresenter: ProductDetailViewControllerOutput {
+    func viewWillAppear() {
+        interactor.updateProduct()
+        view.quantityControl?.presenter.interactor.product = interactor.product
+        view.quantityControl?.configureUI()
+    }
+    
+    func viewDidLoad() {
+        view.configureProductDetails(with: interactor.product)
+        view.reload(with: interactor.product)
+        view.configureFooterSubviews(count: interactor.product.quantity)
+        view.configureNavigationBar()
+    }
+    
     func configureQuantityControl() -> QuantityControlView {
         self.quantityControlPresenter = quantityControlBuilder.build(with: interactor.product)
         let quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
@@ -52,24 +67,23 @@ extension ProductDetailPresenter: ProductDetailViewControllerOutput {
     }
     
     func didTapAddToCartButton() {
-//        interactor.increaseCount()
+        //        interactor.increaseCount()
         let count = 1
-//        quantityControlPresenter?.interactor.product.quantity = count
+        //        quantityControlPresenter?.interactor.product.quantity = count
         didIncreaseCountForProduct(count)
         quantityControlPresenter?.didTapPlus()
-    }
-    
-    func viewDidLoad() {
-        view.configureProductDetails(with: interactor.product)
-        view.configureFooterSubviews(count: interactor.product.quantity)
-        view.setTitle()
     }
 }
 
 extension ProductDetailPresenter: ProductDetailInteractorOutput {
+    func didUpdateProduct() {
+        view.reload(with: interactor.product)
+        cellPresenter.didQuantityChange(interactor.product.quantity)
+    }
+    
     func didIncreaseCountForProduct(_ count: Int) {
         view.configureFooterSubviews(count: count)
-//        cellPresenter.product.quantity = count
+        //        cellPresenter.product.quantity = count
         cellPresenter.didQuantityChange(count)
     }
 }
