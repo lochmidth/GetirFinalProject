@@ -60,7 +60,7 @@ extension ProductDetailPresenter: ProductDetailViewControllerOutput {
         self.quantityControlPresenter = quantityControlBuilder.build(with: interactor.product)
         let quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
         quantityControlPresenter?.view = quantityControl
-        quantityControlPresenter?.cellPresenterDelegate = cellPresenter
+//        quantityControlPresenter?.cellPresenterDelegate = cellPresenter
         quantityControlPresenter?.productDetailDelegate = self
         quantityControl.presenter = quantityControlPresenter
         return quantityControl
@@ -78,19 +78,19 @@ extension ProductDetailPresenter: ProductDetailViewControllerOutput {
 extension ProductDetailPresenter: ProductDetailInteractorOutput {
     func didUpdateProduct() {
         view.reload(with: interactor.product)
-        cellPresenter.didQuantityChange(interactor.product.quantity)
+//        cellPresenter.didQuantityChange(interactor.product.quantity)
     }
     
     func didIncreaseCountForProduct(_ count: Int) {
         view.configureFooterSubviews(count: count)
         //        cellPresenter.product.quantity = count
-        cellPresenter.didQuantityChange(count)
+//        cellPresenter.didQuantityChange(count)
     }
 }
 
 extension ProductDetailPresenter: ProductDetailDelegate {
     func didQuantityChange(_ count: Int) {
-        cellPresenter.product.quantity = count
+//        cellPresenter.product.quantity = count
         view.configureFooterSubviews(count: count)
     }
 }

@@ -29,6 +29,7 @@ final class ProductCellPresenter {
     init(product: Product, quantityControlBuilder: QuantityControlBuilder = QuantityControlBuilder()) {
         self.product = product
         self.quantityControlBuilder = quantityControlBuilder
+        configureQuantityControlPresenter()
     }
     
     func configureQuantityControlPresenter(){
@@ -54,6 +55,6 @@ extension ProductCellPresenter: QuantityControlDelegate {
     func didQuantityChange(_ count: Int) {
         product.quantity = count
         view.updateWithCount(product.quantity)
-        quantityControlPresenter?.interactor.product.quantity = count
+//        quantityControlPresenter?.interactor.product.quantity = count
     }
 }

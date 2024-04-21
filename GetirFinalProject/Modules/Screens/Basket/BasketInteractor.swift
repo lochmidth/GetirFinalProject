@@ -31,21 +31,8 @@ final class BasketInteractor {
 }
 
 extension BasketInteractor: BasketInteractorInput {
-    func addToCart(_ product: Product) {
-//        let isAlreadyInCart = CartService.shared.products.contains(where: { $0.id == product.id })
-//        if !isAlreadyInCart {
-//            if let index = self.suggestedProductList.products.firstIndex(where: { $0.product.id == product.id }) {
-//                self.productList.products.append(suggestedProductList.products[index])
-//            }
-//            let priceText = CartService.shared.totalPrice
-//            presenter.didUpdateProductList(withPrice: priceText)
-//        } else {
-//            if let index = CartService.shared.products.firstIndex(where: { $0.id == product.id }) {
-//                CartService.shared.products[index].quantity += 1
-//                let priceText = CartService.shared.totalPrice
-//                presenter.didUpdateProductList(withPrice: priceText)
-//            }
-//        }
+    func adjustCart(with product: Product) {
+        fetchProducts()
     }
     
     func checkout() {
@@ -101,11 +88,14 @@ extension BasketInteractor: BasketInteractorInput {
                 self.suggestedProductList.products = try await CartService.shared.updateQuantity(for: suggestedProductList.products, addCart: false)
                 self.productList.products = CartService.shared.products.compactMap {
                     let presenter = ProductCellPresenter(product: $0)
-                    presenter.configureQuantityControlPresenter()
                     return presenter
                 }
-                let priceText = CartService.shared.totalPrice
-                presenter.didUpdateProductList(withPrice: priceText)
+                if productList.products.isEmpty {
+                    presenter.didClearCart()
+                } else {
+                    let priceText = CartService.shared.totalPrice
+                    presenter.didUpdateProductList(withPrice: priceText)
+                }
             } catch {
                 presenter.didFail(with: error)
             }
