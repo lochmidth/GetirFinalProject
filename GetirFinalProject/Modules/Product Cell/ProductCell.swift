@@ -72,6 +72,11 @@ final class ProductCell: UICollectionViewCell {
         super.init(frame: frame)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        toggleImageViewBorder(0)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -141,12 +146,6 @@ extension ProductCell: ProductCellViewInput {
             horizontalStack.spacing = 8
             contentView.addSubview(horizontalStack)
             horizontalStack.centerY(inView: contentView, leftAnchor: contentView.leftAnchor, paddingLeft: 8)
-//            contentView.addSubview(stack)
-//            contentView.addSubview(imageView)
-//            imageView.centerY(inView: contentView, leftAnchor: contentView.leftAnchor, paddingLeft: 8)
-//            imageView.anchor(top: contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, paddingLeft: 8)
-//            stack.anchor(top: contentView.topAnchor, left: imageView.rightAnchor, bottom: contentView.bottomAnchor, right: quantityControl?.leftAnchor,
-//                         paddingTop: 32, paddingLeft: 12, paddingBottom: 32, paddingRight: 12)
         default:
             break
         }

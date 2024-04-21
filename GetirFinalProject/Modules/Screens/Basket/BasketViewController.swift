@@ -82,36 +82,45 @@ final class BasketViewController: UIViewController {
     //MARK: - Helpers
     
     private func configureCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionNumber, _ in
-            if sectionNumber == 0 {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .absolute(117.3))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(117.3))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 8
-                return section
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            if sectionIndex == 0 {
+                return self.createFirstSectionLayout()
             } else {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28),
-                                                       heightDimension: .absolute(176.67))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .absolute(50))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-                section.boundarySupplementaryItems = [header]
-                section.orthogonalScrollingBehavior = .continuous
-                return section
+                return self.createSecondSectionLayout()
             }
         }
         return layout
     }
+    
+    private func createFirstSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .absolute(117.3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .absolute(117.3))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 8
+        return section
+    }
+    
+    private func createSecondSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28),
+                                               heightDimension: .absolute(176.67))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(50))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        section.orthogonalScrollingBehavior = .groupPaging
+        return section
+    }
+    
 }
 
 extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -177,6 +186,10 @@ extension BasketViewController: BasketViewControllerInput {
         footer.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         footer.addSubview(checkoutContainerView)
         checkoutContainerView.anchor(top: footer.topAnchor, left: view.leftAnchor, bottom: footer.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
+        let firstSectionHeight = CGFloat(presenter.numberOfItemsInSection(0)) * 117.3
+        let secondSectionHeight = CGFloat(presenter.numberOfItemsInSection(1)) * 176.67 + 50
+        let totalHeight = firstSectionHeight + secondSectionHeight + 36
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: totalHeight, right: 0)
     }
 }
 
@@ -187,7 +200,7 @@ final class SuggestedProductsHeader: UICollectionReusableView {
         super.init(frame: frame)
         
         label.text = "Önerilen Ürünler"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         addSubview(label)
         label.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 8, constant: 5)
     }

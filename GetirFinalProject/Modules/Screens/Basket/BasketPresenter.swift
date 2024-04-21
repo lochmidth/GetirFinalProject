@@ -18,7 +18,7 @@ protocol BasketInteractorInput: AnyObject {
     var productList: ProductList { get }
     var suggestedProductList: SuggestedProductList { get }
     func fetchProducts()
-    func addToCart(_ product: Product)
+    func adjustCart(with product: Product)
     func checkout()
     func clearProduct(_ product: Product)
     func handleClearAllProducts()
@@ -128,11 +128,6 @@ extension BasketPresenter: BasketInteractorOutput {
 
 extension BasketPresenter: BasketDelegate {
     func didQuantityChange(for product: Product) {
-        interactor.addToCart(product)
-        if product.quantity == 0 {
-            interactor.clearProduct(product)
-        } else {
-            view.reload(withPrice: CartService.shared.totalPrice)
-        }
+        interactor.adjustCart(with: product)
     }
 }
