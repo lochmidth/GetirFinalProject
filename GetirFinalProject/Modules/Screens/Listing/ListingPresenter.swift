@@ -12,6 +12,8 @@ protocol ListingViewControllerInput: AnyObject {
     func configureCollectionView()
     func configureSubviews()
     func reload()
+    func showLoading()
+    func hideLoading()
 }
 
 protocol ListingInteractorInput: AnyObject {
@@ -31,18 +33,17 @@ final class ListingPresenter {
     weak var view: ListingViewControllerInput!
     var interactor: ListingInteractorInput
     var router: ListingRouterInput
-    let productCellBuilder: ProductCellBuilder
     
-    init(view: ListingViewControllerInput!, interactor: ListingInteractorInput, router: ListingRouterInput, productCellBuilder: ProductCellBuilder) {
+    init(view: ListingViewControllerInput!, interactor: ListingInteractorInput, router: ListingRouterInput) {
         self.view = view
         self.interactor = interactor
         self.router = router
-        self.productCellBuilder = productCellBuilder
     }
 }
 
 extension ListingPresenter: ListingViewControllerOutput {
     func viewWillAppear() {
+        view.showLoading()
         interactor.updateAllProducts()
     }
     
@@ -67,6 +68,7 @@ extension ListingPresenter: ListingViewControllerOutput {
     }
     
     func viewDidLoad() {
+        view.showLoading()
         view.configureCollectionView()
         view.configureNavigationBar()
         view.configureSubviews()
@@ -81,9 +83,11 @@ extension ListingPresenter: ListingViewControllerOutput {
 extension ListingPresenter: ListingInteractorOutput {
     func didReceiveAllProducts() {
         view.reload()
+        view.hideLoading()
     }
     
     func didFail(with error: any Error) {
+        view.hideLoading()
         router.showAlert(with: error)
     }
 }

@@ -19,10 +19,6 @@ protocol QuantityControlInteractorInput: AnyObject {
     func decreaseCount()
 }
 
-protocol QuantityControlRouterInput: AnyObject {
-    
-}
-
 protocol QuantityControlDelegate: AnyObject {
     func didQuantityChange(_ count: Int)
 }
@@ -41,7 +37,6 @@ final class QuantityControlPresenter {
     
     weak var view: QuantitiyControlViewInput!
     var interactor: QuantityControlInteractorInput
-//    var router: QuantityControlRouterInput
     weak var cellPresenterDelegate: QuantityControlDelegate?
     weak var productDetailDelegate: ProductDetailDelegate?
     weak var basketDelegate: BasketDelegate?
@@ -51,9 +46,6 @@ final class QuantityControlPresenter {
     init(interactor: QuantityControlInteractorInput) {
         self.interactor = interactor
     }
-    
-    //MARK: - Helpers
-    
 }
 
 extension QuantityControlPresenter: QuantitiyControlViewOutput {

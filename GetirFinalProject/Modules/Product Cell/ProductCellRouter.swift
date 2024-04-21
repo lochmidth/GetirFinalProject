@@ -19,7 +19,7 @@ final class ProductCellRouter {
 
 extension ProductCellRouter: ProductCellRouterInput {
     func goToDetail(with product: Product, cellPresenter: ProductCellPresenter) {
-        let productDetailViewController = productDetailBuilder.build(with: navigationController, product: product, cellPresenter: cellPresenter)
+        let productDetailViewController = productDetailBuilder.build(with: product)
         navigationController.pushViewController(productDetailViewController, animated: true)
     }
 }

@@ -12,6 +12,8 @@ protocol BasketViewControllerInput: AnyObject {
     func configureCollectionView()
     func configureSubviews()
     func reload(withPrice priceText: String)
+    func showLoading()
+    func hideLoading()
 }
 
 protocol BasketInteractorInput: AnyObject {
@@ -44,10 +46,19 @@ final class BasketPresenter {
 }
 
 extension BasketPresenter: BasketViewControllerOutput {
+    func viewDidLoad() {
+        view.showLoading()
+        view.configureNavigationbar()
+        view.configureCollectionView()
+        view.configureSubviews()
+        interactor.fetchProducts()
+    }
+    
     func didTapCheckout() {
         let alert = UIAlertController(title: "", message: "Siparişi onaylıyor musunuz?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Evet", style: .default) { [weak self] _ in
             guard let self = self else { return }
+            view.showLoading()
             interactor.checkout()
         }
         let cancelAction = UIAlertAction(title: "Hayır", style: .cancel)
@@ -55,13 +66,12 @@ extension BasketPresenter: BasketViewControllerOutput {
         alert.addAction(cancelAction)
         router.navigationController.present(alert, animated: true)
     }
-
-
     
     func didTapTrashButton() {
         let alert = UIAlertController(title: "", message: "Sepeti temizlemek istediğinden emin misin?", preferredStyle: .alert)
         let clearAction = UIAlertAction(title: "Evet", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
+            view.showLoading()
             interactor.handleClearAllProducts()
         }
         let cancelAction = UIAlertAction(title: "Hayır", style: .cancel)
@@ -91,20 +101,14 @@ extension BasketPresenter: BasketViewControllerOutput {
             return presenter
         }
     }
-    
-    func viewDidLoad() {
-        view.configureNavigationbar()
-        view.configureCollectionView()
-        view.configureSubviews()
-        interactor.fetchProducts()
-    }
 }
 
 extension BasketPresenter: BasketInteractorOutput {
     func didCheckout() {
-        let confirmAlert = UIAlertController(title: "Siparişin onaylandı!", message: nil, preferredStyle: .alert)
+        let confirmAlert = UIAlertController(title: "Siparişin alındı!", message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "Tamam", style: .default) { [weak self] _ in
             guard let self = self else { return }
+            view.hideLoading()
             router.dismissBasket()
         }
         confirmAlert.addAction(action)
@@ -115,19 +119,23 @@ extension BasketPresenter: BasketInteractorOutput {
     
     func didUpdateProductList(withPrice priceText: String) {
         view.reload(withPrice: priceText)
+        view.hideLoading()
     }
     
     func didClearCart() {
         router.dismissBasket()
+        view.hideLoading()
     }
     
     func didFail(with error: any Error) {
+        view.hideLoading()
         router.showAlert(with: error)
     }
 }
 
 extension BasketPresenter: BasketDelegate {
     func didQuantityChange(for product: Product) {
+        view.showLoading()
         interactor.adjustCart(with: product)
     }
 }

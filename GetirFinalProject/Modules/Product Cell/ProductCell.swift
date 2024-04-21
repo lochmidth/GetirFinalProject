@@ -198,33 +198,4 @@ extension ProductCell: ProductCellViewInput {
             break
         }
     }
-//    func configureQuantityControl(with count: Int) {
-//        switch orientation {
-//        case .small:
-//            quantityControl?.removeFromSuperview()
-//            let quantityControlPresenter = presenter.quantityControlPresenter
-//            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .vertical)
-//            quantityControlPresenter?.view = quantityControl
-//            quantityControlPresenter?.interactor.product.quantity = count // Update quantity after creating the view
-//            contentView.addSubview(quantityControl!)
-//            quantityControl?.anchor(top: topAnchor, right: rightAnchor,
-//                                   paddingTop: -5, paddingRight: -5)
-//            quantityControl?.configureUI() // TODO: - reload oarlak değiştir
-//        case .large:
-//            quantityControl?.removeFromSuperview()
-//            let quantityControlPresenter = presenter.quantityControlPresenter
-//            quantityControl = QuantityControlView(presenter: quantityControlPresenter, stackOrientation: .horizontal)
-//            quantityControlPresenter?.view = quantityControl
-//            quantityControlPresenter?.interactor.product.quantity = count // Update quantity after creating the view
-//            contentView.addSubview(quantityControl!)
-//            quantityControl?.setDimensions(height: 26, width: 78)
-//            quantityControl?.centerY(inView: self)
-//            quantityControl?.anchor(left: stack.rightAnchor, right: rightAnchor,
-//                                   paddingLeft: 12, paddingRight: 16)
-//            quantityControl?.configureUI()
-//        default:
-//            break
-//        }
-//    }
-
 }

@@ -8,12 +8,10 @@
 import UIKit
 
 final class ProductDetailBuilder {
-    func build(with navigationController: UINavigationController, product: Product, cellPresenter: ProductCellPresenter) -> UIViewController {
+    func build(with product: Product) -> UIViewController {
         let interactor = ProductDetailInteractor(product: product)
         let view = ProductDetailViewController()
-        let router = ProductDetailRouter()
-        router.navigationController = navigationController
-        let presenter = ProductDetailPresenter(view: view, interactor: interactor, router: router, cellPresenter: cellPresenter)
+        let presenter = ProductDetailPresenter(view: view, interactor: interactor)
         view.presenter = presenter
         interactor.presenter = presenter
         return view
