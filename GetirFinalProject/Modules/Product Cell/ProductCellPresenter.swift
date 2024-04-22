@@ -55,6 +55,5 @@ extension ProductCellPresenter: QuantityControlDelegate {
     func didQuantityChange(_ count: Int) {
         product.quantity = count
         view.updateWithCount(product.quantity)
-//        quantityControlPresenter?.interactor.product.quantity = count
     }
 }

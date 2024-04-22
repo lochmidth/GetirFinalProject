@@ -9,8 +9,6 @@ import UIKit
 
 final class BasketRouter {
     var navigationController: UINavigationController!
-    
-    
 }
 
 extension BasketRouter: BasketRouterInput {

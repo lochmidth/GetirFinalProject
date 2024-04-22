@@ -14,7 +14,6 @@ protocol ListingInteractorOutput: AnyObject {
 }
 
 final class ListingInteractor {
-    
     weak var presenter: ListingInteractorOutput!
     let getirService: GetirSDK
     var productList: ProductList

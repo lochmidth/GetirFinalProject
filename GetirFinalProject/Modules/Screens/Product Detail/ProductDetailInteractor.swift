@@ -12,7 +12,6 @@ protocol ProductDetailInteractorOutput: AnyObject {
 }
 
 final class ProductDetailInteractor {
-
     weak var presenter: ProductDetailInteractorOutput!
     var product: Product
     

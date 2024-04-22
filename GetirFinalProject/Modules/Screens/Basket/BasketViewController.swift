@@ -152,6 +152,14 @@ extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 extension BasketViewController: BasketViewControllerInput {
+    func showLoading() {
+        showLoader(true)
+    }
+    
+    func hideLoading() {
+        showLoader(false)
+    }
+    
     func reload(withPrice priceText: String) {
         Task { @MainActor in
             collectionView.reloadData()

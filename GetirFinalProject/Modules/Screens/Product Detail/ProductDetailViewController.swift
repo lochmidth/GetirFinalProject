@@ -119,6 +119,13 @@ final class ProductDetailViewController: UIViewController {
 }
 
 extension ProductDetailViewController: ProductDetailViewControllerInput {
+    func showLoading() {
+        showLoader(true)
+    }
+    
+    func hideLoading() {
+        showLoader(false)
+    }
     
     func reload(with product: Product) {
         setImage(with: product.imageURL)

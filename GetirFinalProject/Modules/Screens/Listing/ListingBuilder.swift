@@ -11,11 +11,10 @@ final class ListingBuilder {
     func build() -> UINavigationController {
         let interactor = ListingInteractor()
         let view = ListingViewController()
-        let productCellBuilder = ProductCellBuilder()
         let router = ListingRouter()
         let navigationController = CustomNavigationController(rootViewController: view)
         router.navigationController = navigationController
-        let presenter = ListingPresenter(view: view, interactor: interactor, router: router, productCellBuilder: productCellBuilder)
+        let presenter = ListingPresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         interactor.presenter = presenter
         return navigationController
