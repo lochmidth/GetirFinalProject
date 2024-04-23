@@ -14,9 +14,9 @@ protocol QuantityControlInteractorOutput: AnyObject {
 final class QuantityControlInteractor {
     weak var presenter: QuantityControlInteractorOutput!
     var product: Product
-    let cartService: CartService
+    let cartService: CartServiceProtocol
     
-    init(product: Product, cartService: CartService = CartService.shared) {
+    init(product: Product, cartService: CartServiceProtocol = CartService.shared) {
         self.cartService = cartService
         self.product = product
     }

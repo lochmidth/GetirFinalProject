@@ -34,9 +34,9 @@ final class MockProductDetailViewController: ProductDetailViewControllerInput {
         isConfigureFooterSubviewsCalled = true
     }
     
-    var isConfigureNavigaitonBarCalled = false
+    var isConfigureNavigationBarCalled = false
     func configureNavigationBar() {
-        isConfigureNavigaitonBarCalled = true
+        isConfigureNavigationBarCalled = true
     }
     
     var isShowLoadingCalled = false

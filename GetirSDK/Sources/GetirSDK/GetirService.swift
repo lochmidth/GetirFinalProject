@@ -1,7 +1,12 @@
 import Foundation
 import SwiftAsyncNetworking
 
-public class GetirService {
+public protocol GetirServiceProtocol {
+    func fetchProducts() async throws -> ProductListDTO
+    func fetchSuggestedProducts() async throws -> SuggestedProductListDTO
+}
+
+public class GetirService: GetirServiceProtocol {
     private let networkClient: NetworkClientProtocol
     
     public init(networkClient: NetworkClientProtocol = NetworkClient()) {

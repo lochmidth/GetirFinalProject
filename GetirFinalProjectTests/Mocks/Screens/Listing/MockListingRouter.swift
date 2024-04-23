@@ -12,9 +12,9 @@ final class MockListingRouter: ListingRouterInput {
     var navigationController: UINavigationController!
     var error: Error?
     
-    var isShoeAlertCalled = false
+    var isShowAlertCalled = false
     func showAlert(with error: any Error) {
         self.error = error
-        isShoeAlertCalled = true
+        isShowAlertCalled = true
     }
 }

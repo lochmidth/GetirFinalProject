@@ -15,12 +15,12 @@ protocol ListingInteractorOutput: AnyObject {
 
 final class ListingInteractor {
     weak var presenter: ListingInteractorOutput!
-    let getirService: GetirService
+    let getirService: GetirServiceProtocol
     var productList: ProductList
     var suggestedProductList: SuggestedProductList
-    let cartService: CartService
+    let cartService: CartServiceProtocol
     
-    init(getirService: GetirService = GetirService(), cartService: CartService = CartService.shared) {
+    init(getirService: GetirServiceProtocol = GetirService(), cartService: CartServiceProtocol = CartService.shared) {
         self.getirService = getirService
         self.cartService = cartService
         self.productList = ProductList()

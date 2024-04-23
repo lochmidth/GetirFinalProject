@@ -8,6 +8,8 @@
 import Foundation
 
 protocol CartServiceProtocol {
+    var totalPrice: String { get }
+    var products: [Product] { get set }
     func updateQuantity(for products: [Product]) async throws -> [Product]
     func updateQuantity(for productPresenters: [ProductCellPresenter], addCart: Bool) async throws -> [ProductCellPresenter]
     func addProductToCart(_ product: Product) async throws

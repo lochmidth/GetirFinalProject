@@ -14,9 +14,9 @@ protocol ProductDetailInteractorOutput: AnyObject {
 final class ProductDetailInteractor {
     weak var presenter: ProductDetailInteractorOutput!
     var product: Product
-    let cartService: CartService
+    let cartService: CartServiceProtocol
     
-    init(product: Product, cartService: CartService = CartService.shared) {
+    init(product: Product, cartService: CartServiceProtocol = CartService.shared) {
         self.product = product
         self.cartService = cartService
     }

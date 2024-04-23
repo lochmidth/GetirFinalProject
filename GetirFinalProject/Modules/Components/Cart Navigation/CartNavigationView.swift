@@ -15,7 +15,7 @@ protocol CartNavigationViewOutput:AnyObject {
 final class CartNavigationView: UIView {
     
     var presenter: CartNavigationViewOutput!
-    let cartService: CartService
+    let cartService: CartServiceProtocol
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -47,7 +47,7 @@ final class CartNavigationView: UIView {
         return view
     }()
     
-    init(frame: CGRect, cartService: CartService = CartService.shared) {
+    init(frame: CGRect, cartService: CartServiceProtocol = CartService.shared) {
         self.cartService = cartService
         super.init(frame: frame)
     }

@@ -42,7 +42,7 @@ final class CartServiceTests: XCTestCase {
         coreDataManager.fetchAllCoreDataResult = .failure(MockError.someError)
         //WHEN
         do {
-            let products = try await sut.updateQuantity(for: mockProducts)
+            let _ = try await sut.updateQuantity(for: mockProducts)
             //THEN
             XCTFail()
         } catch {
@@ -96,7 +96,7 @@ final class CartServiceTests: XCTestCase {
         coreDataManager.fetchAllCoreDataResult = .success([("1",1),("2",2)])
         coreDataManager.addToCoreDataResult = .success(())
         coreDataManager.updateProductQuantityResult = .success(())
-        var mockProduct = mockProduct1
+        let mockProduct = mockProduct1
         sut.products.append(mockProduct)
         //WHEN
         do {
@@ -125,7 +125,7 @@ final class CartServiceTests: XCTestCase {
         //GIVEN
         coreDataManager.fetchAllCoreDataResult = .success([("1",1),("2",2)])
         coreDataManager.updateProductQuantityResult = .success(())
-        var mockProduct = mockProduct1
+        let mockProduct = mockProduct1
         sut.products.append(mockProduct)
         //WHEN
         do {
@@ -199,7 +199,7 @@ final class CartServiceTests: XCTestCase {
         sut.products.append(mockProduct1)
         //WHEN
         do {
-            let status = try await sut.checkout()
+            _ = try await sut.checkout()
             //THEN
         } catch {
             XCTAssertEqual(error as! MockError, MockError.someError)

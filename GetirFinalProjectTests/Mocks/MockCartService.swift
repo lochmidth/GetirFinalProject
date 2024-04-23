@@ -9,6 +9,14 @@ import Foundation
 @testable import GetirFinalProject
 
 final class MockCartService: CartServiceProtocol {
+    var products: [GetirFinalProject.Product]
+    
+    var totalPrice: String
+    
+    init() {
+        totalPrice = mockProduct1.priceText
+        products = mockProducts
+    }
     
     var isUpdateQuantityCalled = false
     var updateQuantityResult: Result<[Product],Error>?
