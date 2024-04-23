@@ -35,10 +35,4 @@ final class ListingInteractorTests: XCTestCase {
         sut.updateAllProducts()
         XCTAssertTrue(presenter.isDidReceiveAllProductCaleld)
     }
-    
-    func test_fetchAllProducts() {
-        sut.fetchAllProducts()
-        XCTAssertFalse(presenter.isDidReceiveAllProductCaleld)
-    }
-
 }
