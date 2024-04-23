@@ -23,7 +23,6 @@ protocol ProductDetailInteractorInput: AnyObject {
 }
 
 final class ProductDetailPresenter {
-    
     weak var view: ProductDetailViewControllerInput!
     var interactor: ProductDetailInteractorInput
     let quantityControlBuilder: QuantityControlBuilder

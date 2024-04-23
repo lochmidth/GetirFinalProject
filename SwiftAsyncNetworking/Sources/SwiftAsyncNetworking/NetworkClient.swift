@@ -12,7 +12,11 @@ public enum NetworkError: Error {
     case invalidURL
 }
 
-public class NetworkClient {
+public protocol NetworkClientProtocol {
+    func performRequest<T: Codable>(request: NetworkRequestable) async throws -> T
+}
+
+public class NetworkClient: NetworkClientProtocol {
     private let session: URLSession
     private let decoder: JSONDecoder
     

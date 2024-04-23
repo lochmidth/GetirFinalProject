@@ -32,7 +32,7 @@ final class ProductCellPresenter {
         configureQuantityControlPresenter()
     }
     
-    func configureQuantityControlPresenter(){
+    private func configureQuantityControlPresenter(){
         self.quantityControlPresenter = quantityControlBuilder.build(with: product)
         guard let quantityControlPresenter else { return }
         quantityControlPresenter.cellPresenterDelegate = self

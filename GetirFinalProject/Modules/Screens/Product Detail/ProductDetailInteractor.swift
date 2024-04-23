@@ -14,14 +14,16 @@ protocol ProductDetailInteractorOutput: AnyObject {
 final class ProductDetailInteractor {
     weak var presenter: ProductDetailInteractorOutput!
     var product: Product
+    let cartService: CartServiceProtocol
     
-    init(product: Product) {
+    init(product: Product, cartService: CartServiceProtocol = CartService.shared) {
         self.product = product
+        self.cartService = cartService
     }
 }
 
 extension ProductDetailInteractor: ProductDetailInteractorInput {
     func updateProduct() {
-        self.product = CartService.shared.products.first(where: { $0.id == product.id }) ?? product
+        self.product = cartService.products.first(where: { $0.id == product.id }) ?? product
     }
 }

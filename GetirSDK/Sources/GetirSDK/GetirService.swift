@@ -1,11 +1,16 @@
 import Foundation
 import SwiftAsyncNetworking
 
-public class GetirSDK {
-    private let networkClient: NetworkClient
+public protocol GetirServiceProtocol {
+    func fetchProducts() async throws -> ProductListDTO
+    func fetchSuggestedProducts() async throws -> SuggestedProductListDTO
+}
+
+public class GetirService: GetirServiceProtocol {
+    private let networkClient: NetworkClientProtocol
     
-    public init() {
-        self.networkClient = NetworkClient()
+    public init(networkClient: NetworkClientProtocol = NetworkClient()) {
+        self.networkClient = networkClient
     }
     
     /// Fetches Products from given mock product url

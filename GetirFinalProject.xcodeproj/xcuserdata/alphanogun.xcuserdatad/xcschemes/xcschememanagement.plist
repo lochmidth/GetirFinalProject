@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>GetirFinalProjectTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C2351BF72BC59CCF0080CED9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C2351C102BC59CD10080CED9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C2351C1A2BC59CD10080CED9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

@@ -74,10 +74,6 @@ extension ListingPresenter: ListingViewControllerOutput {
         view.configureSubviews()
         interactor.fetchAllProducts()
     }
-    
-    func didTapCell() {
-        print("Handle Show Product Detail")
-    }
 }
 
 extension ListingPresenter: ListingInteractorOutput {

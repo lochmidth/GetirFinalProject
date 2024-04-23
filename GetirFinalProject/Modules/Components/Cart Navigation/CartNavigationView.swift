@@ -15,6 +15,7 @@ protocol CartNavigationViewOutput:AnyObject {
 final class CartNavigationView: UIView {
     
     var presenter: CartNavigationViewOutput!
+    let cartService: CartServiceProtocol
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -46,7 +47,8 @@ final class CartNavigationView: UIView {
         return view
     }()
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, cartService: CartServiceProtocol = CartService.shared) {
+        self.cartService = cartService
         super.init(frame: frame)
     }
     
@@ -109,7 +111,7 @@ extension CartNavigationView: CartNavigationViewInput {
     }
     
     func reload() {
-        let totalPrice = CartService.shared.totalPrice
+        let totalPrice = cartService.totalPrice
         UIView.transition(with: priceLabel, duration: 0.2, options: .transitionCrossDissolve) {
             self.priceLabel.text = totalPrice
             self.toggleVisibility(with: totalPrice)

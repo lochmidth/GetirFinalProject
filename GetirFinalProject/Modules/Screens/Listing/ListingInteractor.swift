@@ -15,12 +15,14 @@ protocol ListingInteractorOutput: AnyObject {
 
 final class ListingInteractor {
     weak var presenter: ListingInteractorOutput!
-    let getirService: GetirSDK
+    let getirService: GetirServiceProtocol
     var productList: ProductList
     var suggestedProductList: SuggestedProductList
+    let cartService: CartServiceProtocol
     
-    init(getirService: GetirSDK = GetirSDK()) {
+    init(getirService: GetirServiceProtocol = GetirService(), cartService: CartServiceProtocol = CartService.shared) {
         self.getirService = getirService
+        self.cartService = cartService
         self.productList = ProductList()
         self.suggestedProductList = SuggestedProductList()
     }
@@ -32,11 +34,11 @@ final class ListingInteractor {
         self.suggestedProductList.products.forEach { productCellPresenter in
             productCellPresenter.product.quantity = 0
         }
-        presenter.didReceiveAllProducts()
+//        presenter.didReceiveAllProducts()
     }
     
     private func updateProductsFromCart() {
-        CartService.shared.products.forEach { product in
+        cartService.products.forEach { product in
             if let index = productList.products.firstIndex(where: { $0.product.id == product.id }) {
                 productList.products[index].product.quantity = product.quantity
             }
@@ -61,8 +63,8 @@ extension ListingInteractor: ListingInteractorInput {
                 let productsDTO = try await getirService.fetchProducts()
                 self.productList.update(from: productsDTO)
                 self.suggestedProductList.update(from: suggestedProductsDTO)
-                self.productList.products = try await CartService.shared.updateQuantity(for: self.productList.products, addCart: true)
-                self.suggestedProductList.products = try await CartService.shared.updateQuantity(for: self.suggestedProductList.products, addCart: true)
+                self.productList.products = try await cartService.updateQuantity(for: self.productList.products, addCart: true)
+                self.suggestedProductList.products = try await cartService.updateQuantity(for: self.suggestedProductList.products, addCart: true)
                 presenter.didReceiveAllProducts()
             } catch {
                 presenter.didFail(with: error)

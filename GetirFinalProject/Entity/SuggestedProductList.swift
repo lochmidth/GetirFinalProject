@@ -16,9 +16,6 @@ struct SuggestedProductList {
     mutating func update(from dto: SuggestedProductListDTO) {
         self.id = dto.id ?? ""
         self.name = dto.name ?? ""
-        self.products = dto.products?.compactMap {
-            let presenter = ProductCellPresenter(product: Product(from: $0))
-            return presenter
-        } ?? []
+        self.products = dto.products?.compactMap { ProductCellPresenter(product: Product(from: $0)) } ?? []
     }
 }

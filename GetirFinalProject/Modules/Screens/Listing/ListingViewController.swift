@@ -69,12 +69,6 @@ final class ListingViewController: UIViewController {
         section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(25)), elementKind: "spacer", alignment: .topLeading)]
         return section
     }
-
-    private func reloadData() {
-        Task { @MainActor in
-            collectionView.reloadData()
-        }
-    }
 }
 
 //MARK: - UICollectionViewDataSource/Delegate
@@ -121,7 +115,9 @@ extension ListingViewController: ListingViewControllerInput {
     }
     
     func reload() {
-        reloadData()
+        Task { @MainActor in
+            collectionView.reloadData()
+        }
     }
     
     func configureNavigationBar() {

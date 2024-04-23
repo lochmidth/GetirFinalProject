@@ -14,8 +14,10 @@ protocol QuantityControlInteractorOutput: AnyObject {
 final class QuantityControlInteractor {
     weak var presenter: QuantityControlInteractorOutput!
     var product: Product
+    let cartService: CartServiceProtocol
     
-    init(product: Product) {
+    init(product: Product, cartService: CartServiceProtocol = CartService.shared) {
+        self.cartService = cartService
         self.product = product
     }
 }
@@ -25,7 +27,7 @@ extension QuantityControlInteractor: QuantityControlInteractorInput {
         Task {
             product.quantity += 1
             do {
-                try await CartService.shared.addProductToCart(product)
+                try await cartService.addProductToCart(product)
                 await MainActor.run {
                     presenter.didChangeCount(product.quantity)
                 }
@@ -40,7 +42,7 @@ extension QuantityControlInteractor: QuantityControlInteractorInput {
             if product.quantity > 0 {
                 product.quantity -= 1
                 do {
-                    try await CartService.shared.removeProductFromCart(product)
+                    try await cartService.removeProductFromCart(product)
                     await MainActor.run {
                         presenter.didChangeCount(product.quantity)
                     }

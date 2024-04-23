@@ -16,7 +16,7 @@ struct SampleRequestSuccess: NetworkRequestable {
         return .get
     }
     var path: String {
-        return "api/suggestedProducts"
+        return "api/products"
     }
 }
 

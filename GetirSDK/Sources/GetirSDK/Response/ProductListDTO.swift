@@ -25,9 +25,3 @@ public struct ProductDTO: Codable {
     public let priceText: String?
 }
 
-public struct User: Codable {
-    public let id: String?
-    public let email: String?
-    public let password: String?
-}
-
