@@ -18,7 +18,8 @@ final class CartService {
         }
     }
     
-    private init(coreDataManager: CoreDataManager = CoreDataManager()) {
+    //Should be private. This is for test purpouses.
+    init(coreDataManager: CoreDataManager = CoreDataManager()) {
         self.coreDataManager = coreDataManager
     }
     

@@ -18,12 +18,14 @@ protocol BasketInteractorOutput: AnyObject {
 final class BasketInteractor {
     
     weak var presenter: BasketInteractorOutput!
-    let getirService: GetirSDK
+    let getirService: GetirService
     var productList: ProductList
     var suggestedProductList: SuggestedProductList
+    let cartService: CartService
     
-    init(getirService: GetirSDK = GetirSDK()) {
+    init(getirService: GetirService = GetirService(), cartService: CartService = CartService.shared) {
         self.getirService = getirService
+        self.cartService = cartService
         self.productList = ProductList()
         self.suggestedProductList = SuggestedProductList()
     }
@@ -38,7 +40,7 @@ extension BasketInteractor: BasketInteractorInput {
     func checkout() {
         Task {
             do {
-                try await CartService.shared.removeAllProductsFromCart()
+                try await cartService.removeAllProductsFromCart()
                 presenter.didCheckout()
             } catch {
                 presenter.didFail(with: error)
@@ -50,7 +52,7 @@ extension BasketInteractor: BasketInteractorInput {
     func clearProduct(_ product: Product) {
         Task {
             do {
-                try await CartService.shared.removeProductFromCart(product)
+                try await cartService.removeProductFromCart(product)
                 if let index = productList.products.firstIndex(where: { $0.product.id == product.id }) {
                     productList.products.remove(at: index)
                     if let suggestedProductIndex = suggestedProductList.products.firstIndex(where: { $0.product.id == product.id }) {
@@ -60,7 +62,7 @@ extension BasketInteractor: BasketInteractorInput {
                 if productList.products.count == 0 {
                     presenter.didClearCart()
                 } else {
-                    let priceText = CartService.shared.totalPrice
+                    let priceText = cartService.totalPrice
                     presenter.didUpdateProductList(withPrice: priceText)
                 }
             } catch {
@@ -72,7 +74,7 @@ extension BasketInteractor: BasketInteractorInput {
     func handleClearAllProducts() {
         Task {
             do {
-                try await CartService.shared.removeAllProductsFromCart()
+                try await cartService.removeAllProductsFromCart()
                 presenter.didClearCart()
             } catch {
                 presenter.didFail(with: error)
@@ -85,15 +87,15 @@ extension BasketInteractor: BasketInteractorInput {
             do {
                 let suggestedProductsDTO = try await getirService.fetchSuggestedProducts()
                 self.suggestedProductList.update(from: suggestedProductsDTO)
-                self.suggestedProductList.products = try await CartService.shared.updateQuantity(for: suggestedProductList.products, addCart: false)
-                self.productList.products = CartService.shared.products.compactMap {
+                self.suggestedProductList.products = try await cartService.updateQuantity(for: suggestedProductList.products, addCart: false)
+                self.productList.products = cartService.products.compactMap {
                     let presenter = ProductCellPresenter(product: $0)
                     return presenter
                 }
                 if productList.products.isEmpty {
                     presenter.didClearCart()
                 } else {
-                    let priceText = CartService.shared.totalPrice
+                    let priceText = cartService.totalPrice
                     presenter.didUpdateProductList(withPrice: priceText)
                 }
             } catch {

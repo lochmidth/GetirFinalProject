@@ -16,12 +16,9 @@ protocol QuantitiyControlViewOutput: AnyObject {
     var cellPresenterDelegate: QuantityControlDelegate? { get set }
     var interactor: QuantityControlInteractorInput { get set }
     func didLoadQuantityControl()
-    func reloadQuantityControl()
     func didTapPlus()
     func didTapMinus()
 }
-
-
 
 final class QuantityControlView: UIView {
     //MARK: - Properties

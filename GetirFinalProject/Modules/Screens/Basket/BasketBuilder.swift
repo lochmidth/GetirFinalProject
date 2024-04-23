@@ -14,6 +14,7 @@ final class BasketBuilder {
         let router = BasketRouter()
         router.navigationController = navigationController
         let presenter = BasketPresenter(view: view, interactor: interactor, router: router)
+        router.presenter = presenter
         view.presenter = presenter
         interactor.presenter = presenter
         return view

@@ -51,10 +51,6 @@ final class QuantityControlPresenter {
 extension QuantityControlPresenter: QuantitiyControlViewOutput {
     func didLoadQuantityControl() {
         view.configureStackOrientation()
-        reloadQuantityControl()
-    }
-    
-    func reloadQuantityControl() {
         cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)
         view.updateWithCount(interactor.product.quantity)
     }
