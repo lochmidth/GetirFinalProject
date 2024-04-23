@@ -17,7 +17,15 @@ enum CoreDataError: Error {
     case NoMatchingObjectError
 }
 
-final class CoreDataManager {
+protocol CoreDataManagerProtocol {
+    func addToCoreData(forProduct product: Product) async throws
+    func updateProductQuantity(id: String, newQuantity: Int) async throws
+    func fetchAllCoreData() async throws -> [(id: String, quantity: Int)]
+    func deleteCoreData(forProduct product: Product) async throws
+    func deleteAllData() async throws
+}
+
+final class CoreDataManager: CoreDataManagerProtocol {
     
     private let application: UIApplication
     

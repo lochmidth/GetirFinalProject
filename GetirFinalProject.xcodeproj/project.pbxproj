@@ -18,12 +18,14 @@
 		C22A0DC02BC705AB00C8F067 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A0DBF2BC705AB00C8F067 /* Product.swift */; };
 		C23076362BD57204002EEA8D /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076352BD57204002EEA8D /* UIViewController+Ext.swift */; };
 		C23076392BD6C46F002EEA8D /* Notification+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076382BD6C46F002EEA8D /* Notification+Ext.swift */; };
+		C230763C2BD7F96D002EEA8D /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */; };
+		C23076422BD7FCD2002EEA8D /* CartServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */; };
+		C23076462BD802B7002EEA8D /* MockProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076452BD802B7002EEA8D /* MockProducts.swift */; };
 		C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */; };
 		C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */; };
 		C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */; };
 		C2351C082BC59CD10080CED9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2351C072BC59CD10080CED9 /* Assets.xcassets */; };
 		C2351C0B2BC59CD10080CED9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C2351C0A2BC59CD10080CED9 /* Base */; };
-		C2351C162BC59CD10080CED9 /* GetirFinalProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C152BC59CD10080CED9 /* GetirFinalProjectTests.swift */; };
 		C2351C202BC59CD10080CED9 /* GetirFinalProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */; };
 		C2351C222BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */; };
 		C2351C362BC5A9190080CED9 /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351C352BC5A9190080CED9 /* ProductList.swift */; };
@@ -84,6 +86,9 @@
 		C22A0DBF2BC705AB00C8F067 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C23076352BD57204002EEA8D /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		C23076382BD6C46F002EEA8D /* Notification+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ext.swift"; sourceTree = "<group>"; };
+		C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
+		C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartServiceTests.swift; sourceTree = "<group>"; };
+		C23076452BD802B7002EEA8D /* MockProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProducts.swift; sourceTree = "<group>"; };
 		C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetirFinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +97,6 @@
 		C2351C0A2BC59CD10080CED9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2351C0C2BC59CD10080CED9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2351C112BC59CD10080CED9 /* GetirFinalProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetirFinalProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2351C152BC59CD10080CED9 /* GetirFinalProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectTests.swift; sourceTree = "<group>"; };
 		C2351C1B2BC59CD10080CED9 /* GetirFinalProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetirFinalProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2351C1F2BC59CD10080CED9 /* GetirFinalProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITests.swift; sourceTree = "<group>"; };
 		C2351C212BC59CD10080CED9 /* GetirFinalProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -194,6 +198,23 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		C230763A2BD7F95D002EEA8D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C23076452BD802B7002EEA8D /* MockProducts.swift */,
+				C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		C230763E2BD7FC1B002EEA8D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		C2351BEF2BC59CCF0080CED9 = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +254,8 @@
 		C2351C142BC59CD10080CED9 /* GetirFinalProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2351C152BC59CD10080CED9 /* GetirFinalProjectTests.swift */,
+				C230763A2BD7F95D002EEA8D /* Mocks */,
+				C230763E2BD7FC1B002EEA8D /* Services */,
 			);
 			path = GetirFinalProjectTests;
 			sourceTree = "<group>";
@@ -443,6 +465,7 @@
 					};
 					C2351C102BC59CD10080CED9 = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 						TestTargetID = C2351BF72BC59CCF0080CED9;
 					};
 					C2351C1A2BC59CD10080CED9 = {
@@ -551,7 +574,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2351C162BC59CD10080CED9 /* GetirFinalProjectTests.swift in Sources */,
+				C230763C2BD7F96D002EEA8D /* MockCoreDataManager.swift in Sources */,
+				C23076422BD7FCD2002EEA8D /* CartServiceTests.swift in Sources */,
+				C23076462BD802B7002EEA8D /* MockProducts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +804,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;
@@ -788,6 +814,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alphanogn.GetirFinalProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GetirFinalProject.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GetirFinalProject";
@@ -799,6 +826,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Y92LH56N8;

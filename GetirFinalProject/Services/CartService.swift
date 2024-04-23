@@ -10,7 +10,7 @@ import Foundation
 final class CartService {
     static let shared = CartService()
     
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataManagerProtocol
     var totalPrice: String = "₺0,00"
     var products = [Product]() {
         didSet {
@@ -18,8 +18,8 @@ final class CartService {
         }
     }
     
-    //Should be private. This is for test purpouses.
-    init(coreDataManager: CoreDataManager = CoreDataManager()) {
+    //I'm aware that this init must be private due to fact that Cart is a singleton. However, I made it internal so that I can test it.
+    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.coreDataManager = coreDataManager
     }
     
