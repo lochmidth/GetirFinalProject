@@ -48,7 +48,7 @@ final class QuantityControlPresenter {
     }
 }
 
-extension QuantityControlPresenter: QuantitiyControlViewOutput {
+extension QuantityControlPresenter: QuantityControlViewOutput {
     func didLoadQuantityControl() {
         view.configureStackOrientation()
         cellPresenterDelegate?.didQuantityChange(interactor.product.quantity)

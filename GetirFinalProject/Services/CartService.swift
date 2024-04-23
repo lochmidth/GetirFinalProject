@@ -7,7 +7,16 @@
 
 import Foundation
 
-final class CartService {
+protocol CartServiceProtocol {
+    func updateQuantity(for products: [Product]) async throws -> [Product]
+    func updateQuantity(for productPresenters: [ProductCellPresenter], addCart: Bool) async throws -> [ProductCellPresenter]
+    func addProductToCart(_ product: Product) async throws
+    func removeProductFromCart(_ product: Product) async throws
+    func removeAllProductsFromCart() async throws
+    func checkout() async throws -> Bool
+}
+
+final class CartService: CartServiceProtocol {
     static let shared = CartService()
     
     private let coreDataManager: CoreDataManagerProtocol

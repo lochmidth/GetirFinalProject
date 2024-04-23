@@ -21,6 +21,27 @@
 		C230763C2BD7F96D002EEA8D /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */; };
 		C23076422BD7FCD2002EEA8D /* CartServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */; };
 		C23076462BD802B7002EEA8D /* MockProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076452BD802B7002EEA8D /* MockProducts.swift */; };
+		C23076492BD8170D002EEA8D /* MockCartNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076482BD8170D002EEA8D /* MockCartNavigationView.swift */; };
+		C230764B2BD817C6002EEA8D /* MockCartNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230764A2BD817C6002EEA8D /* MockCartNavigationPresenter.swift */; };
+		C230764D2BD81916002EEA8D /* MockCartNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230764C2BD81916002EEA8D /* MockCartNavigationRouter.swift */; };
+		C23076502BD8196E002EEA8D /* MockProductCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230764F2BD8196E002EEA8D /* MockProductCellView.swift */; };
+		C23076522BD81A18002EEA8D /* MockProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076512BD81A18002EEA8D /* MockProductCellPresenter.swift */; };
+		C23076542BD81A8D002EEA8D /* MockProductCellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076532BD81A8D002EEA8D /* MockProductCellRouter.swift */; };
+		C23076572BD81B0A002EEA8D /* MockQuantityControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076562BD81B0A002EEA8D /* MockQuantityControlView.swift */; };
+		C23076592BD81B9C002EEA8D /* MockQuantityControlInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076582BD81B9C002EEA8D /* MockQuantityControlInteractor.swift */; };
+		C230765B2BD81C36002EEA8D /* MockQuantityControlPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230765A2BD81C36002EEA8D /* MockQuantityControlPresenter.swift */; };
+		C23076602BD81D6A002EEA8D /* MockListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230765F2BD81D6A002EEA8D /* MockListingViewController.swift */; };
+		C23076622BD81E76002EEA8D /* MockListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076612BD81E76002EEA8D /* MockListingPresenter.swift */; };
+		C23076642BD8206A002EEA8D /* MockListingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076632BD8206A002EEA8D /* MockListingInteractor.swift */; };
+		C23076662BD821FB002EEA8D /* MockListingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076652BD821FB002EEA8D /* MockListingRouter.swift */; };
+		C23076692BD82636002EEA8D /* MockProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076682BD82636002EEA8D /* MockProductDetailViewController.swift */; };
+		C230766B2BD82918002EEA8D /* MockProductDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230766A2BD82918002EEA8D /* MockProductDetailPresenter.swift */; };
+		C230766D2BD82ADA002EEA8D /* MockProductDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230766C2BD82ADA002EEA8D /* MockProductDetailInteractor.swift */; };
+		C23076722BD82B7A002EEA8D /* MockBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076712BD82B7A002EEA8D /* MockBasketViewController.swift */; };
+		C23076742BD82BFF002EEA8D /* MockBasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076732BD82BFF002EEA8D /* MockBasketPresenter.swift */; };
+		C23076762BD82E6F002EEA8D /* MockBasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076752BD82E6F002EEA8D /* MockBasketInteractor.swift */; };
+		C23076782BD82F7E002EEA8D /* MockBasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076772BD82F7E002EEA8D /* MockBasketRouter.swift */; };
+		C230767A2BD8307C002EEA8D /* MockCartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076792BD8307C002EEA8D /* MockCartService.swift */; };
 		C2351BFC2BC59CCF0080CED9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */; };
 		C2351BFE2BC59CCF0080CED9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */; };
 		C2351C062BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2351C042BC59CCF0080CED9 /* GetirFinalProject.xcdatamodeld */; };
@@ -89,6 +110,27 @@
 		C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartServiceTests.swift; sourceTree = "<group>"; };
 		C23076452BD802B7002EEA8D /* MockProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProducts.swift; sourceTree = "<group>"; };
+		C23076482BD8170D002EEA8D /* MockCartNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCartNavigationView.swift; sourceTree = "<group>"; };
+		C230764A2BD817C6002EEA8D /* MockCartNavigationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCartNavigationPresenter.swift; sourceTree = "<group>"; };
+		C230764C2BD81916002EEA8D /* MockCartNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCartNavigationRouter.swift; sourceTree = "<group>"; };
+		C230764F2BD8196E002EEA8D /* MockProductCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductCellView.swift; sourceTree = "<group>"; };
+		C23076512BD81A18002EEA8D /* MockProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductCellPresenter.swift; sourceTree = "<group>"; };
+		C23076532BD81A8D002EEA8D /* MockProductCellRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductCellRouter.swift; sourceTree = "<group>"; };
+		C23076562BD81B0A002EEA8D /* MockQuantityControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuantityControlView.swift; sourceTree = "<group>"; };
+		C23076582BD81B9C002EEA8D /* MockQuantityControlInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuantityControlInteractor.swift; sourceTree = "<group>"; };
+		C230765A2BD81C36002EEA8D /* MockQuantityControlPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuantityControlPresenter.swift; sourceTree = "<group>"; };
+		C230765F2BD81D6A002EEA8D /* MockListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListingViewController.swift; sourceTree = "<group>"; };
+		C23076612BD81E76002EEA8D /* MockListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListingPresenter.swift; sourceTree = "<group>"; };
+		C23076632BD8206A002EEA8D /* MockListingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListingInteractor.swift; sourceTree = "<group>"; };
+		C23076652BD821FB002EEA8D /* MockListingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListingRouter.swift; sourceTree = "<group>"; };
+		C23076682BD82636002EEA8D /* MockProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductDetailViewController.swift; sourceTree = "<group>"; };
+		C230766A2BD82918002EEA8D /* MockProductDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductDetailPresenter.swift; sourceTree = "<group>"; };
+		C230766C2BD82ADA002EEA8D /* MockProductDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProductDetailInteractor.swift; sourceTree = "<group>"; };
+		C23076712BD82B7A002EEA8D /* MockBasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketViewController.swift; sourceTree = "<group>"; };
+		C23076732BD82BFF002EEA8D /* MockBasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketPresenter.swift; sourceTree = "<group>"; };
+		C23076752BD82E6F002EEA8D /* MockBasketInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketInteractor.swift; sourceTree = "<group>"; };
+		C23076772BD82F7E002EEA8D /* MockBasketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketRouter.swift; sourceTree = "<group>"; };
+		C23076792BD8307C002EEA8D /* MockCartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCartService.swift; sourceTree = "<group>"; };
 		C2351BF82BC59CCF0080CED9 /* GetirFinalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetirFinalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2351BFB2BC59CCF0080CED9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2351BFD2BC59CCF0080CED9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,8 +243,11 @@
 		C230763A2BD7F95D002EEA8D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				C230765C2BD81D49002EEA8D /* Components */,
+				C230765D2BD81D54002EEA8D /* Screens */,
 				C23076452BD802B7002EEA8D /* MockProducts.swift */,
 				C230763B2BD7F96D002EEA8D /* MockCoreDataManager.swift */,
+				C23076792BD8307C002EEA8D /* MockCartService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -213,6 +258,88 @@
 				C23076412BD7FCD2002EEA8D /* CartServiceTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C23076472BD80DCA002EEA8D /* Cart Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				C23076482BD8170D002EEA8D /* MockCartNavigationView.swift */,
+				C230764A2BD817C6002EEA8D /* MockCartNavigationPresenter.swift */,
+				C230764C2BD81916002EEA8D /* MockCartNavigationRouter.swift */,
+			);
+			path = "Cart Navigation";
+			sourceTree = "<group>";
+		};
+		C230764E2BD8195C002EEA8D /* Product Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C230764F2BD8196E002EEA8D /* MockProductCellView.swift */,
+				C23076512BD81A18002EEA8D /* MockProductCellPresenter.swift */,
+				C23076532BD81A8D002EEA8D /* MockProductCellRouter.swift */,
+			);
+			path = "Product Cell";
+			sourceTree = "<group>";
+		};
+		C23076552BD81AFF002EEA8D /* Quantity Control */ = {
+			isa = PBXGroup;
+			children = (
+				C23076562BD81B0A002EEA8D /* MockQuantityControlView.swift */,
+				C230765A2BD81C36002EEA8D /* MockQuantityControlPresenter.swift */,
+				C23076582BD81B9C002EEA8D /* MockQuantityControlInteractor.swift */,
+			);
+			path = "Quantity Control";
+			sourceTree = "<group>";
+		};
+		C230765C2BD81D49002EEA8D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C23076552BD81AFF002EEA8D /* Quantity Control */,
+				C230764E2BD8195C002EEA8D /* Product Cell */,
+				C23076472BD80DCA002EEA8D /* Cart Navigation */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C230765D2BD81D54002EEA8D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C23076702BD82B6F002EEA8D /* Basket */,
+				C23076672BD8229F002EEA8D /* Product Detail */,
+				C230765E2BD81D5F002EEA8D /* Listing */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		C230765E2BD81D5F002EEA8D /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				C230765F2BD81D6A002EEA8D /* MockListingViewController.swift */,
+				C23076612BD81E76002EEA8D /* MockListingPresenter.swift */,
+				C23076632BD8206A002EEA8D /* MockListingInteractor.swift */,
+				C23076652BD821FB002EEA8D /* MockListingRouter.swift */,
+			);
+			path = Listing;
+			sourceTree = "<group>";
+		};
+		C23076672BD8229F002EEA8D /* Product Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C23076682BD82636002EEA8D /* MockProductDetailViewController.swift */,
+				C230766A2BD82918002EEA8D /* MockProductDetailPresenter.swift */,
+				C230766C2BD82ADA002EEA8D /* MockProductDetailInteractor.swift */,
+			);
+			path = "Product Detail";
+			sourceTree = "<group>";
+		};
+		C23076702BD82B6F002EEA8D /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				C23076712BD82B7A002EEA8D /* MockBasketViewController.swift */,
+				C23076732BD82BFF002EEA8D /* MockBasketPresenter.swift */,
+				C23076752BD82E6F002EEA8D /* MockBasketInteractor.swift */,
+				C23076772BD82F7E002EEA8D /* MockBasketRouter.swift */,
+			);
+			path = Basket;
 			sourceTree = "<group>";
 		};
 		C2351BEF2BC59CCF0080CED9 = {
@@ -574,9 +701,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23076592BD81B9C002EEA8D /* MockQuantityControlInteractor.swift in Sources */,
+				C23076542BD81A8D002EEA8D /* MockProductCellRouter.swift in Sources */,
+				C23076502BD8196E002EEA8D /* MockProductCellView.swift in Sources */,
+				C23076622BD81E76002EEA8D /* MockListingPresenter.swift in Sources */,
+				C23076692BD82636002EEA8D /* MockProductDetailViewController.swift in Sources */,
+				C230764B2BD817C6002EEA8D /* MockCartNavigationPresenter.swift in Sources */,
+				C23076642BD8206A002EEA8D /* MockListingInteractor.swift in Sources */,
+				C230766D2BD82ADA002EEA8D /* MockProductDetailInteractor.swift in Sources */,
 				C230763C2BD7F96D002EEA8D /* MockCoreDataManager.swift in Sources */,
+				C230766B2BD82918002EEA8D /* MockProductDetailPresenter.swift in Sources */,
+				C23076662BD821FB002EEA8D /* MockListingRouter.swift in Sources */,
+				C230764D2BD81916002EEA8D /* MockCartNavigationRouter.swift in Sources */,
+				C23076722BD82B7A002EEA8D /* MockBasketViewController.swift in Sources */,
+				C230767A2BD8307C002EEA8D /* MockCartService.swift in Sources */,
+				C23076572BD81B0A002EEA8D /* MockQuantityControlView.swift in Sources */,
+				C23076602BD81D6A002EEA8D /* MockListingViewController.swift in Sources */,
+				C230765B2BD81C36002EEA8D /* MockQuantityControlPresenter.swift in Sources */,
+				C23076522BD81A18002EEA8D /* MockProductCellPresenter.swift in Sources */,
+				C23076782BD82F7E002EEA8D /* MockBasketRouter.swift in Sources */,
 				C23076422BD7FCD2002EEA8D /* CartServiceTests.swift in Sources */,
+				C23076492BD8170D002EEA8D /* MockCartNavigationView.swift in Sources */,
 				C23076462BD802B7002EEA8D /* MockProducts.swift in Sources */,
+				C23076762BD82E6F002EEA8D /* MockBasketInteractor.swift in Sources */,
+				C23076742BD82BFF002EEA8D /* MockBasketPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

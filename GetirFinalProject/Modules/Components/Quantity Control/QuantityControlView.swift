@@ -12,7 +12,7 @@ enum StackOrientation {
     case horizontal
 }
 
-protocol QuantitiyControlViewOutput: AnyObject {
+protocol QuantityControlViewOutput: AnyObject {
     var cellPresenterDelegate: QuantityControlDelegate? { get set }
     var interactor: QuantityControlInteractorInput { get set }
     func didLoadQuantityControl()
@@ -57,11 +57,11 @@ final class QuantityControlView: UIView {
     private let stack = UIStackView()
     
     private let stackOrientation: StackOrientation
-    var presenter: QuantitiyControlViewOutput!
+    var presenter: QuantityControlViewOutput!
     
     //MARK: - Lifecycle
     
-    init(presenter: QuantitiyControlViewOutput!, stackOrientation: StackOrientation) {
+    init(presenter: QuantityControlViewOutput!, stackOrientation: StackOrientation) {
         self.presenter = presenter
         self.stackOrientation = stackOrientation
         super.init(frame: .zero)
