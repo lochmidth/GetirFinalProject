@@ -2,13 +2,13 @@ import XCTest
 @testable import GetirSDK
 
 final class GetirSDKTests: XCTestCase {
-    var sut: GetirSDK!
+    var sut: GetirService!
     var networkClient: MockNetworkClient!
     
     override func setUp() {
         super.setUp()
         networkClient = MockNetworkClient()
-        sut = GetirSDK(networkClient: networkClient)
+        sut = GetirService(networkClient: networkClient)
     }
     
     override func tearDown() {
