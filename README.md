@@ -155,3 +155,4 @@ Also, make sure that these dependencies are added in your project's target:
 ## Improvemets
 - A more pleasent and seamless animations can be add for a better user experience.
 - Localization for other languages can be added to be able to reach more user.
+- Consolidate CartService into GetirSDK to adhere more closely to the SOLID principles, particularly the Single Responsibility Principle.
