@@ -73,7 +73,7 @@ final class ProductDetailViewController: UIViewController {
     private lazy var addToCartButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .getirPurple
-        button.setTitle("Sepete Ekle", for: .normal)
+        button.setTitle(Constants.addToCartTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.layer.cornerRadius = 10
@@ -169,6 +169,13 @@ extension ProductDetailViewController: ProductDetailViewControllerInput {
     }
     
     func configureNavigationBar() {
-        title = "Ürün Detayı"
+        title = Constants.title
+    }
+}
+
+extension ProductDetailViewController {
+    struct Constants {
+        static let addToCartTitle = "Sepete Ekle"
+        static let title = "Ürün Detayı"
     }
 }

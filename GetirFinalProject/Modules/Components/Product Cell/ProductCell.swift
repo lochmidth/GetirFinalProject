@@ -78,7 +78,7 @@ final class ProductCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     //MARK: - Actions
@@ -111,11 +111,11 @@ final class ProductCell: UICollectionViewCell {
     }
     
     private func toggleImageViewBorder(_ count: Int) {
-        let animation = CABasicAnimation(keyPath: "borderColor")
+        let animation = CABasicAnimation(keyPath: Constants.keyPath)
         animation.fromValue = imageView.layer.borderColor
         animation.toValue = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
         animation.duration = 0.5
-        imageView.layer.add(animation, forKey: "borderColor")
+        imageView.layer.add(animation, forKey: Constants.keyPath)
         imageView.layer.borderColor = (count > 0) ? UIColor.getirPurple.cgColor : UIColor.getirGray.cgColor
     }
 }
@@ -197,5 +197,12 @@ extension ProductCell: ProductCellViewInput {
         default:
             break
         }
+    }
+}
+
+extension ProductCell {
+    struct Constants {
+        static let fatalError = "init(coder:) has not been implemented"
+        static let keyPath = "borderColor"
     }
 }

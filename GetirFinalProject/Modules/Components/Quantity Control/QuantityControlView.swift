@@ -25,7 +25,7 @@ final class QuantityControlView: UIView {
     
     private lazy var plusButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "plusIcon"), for: .normal)
+        button.setImage(UIImage(named: Constants.plusIcon), for: .normal)
         button.setTitleColor(.getirPurple, for: .normal)
         button.setDimensions(height: 25.6, width: 25.6)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
@@ -34,7 +34,7 @@ final class QuantityControlView: UIView {
     
     private lazy var minusButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "minusIcon"), for: .normal)
+        button.setImage(UIImage(named: Constants.minusIcon), for: .normal)
         button.setTitleColor(.getirPurple, for: .normal)
         button.setDimensions(height: 25.6, width: 25.6)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
@@ -48,7 +48,6 @@ final class QuantityControlView: UIView {
         label.textColor = .white
         label.backgroundColor = .getirPurple
         label.setDimensions(height: 25.6, width: 25.6)
-        label.text = "1"
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.isHidden = true
         return label
@@ -68,7 +67,7 @@ final class QuantityControlView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     //MARK: - Actions
@@ -145,9 +144,18 @@ extension QuantityControlView: QuantitiyControlViewInput {
             maximizeStack()
         }
         if count == 1 {
-            minusButton.setImage(UIImage(named: "trashIcon"), for: .normal)
+            minusButton.setImage(UIImage(named: Constants.trashIcon), for: .normal)
         } else {
-            minusButton.setImage(UIImage(named: "minusIcon"), for: .normal)
+            minusButton.setImage(UIImage(named: Constants.minusIcon), for: .normal)
         }
+    }
+}
+
+extension QuantityControlView {
+    struct Constants {
+        static let plusIcon = "plusIcon"
+        static let minusIcon = "minusIcon"
+        static let trashIcon = "trashIcon"
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }

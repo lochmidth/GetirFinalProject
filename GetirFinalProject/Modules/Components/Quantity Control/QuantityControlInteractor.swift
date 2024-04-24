@@ -32,7 +32,7 @@ extension QuantityControlInteractor: QuantityControlInteractorInput {
                     presenter.didChangeCount(product.quantity)
                 }
             } catch {
-                print("Error increasing count: \(error)")
+                debugPrint("Error increasing count: \(error)")
             }
         }
     }
@@ -47,7 +47,7 @@ extension QuantityControlInteractor: QuantityControlInteractorInput {
                         presenter.didChangeCount(product.quantity)
                     }
                 } catch {
-                    print("Error decreasing count: \(error)")
+                    debugPrint("Error decreasing count: \(error)")
                 }
             }
         }

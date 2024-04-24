@@ -20,8 +20,8 @@ final class BasketRouter {
 
 extension BasketRouter: BasketRouterInput {
     func showDidCheckoutMessage() {
-        let confirmAlert = UIAlertController(title: "Siparişin alındı!", message: nil, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Tamam", style: .default) { [weak self] _ in
+        let confirmAlert = UIAlertController(title: Constants.confirmText, message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constants.ok, style: .default) { [weak self] _ in
             guard let self = self else { return }
             dismissBasket()
         }
@@ -32,12 +32,12 @@ extension BasketRouter: BasketRouterInput {
     }
     
     func showClearAllMessage() {
-        let alert = UIAlertController(title: "", message: "Sepeti temizlemek istediğinden emin misin?", preferredStyle: .alert)
-        let clearAction = UIAlertAction(title: "Evet", style: .destructive) { [weak self] _ in
+        let alert = UIAlertController(title: "", message: Constants.askToClearText, preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: Constants.yes, style: .destructive) { [weak self] _ in
             guard let self = self else { return }
             presenter.didTapClearAllButton()
         }
-        let cancelAction = UIAlertAction(title: "Hayır", style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: Constants.no, style: .cancel) { [weak self] _ in
             guard let self = self else { return }
             presenter.didTapCancelButton()
         }
@@ -47,13 +47,13 @@ extension BasketRouter: BasketRouterInput {
     }
     
     func showCheckoutMessage() {
-        let alert = UIAlertController(title: "", message: "Siparişi onaylıyor musunuz?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Evet", style: .default) { [weak self] _ in
+        let alert = UIAlertController(title: "", message: Constants.askForConfirmationText, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: Constants.yes, style: .default) { [weak self] _ in
             guard let self = self else { return }
             presenter.didTapCheckoutButton()
             
         }
-        let cancelAction = UIAlertAction(title: "Hayır", style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: Constants.no, style: .cancel) { [weak self] _ in
             guard let self = self else { return }
             presenter.didTapCancelButton()
         }
@@ -69,10 +69,22 @@ extension BasketRouter: BasketRouterInput {
     }
     
     func showAlert(with error: Error) {
-        let alert = UIAlertController(title: "Oops!", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .default))
+        let alert = UIAlertController(title: Constants.titleText, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(title: Constants.ok, style: .default))
         Task { @MainActor in
             navigationController.present(alert, animated: true)
         }
+    }
+}
+
+extension BasketRouter {
+    struct Constants {
+        static let titleText = "Oops!"
+        static let confirmText = "Siparişin alındı!"
+        static let ok = "Tamam"
+        static let askToClearText = "Sepeti temizlemek istediğinden emin misin?"
+        static let yes = "Evet"
+        static let no = "Hayır"
+        static let askForConfirmationText = "Siparişi onaylıyor musunuz?"
     }
 }

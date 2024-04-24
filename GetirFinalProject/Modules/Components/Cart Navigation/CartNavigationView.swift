@@ -19,7 +19,7 @@ final class CartNavigationView: UIView {
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "BasketIcon")?.withRenderingMode(.alwaysOriginal)
+        iv.image = UIImage(named: Constants.basketIcon)?.withRenderingMode(.alwaysOriginal)
         iv.setDimensions(height: 24, width: 24)
         iv.contentMode = .scaleAspectFit
         return iv
@@ -57,11 +57,11 @@ final class CartNavigationView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     private func toggleVisibility(with totalPrice: String) {
-        if totalPrice == "₺0.00" {
+        if totalPrice == Constants.totalPrice {
             self.isHidden = true
         } else {
             self.isHidden = false
@@ -116,5 +116,13 @@ extension CartNavigationView: CartNavigationViewInput {
             self.priceLabel.text = totalPrice
             self.toggleVisibility(with: totalPrice)
         }
+    }
+}
+
+extension CartNavigationView {
+    struct Constants {
+        static let basketIcon = "BasketIcon"
+        static let totalPrice = "₺0.00"
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }
