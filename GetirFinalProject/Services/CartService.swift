@@ -40,7 +40,7 @@ final class CartService: CartServiceProtocol {
         }
         let formattedTotalPrice = String(format: "₺%.2f", totalPriceDouble)
         totalPrice = formattedTotalPrice
-        NotificationCenter.default.post(name: Notification.Name("DidCalculateTotalPrice"), object: nil)
+        NotificationCenter.default.post(name: .didCalculateTotalPrice, object: nil)
     }
     
     func updateQuantity(for products: [Product]) async throws -> [Product] {

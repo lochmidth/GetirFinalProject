@@ -103,11 +103,11 @@ extension CartNavigationView: CartNavigationViewInput {
     }
     
     func configureObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didChangeCart), name: Notification.Name("DidCalculateTotalPrice"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didChangeCart), name: .didCalculateTotalPrice, object: nil)
     }
     
     func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("DidCalculateTotalPrice"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didCalculateTotalPrice, object: nil)
     }
     
     func reload() {

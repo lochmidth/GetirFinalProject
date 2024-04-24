@@ -1,0 +1,51 @@
+{
+  "configurations" : [
+    {
+      "id" : "149D7B48-98CE-41AA-AF1A-82DCEE5855DE",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:GetirFinalProject.xcodeproj",
+      "identifier" : "C2351BF72BC59CCF0080CED9",
+      "name" : "GetirFinalProject"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GetirFinalProject.xcodeproj",
+        "identifier" : "C2351C102BC59CD10080CED9",
+        "name" : "GetirFinalProjectTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:GetirFinalProject.xcodeproj",
+        "identifier" : "C2351C1A2BC59CD10080CED9",
+        "name" : "GetirFinalProjectUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:GetirSDK",
+        "identifier" : "GetirSDKTests",
+        "name" : "GetirSDKTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:SwiftAsyncNetworking",
+        "identifier" : "SwiftAsyncNetworkingTests",
+        "name" : "SwiftAsyncNetworkingTests"
+      }
+    }
+  ],
+  "version" : 1
+}
