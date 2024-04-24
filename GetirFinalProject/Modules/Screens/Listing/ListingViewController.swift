@@ -14,8 +14,6 @@ protocol ListingViewControllerOutput: AnyObject {
     func presenterForCell(at indexPath: IndexPath) -> ProductCellPresenter
 }
 
-let productCellIdentifier = "ProductCell"
-
 final class ListingViewController: UIViewController {
     //MARK: - Properties
     
@@ -66,7 +64,7 @@ final class ListingViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
-        section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(25)), elementKind: "spacer", alignment: .topLeading)]
+        section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(25)), elementKind: Constants.spacer, alignment: .topLeading)]
         return section
     }
 }
@@ -83,7 +81,7 @@ extension ListingViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellIdentifier, for: indexPath) as! ProductCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.productCellIdentifier, for: indexPath) as! ProductCell
         cell.orientation = .small
         let cellPresenter = presenter.presenterForCell(at: indexPath)
         cell.reload(with: cellPresenter)
@@ -102,7 +100,7 @@ extension ListingViewController: ListingViewControllerInput {
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout())
-        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: productCellIdentifier)
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: Constants.productCellIdentifier)
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -121,6 +119,14 @@ extension ListingViewController: ListingViewControllerInput {
     }
     
     func configureNavigationBar() {
-        title = "Ürünler"
+        title = Constants.title
+    }
+}
+
+extension ListingViewController {
+    struct Constants {
+        static let productCellIdentifier = "ProductCell"
+        static let spacer = "spacer"
+        static let title = "Ürünler"
     }
 }

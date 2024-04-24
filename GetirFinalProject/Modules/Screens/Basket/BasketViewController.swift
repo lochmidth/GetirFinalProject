@@ -33,7 +33,6 @@ final class BasketViewController: UIViewController {
         let label = UILabel()
         label.textColor = .getirPurple
         label.textAlignment = .center
-        label.text = "₺1.500,00"
         label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
@@ -44,7 +43,7 @@ final class BasketViewController: UIViewController {
         view.layer.cornerRadius = 10
         let checkoutButton = UIButton(type: .system)
         checkoutButton.backgroundColor = .clear
-        checkoutButton.setTitle("Siparişi Tamamla", for: .normal)
+        checkoutButton.setTitle(Constants.checkoutText, for: .normal)
         checkoutButton.setTitleColor(.white, for: .normal)
         checkoutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         view.addSubview(checkoutButton)
@@ -133,7 +132,7 @@ extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BasketCell", for: indexPath) as! ProductCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellReuseIdentifier, for: indexPath) as! ProductCell
         cell.layer.borderWidth = 0
         if indexPath.section == 0 {
             cell.orientation = .large
@@ -146,7 +145,7 @@ extension BasketViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SuggestedProductsHeader.reuseIdentifier, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: Constants.headerReuseIdentifier, for: indexPath)
         return header
     }
 }
@@ -168,19 +167,19 @@ extension BasketViewController: BasketViewControllerInput {
     }
     
     func configureNavigationbar() {
-        let trashIcon = UIImageView(image: UIImage(named: "whiteTrashIcon"))
+        let trashIcon = UIImageView(image: UIImage(named: Constants.whiteTrashIcon))
         let trashIconBarButton = UIBarButtonItem(customView: trashIcon)
         trashIcon.setDimensions(height: 18, width: 16.8)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapTrashBarButton))
         trashIcon.addGestureRecognizer(tap)
         self.navigationItem.rightBarButtonItem = trashIconBarButton
-        title = "Sepetim"
+        title = Constants.title
     }
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCompositionalLayout())
-        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: "BasketCell")
-        collectionView.register(SuggestedProductsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SuggestedProductsHeader.reuseIdentifier)
+        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: Constants.cellReuseIdentifier)
+        collectionView.register(SuggestedProductsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: Constants.headerReuseIdentifier)
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -202,18 +201,33 @@ extension BasketViewController: BasketViewControllerInput {
 }
 
 final class SuggestedProductsHeader: UICollectionReusableView {
-    static let reuseIdentifier = "SuggestedProductsHeaderView"
     let label = UILabel()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        label.text = "Önerilen Ürünler"
+        label.text = Constants.headerText
         label.font = UIFont.boldSystemFont(ofSize: 12)
         addSubview(label)
         label.centerY(inView: self, leftAnchor: leftAnchor, paddingLeft: 8, constant: 5)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
+    }
+}
+
+extension BasketViewController {
+    struct Constants {
+        static let checkoutText = "Siparişi Tamamla"
+        static let cellReuseIdentifier = "BasketCell"
+        static let headerReuseIdentifier = "SuggestedProductsHeaderView"
+        static let whiteTrashIcon = "whiteTrashIcon"
+        static let title = "Sepetim"
+    }
+}
+
+extension SuggestedProductsHeader {
+    struct Constants {
+        static let headerText = "Önerilen Ürünler"
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }
