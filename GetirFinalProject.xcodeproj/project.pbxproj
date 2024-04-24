@@ -176,6 +176,7 @@
 		C23F06242BCC7F1800D3B104 /* ProductDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPresenter.swift; sourceTree = "<group>"; };
 		C23F06262BCC7F2100D3B104 /* ProductDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailInteractor.swift; sourceTree = "<group>"; };
 		C23F06282BCC7F3200D3B104 /* ProductDetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailBuilder.swift; sourceTree = "<group>"; };
+		C277074D2BD89C1800525559 /* GetirFinalProject.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetirFinalProject.xctestplan; sourceTree = "<group>"; };
 		C2836B9E2BCF2E79000586BE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		C2836BA12BCF345C000586BE /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 		C2836BA42BD08E7F000586BE /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +448,7 @@
 		C2351BEF2BC59CCF0080CED9 = {
 			isa = PBXGroup;
 			children = (
+				C277074D2BD89C1800525559 /* GetirFinalProject.xctestplan */,
 				C2351C332BC5A1420080CED9 /* GetirSDK */,
 				C2351C322BC59FF70080CED9 /* SwiftAsyncNetworking */,
 				C2351BFA2BC59CCF0080CED9 /* GetirFinalProject */,
