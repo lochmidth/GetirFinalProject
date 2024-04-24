@@ -84,8 +84,8 @@ Before you begin, ensure you have the following:
 Also, make sure that these dependencies are added in your project's target:
 
 - [Kingfisher](https://github.com/onevcat/Kingfisher):  Kingfisher is a lightweight and pure Swift library for downloading and caching images from the web.
-- [SwiftAsyncNetworking](https://github.com/lochmidth/GetirFinalProject/tree/main/SwiftAsyncNetworking):  My own local package for concurrent networking. (Available in project directory)
-- [GetirSDK](https://github.com/lochmidth/GetirFinalProject/tree/main/GetirSDK):  My own local package to mimic the GetirService. (Available in project directory)
+- [SwiftAsyncNetworking](https://github.com/lochmidth/GetirFinalProject/tree/main/SwiftAsyncNetworking):  My own local package for concurrent networking. (Available documentation in project directory)
+- [GetirSDK](https://github.com/lochmidth/GetirFinalProject/tree/main/GetirSDK):  My own local package to mimic the GetirService. (Available documentation in project directory)
 
 ### Installation
 
